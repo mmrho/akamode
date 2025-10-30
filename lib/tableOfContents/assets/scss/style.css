@@ -1,0 +1,272 @@
+/* ==========================================================================
+   tableOfContents Styles - Apple-like Animation
+   ========================================================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0 !important;
+  }
+  body.scrolled {
+    padding-top: 0 !important;
+  }
+}
+
+.tableOfContents .tableOfContents-container {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.tableOfContents .tableOfContents-container .cta-spacer {
+  height: 0px;
+  transition: height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: height;
+}
+.tableOfContents .tableOfContents-container .local-nav {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+  will-change: top, opacity;
+}
+.tableOfContents .tableOfContents-container .local-nav:not(.visible) {
+  transform: translateY(-5px);
+}
+.tableOfContents .tableOfContents-container .local-nav.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.tableOfContents .tableOfContents-container .local-nav .inner {
+  height: 44px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 0 12px;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  border-radius: 0px;
+  transition: background 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), border-radius 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .product {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 4px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .product button {
+  background: none;
+  border: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 8px;
+  transition: color 0.2s;
+  font-size: 14px;
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .product button i {
+  width: 10px;
+  height: 10px;
+  transition: transform 0.35s cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .product button[aria-expanded=true] i {
+  transform: rotate(180deg);
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .nav-links {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .nav-links .nav-link-item {
+  flex: 0 0 auto;
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .nav-links a {
+  color: inherit;
+  text-decoration: none;
+  padding: 0 8px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  opacity: 0.88;
+  transition: opacity 0.2s cubic-bezier(0.28, 0.11, 0.32, 1);
+  font-size: 13px;
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .nav-links a:hover {
+  opacity: 1;
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .nav-links a.buy-btn {
+  padding: 4px 10px;
+  border-radius: 16px;
+  background: #0071e3;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: filter 0.2s;
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .nav-links a.buy-btn:active {
+  transform: translateY(1px);
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .nav-links a.buy-btn:hover {
+  filter: brightness(1.1);
+}
+.tableOfContents .tableOfContents-container .overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.22);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 998;
+}
+.tableOfContents .tableOfContents-container .overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.tableOfContents .tableOfContents-container .sheet {
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  right: 0;
+  top: 44px;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  border-radius: 0px;
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.14), 0 20px 40px rgba(0, 0, 0, 0.1);
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 0.45s cubic-bezier(0.28, 0.11, 0.32, 1);
+  will-change: clip-path;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.28, 0.11, 0.32, 1), clip-path 0.45s cubic-bezier(0.28, 0.11, 0.32, 1);
+}
+.tableOfContents .tableOfContents-container .sheet.active {
+  clip-path: inset(0 0 0% 0);
+  max-height: 300px;
+}
+.tableOfContents .tableOfContents-container .sheet .sheet-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 8px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 16px 12px;
+}
+.tableOfContents .tableOfContents-container .sheet .sheet-inner .sheet-item {
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 0px;
+  padding: 12px 16px;
+  width: 100%;
+  text-align: start;
+  transition: background 0.2s ease, transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform: translateY(10px);
+  opacity: 0;
+}
+.tableOfContents .tableOfContents-container .sheet .sheet-inner .sheet-item:hover {
+  background: rgba(0, 0, 0, 0.08);
+  transform: translateY(0);
+}
+.tableOfContents .tableOfContents-container .sheet .sheet-inner .sheet-item a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item {
+  transform: translateY(0);
+  opacity: 1;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(1) {
+  transition-delay: 0.15s;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(3) {
+  transition-delay: 0.25s;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(4) {
+  transition-delay: 0.3s;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(5) {
+  transition-delay: 0.35s;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(6) {
+  transition-delay: 0.4s;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(7) {
+  transition-delay: 0.45s;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(8) {
+  transition-delay: 0.5s;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(9) {
+  transition-delay: 0.55s;
+}
+.tableOfContents .tableOfContents-container .sheet.active .sheet-inner .sheet-item:nth-child(10) {
+  transition-delay: 0.6s;
+}
+.tableOfContents .tableOfContents-container .sheet.active ~ .local-nav .inner {
+  border-radius: 12px 12px 0 0;
+  box-shadow: none;
+}
+
+html.scroll-lock,
+body.scroll-lock {
+  overflow: hidden;
+  padding-right: 0;
+}
+
+@keyframes subtle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+.tableOfContents .tableOfContents-container .local-nav .inner .product button:active {
+  animation: subtle-bounce 0.3s ease;
+}
+
+@media (max-width: 849.98px) {
+  .tableOfContents .inner .product {
+    flex: 0;
+  }
+  .tableOfContents .nav-links {
+    display: none;
+  }
+  .tableOfContents .sheet .sheet-item {
+    display: block;
+  }
+}
+@media (max-width: 768px) {
+  .tableOfContents .nav-links {
+    flex-wrap: wrap;
+  }
+}/*# sourceMappingURL=style.css.map */
