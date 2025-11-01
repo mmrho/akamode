@@ -13,7 +13,6 @@
                         <?php echo $support_info['phone_number']; ?>
                         <?php echo $support_info['phone_label']; ?>
                     </span>
-
                 </div>
                 <!-- Brand Logo and Name -->
                 <a href="<?php echo $site_data['url']; ?>" class="site-header-top-brand">

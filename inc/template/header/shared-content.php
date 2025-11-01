@@ -128,5 +128,6 @@ $support_info = [
     'search_icon' => 'icon-search-aka',
     'account_icon' => 'icon-account',
     'shoping_bag_icon' => 'icon-shoping_bag',
+    'hamburger-menu_icon' => 'icon-hamburger-menu-aka',
 ];
 ?>

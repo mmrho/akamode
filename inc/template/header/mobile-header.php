@@ -2,27 +2,30 @@
 
 <div class="mobile-header-container">
     <div class="mobile-header-content">
+        <div class="mobile-header-action">
+            <button class="mobile-menu-toggle" type="button" id="menuBtnIcon">
+                <i class="<?php echo $support_info['hamburger-menu_icon']; ?>"></i>
+            </button>
+        </div>
         <!-- Logo and Site Name -->
         <div class="mobile-header-brand header-element">
             <a href="<?php echo $site_data['url']; ?>" class="mobile-brand-link">
                 <img class="img-fluid site-header-top-brand-logo"
                     src="<?php echo $site_data['logo']; ?>"
-                    alt="">
-                <span class="site-header-top-brand-name"><?php echo $site_data['name']; ?></span>
+                    alt="<?php echo $site_data['name']; ?> لوگو">
             </a>
         </div>
 
-        <!-- Search and Menu Icons -->
+        <!-- Search, Account and Shopping Cart Icons -->
         <div class="mobile-header-actions">
             <button class="search-icon mobile-btn header-element" type="button" id="searchIcon">
-                <i class="icon-search-1"></i>
+                <i class="<?php echo $support_info['search_icon']; ?>"></i>
+            </button>
+            <button class="account_icon mobile-btn header-element" type="button" id="accountIcon">
+                <i class="<?php echo $support_info['account_icon']; ?>"></i>
             </button>
             <button class="shopping-bag-icon mobile-btn header-element" type="button" id="shoppingBagIcon">
-                <i class="icon-shopping-bag"></i>
-            </button>
-            <button class="mobile-menu-toggle" type="button" id="menuBtnIcon">
-                <span></span>
-                <span></span>
+                <i class="<?php echo $support_info['shoping_bag_icon']; ?>"></i>
             </button>
         </div>
     </div>
