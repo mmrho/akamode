@@ -16,7 +16,6 @@
     // Hide mobile header by default, show on mobile
     .mobile-header {
         display: none;
-
         @include media-max(mobile-max) {
             display: block;
         }
@@ -344,7 +343,6 @@
         top: 0;
         left: 0;
         right: 0;
-       
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
