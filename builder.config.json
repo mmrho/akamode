@@ -1,0 +1,6 @@
+{
+  "command": "",
+  "serverUrl": "https://akamode:8890/",
+  "authenticateProxy": false,
+  "commitMode": "commits"
+}

@@ -2,10 +2,10 @@
     <div class="ribbon-section-container">
         <div class="ribbon-section-content">
             <span>
-                جشنواره سیبانه شروع شد تخفیف ۹۰٪ اشتراک سیبانه
+                جشنواره آکامد شروع شد تخفیف ۹۰٪ 
             </span>
             <a href="#" class="ribbon-section-link">
-                مشاهده جشنواره
+            مشاهده محصولات جشنواره
                 <i class="icon-left-open"></i>
             </a>
         </div>
