@@ -1,4 +1,5 @@
 #site-footer {
+    margin-top: 163px !important;
     .site-footer-container {
         display: flex;
         flex-direction: column;
@@ -7,6 +8,7 @@
         align-content: center;
         gap: 32px;
         width: 100%;
+        margin-top: 0px !important;
         .footer-top {
             display: flex;
             flex-direction: row;

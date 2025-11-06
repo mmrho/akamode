@@ -1,3 +1,6 @@
+<?php
+require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
+?>
 <section class="slider-section">
     <div class="slider-container">
         <div class="slide active">
@@ -79,4 +82,97 @@
             </article>
         </div>
     </div>
+</section>
+<section class="img-section">
+    <div class="img-container">
+        <div class="img">
+            <img class="images" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-11.png" alt="akamode">
+            <div class="img-content">
+
+            </div>
+        </div>
+    </div>
+</section>
+<section class="season-products">
+    <div class="season-products-container">
+        <div class="season-products-bar">
+            <small>لورم ایپسوم متن ساختگی با سادگی نامفهوم از صنعت چاپ</small>
+            <h3>جدیدترین محصولات برای این فصل</h3>
+            <div class="season-products-meta">
+                <span>دقت در جزئیات</span>
+                <a href="#" class="season-products-all">
+                    <span>مشاهده همه محصولات</span>
+                    <i class="icon-left-arrow"></i>
+                </a>
+            </div>
+        </div>
+        <div class="season-products-rail">
+            <!-- Repeatable product card -->
+            <article class="season-products-card">
+                <figure class="season-products-media" role="img" aria-label="کت سوییت">
+                    <img class="img ph" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+                <figcaption class="season-products-caption">
+                    سویشرت مردانه هومنیتی مدل L
+                </figcaption>
+            </article>
+            <article class="season-products-card">
+                <figure class="season-products-media" role="img" aria-label="کت سوییت">
+                    <img class="img ph" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-12.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+                <figcaption class="season-products-caption">
+                    سویشرت مردانه هومنیتی مدل L
+                </figcaption>
+            </article>
+            <article class="season-products-card">
+                <figure class="season-products-media" role="img" aria-label="کت سوییت">
+                    <img class="img ph" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-11.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+                <figcaption class="season-products-caption">
+                    سویشرت مردانه هومنیتی مدل L
+                </figcaption>
+            </article>
+            <article class="season-products-card">
+                <figure class="season-products-media" role="img" aria-label="کت سوییت">
+                    <img class="img ph" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-10.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+                <figcaption class="season-products-caption">
+                    سویشرت مردانه هومنیتی مدل L
+                </figcaption>
+            </article>
+            <article class="season-products-card">
+                <figure class="season-products-media" role="img" aria-label="کت سوییت">
+                    <img class="img ph" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-9.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+                <figcaption class="season-products-caption">
+                    سویشرت مردانه هومنیتی مدل L
+                </figcaption>
+            </article>
+            <article class="season-products-card">
+                <figure class="season-products-media" role="img" aria-label="کت سوییت">
+                    <img class="img ph" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-8.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+                <figcaption class="season-products-caption">
+                    سویشرت مردانه هومنیتی مدل L
+                </figcaption>
+            </article>
+            <article class="season-products-card">
+                <figure class="season-products-media" role="img" aria-label="کت سوییت">
+                    <img class="img ph" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-7.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+                <figcaption class="season-products-caption">
+                    سویشرت مردانه هومنیتی مدل L
+                </figcaption>
+            </article>
+            <article class="season-products-card">
+                <figure class="season-products-media" role="img" aria-label="کت سوییت">
+                    <img class="img ph" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-6.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+                <figcaption class="season-products-caption">
+                    سویشرت مردانه هومنیتی مدل L
+                </figcaption>
+            </article>
+        </div>
+    </div>
+
 </section>
