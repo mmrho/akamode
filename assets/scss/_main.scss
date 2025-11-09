@@ -347,594 +347,882 @@
     }
 }
 .season-products {
-    $bg: #f3efe9;
-    $ink: #0b0b0b;
     width: 100%;
-    .season-products-bar {
+    .season-products-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
-        align-items: flex-start;
-        align-content: flex-start;
-        flex-wrap: wrap;
-        padding: 80px 47px;
-        padding-bottom: 48px;
+        align-items: center;
+        align-content: center;
         width: 100%;
-        @include media-max(mobile-max) {
-            padding-top: 64px;
-            padding-bottom: 50px;
-            padding-left: 14px;
-            padding-right: 18px;
-        }
-        small {
-            color: #272727;
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 300;
-            line-height: normal;
-            margin-bottom: 12px;
-            @include media-max(mobile-max) {
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 300;
-                line-height: normal;
-            }
-        }
-
-        h3 {
-            color: #111111;
-            font-size: 32px;
-            font-style: normal;
-            font-weight: 500;
-            line-height: normal;
-            margin-bottom: 32px;
-            @include media-max(mobile-max) {
-                font-size: 24px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-            }
-        }
-        .season-products-meta {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            align-content: center;
+        .season-products-main {
             width: 100%;
-            .span {
-                color: #e44f0f;
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 300;
-                line-height: 32px;
+            .season-products-bar {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                align-content: flex-start;
+                flex-wrap: wrap;
+                padding: 0px 47px;
+                padding-bottom: 48px;
+                width: 100%;
                 @include media-max(mobile-max) {
-                    font-size: 14px;
+                    padding-top: 0px;
+                    padding-bottom: 50px;
+                    padding-left: 14px;
+                    padding-right: 18px;
+                }
+                small {
+                    color: #272727;
+                    font-size: 18px;
                     font-style: normal;
                     font-weight: 300;
                     line-height: normal;
+                    margin-bottom: 12px;
+                    @include media-max(mobile-max) {
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: normal;
+                    }
+                }
+                h3 {
+                    color: #111111;
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    margin-bottom: 32px;
+                    @include media-max(mobile-max) {
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                    }
+                }
+                .season-products-meta {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+                    .span {
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: 32px;
+                        @include media-max(mobile-max) {
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 300;
+                            line-height: normal;
+                        }
+                    }
+                    a {
+                        gap: 4px;
+                        span {
+                            color: #111111;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 32px;
+                        }
+                        i {
+                            color: #111111;
+                            font-size: 32px;
+                        }
+                    }
+                }
+                .season-products-all {
+                    order: 2;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    text-decoration: none;
+                    color: inherit;
+                    font-weight: 500;
                 }
             }
-            a {
-                gap: 4px;
-                span {
-                    color: #111111;
+            .season-products-rail {
+                margin-top: 0px;
+                width: 100%;
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 8px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding-inline-start: 18px;
+                padding-inline-end: 0;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+
+                &::-webkit-scrollbar {
+                    height: 10px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: #e2dbd3;
+                    border-radius: 999px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                .season-products-card {
+                    flex: 0 0 auto;
+                    border: none;
+                    border-radius: 0;
+                    box-shadow: none;
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+                    max-width: 332px;
+                    max-height: 463px;
+                    aspect-ratio: 332 / 463;
+                    width: clamp(275px, 22vw, 332px);
+
+                    @include media-max(mobile-max) {
+                        max-width: 275px;
+                        max-height: 383.51px;
+                        aspect-ratio: 275 / 383.51;
+                    }
+
+                    .season-products-media {
+                        margin: 0;
+                        background: #fffbf6;
+                        width: 100%;
+                        flex-grow: 1;
+                        position: relative;
+                        overflow: hidden;
+
+                        img {
+                            position: absolute;
+                            background: #fffbf6;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.3s ease;
+                        }
+
+                        &:hover img {
+                            transform: scale(1.05);
+                        }
+                    }
+
+                    .season-products-caption {
+                        margin: 0px;
+                        padding: 16px 2px 12px;
+                        font-size: 13px;
+                        color: #3a3a3a;
+                        background-color: #f6f1eb;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-inline-size: 332px;
+
+                        @include media-max(mobile-max) {
+                            max-inline-size: 275px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.Authentic-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    align-content: flex-start;
+    width: 100%;
+    @include media-max(mobile-max) {
+        flex-direction: column;
+    }
+    .Authentic-section-1 {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 50%;
+        .Authentic-section-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            width: 412px;
+            height: 390px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 24px;
+            flex-shrink: 0;
+        }
+        .Authentic-section-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            .Authentic-section-image {
+                display: flex;
+                position: relative;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                width: 680px;
+                height: 680px;
+                aspect-ratio: 680/680;
+                border: 1px solid #111111;
+                img {
+                    width: 478px;
+                    height: 645px;
+                    aspect-ratio: 478/645;
+                }
+            }
+            .Authentic-section-blur {
+                display: flex;
+                position: absolute;
+                background-color: rgba(255, 255, 255, 0.4);
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                width: 372.333px;
+                height: 88px;
+                padding: 16px;
+                align-items: center;
+                gap: 32px;
+                flex-shrink: 0;
+                .Authentic-section-caption {
                     font-size: 14px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: 32px;
                 }
-                i {
-                    color: #111111;
-                    font-size: 32px;
-                }
-            }
-        }
-        .season-products-all {
-            order: 2;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            color: inherit;
-            font-weight: 500;
-        }
-    }
-    .season-products-rail {
-        margin-top: 0px;
-        width: 100%;
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 8px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding-inline-start: 18px;
-        padding-inline-end: 0;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-
-        @media (min-width: 980px) {
-            width: 100vw;
-            margin-inline: calc(50% - 50vw);
-            padding-inline: 0;
-        }
-
-        &::-webkit-scrollbar {
-            height: 10px;
-        }
-
-        &::-webkit-scrollbar-thumb {
-            background: #e2dbd3;
-            border-radius: 999px;
-        }
-
-        &::-webkit-scrollbar-track {
-            background: transparent;
-        }
-        .season-products-card {
-            flex: 0 0 auto;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            max-width: 332px;
-            max-height: 463px;
-            aspect-ratio: 332 / 463;
-            width: clamp(275px, 22vw, 332px);
-
-            @include media-max(mobile-max) {
-                max-width: 275px;
-                max-height: 383.51px;
-                aspect-ratio: 275 / 383.51;
-            }
-
-            .season-products-media {
-                margin: 0;
-                background: #fffbf6;
-                width: 100%;
-                flex-grow: 1;
-                position: relative;
-                overflow: hidden;
-
-                img {
-                    position: absolute;
-                    background: #fffbf6;
-                    top: 0;
-                    left: 0;
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    transition: transform 0.3s ease;
-                }
-
-                &:hover img {
-                    transform: scale(1.05);
-                }
-            }
-
-            .season-products-caption {
-                margin: 0px;
-                padding: 16px 2px 12px;
-                font-size: 13px;
-                color: #3a3a3a;
-                background-color: #f6f1eb;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                max-inline-size: 332px;
-
-                @include media-max(mobile-max) {
-                    max-inline-size: 275px;
+                .Authentic-section-badge {
+                    img {
+                        width: 57px;
+                        flex-shrink: 0;
+                        align-self: stretch;
+                        aspect-ratio: 57/56;
+                    }
                 }
             }
         }
     }
-}
-
-.hero-section {
-    max-width: 100%;
-    background-color: $sibaneh-blue-background-color;
-    z-index: -3;
-    .hero-section-container {
+    .Authentic-section-2 {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        overflow: hidden;
-        .hero-section-logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-            color: inherit;
-            margin: 0 auto;
-            z-index: 1;
-            cursor: pointer;
-            &:hover {
-                opacity: 0.7;
-            }
-            .hero-section-logo {
-                width: 85px;
-                height: 85px;
-                margin-top: 80px;
-                margin-bottom: 20px;
-            }
-            .hero-section-logo-subtitle {
-                margin: 0;
-                font-size: 16px;
-            }
-        }
-        h2 {
-            font-size: 44px;
-            font-weight: bold;
-            margin-top: 2.5rem;
-            margin-bottom: 2.5rem;
-            padding-right: 10px;
-            padding-left: 10px;
-        }
-        .hero-section-subtitle {
-            font-size: 1.5rem;
-            padding-right: 10px;
-            padding-left: 10px;
-        }
-        .hero-section-learn-more {
-            margin: 1rem 0;
-            padding: 1rem 2rem;
-            color: rgb(10, 96, 234);
-            border-radius: 8px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-            position: relative;
-            z-index: 1;
-            cursor: pointer;
-            &:hover {
-                color: $primary_text_color;
-            }
-        }
-        .hero-section-img-container {
-            display: flex;
-            justify-content: flex-start;
-            align-items: center;
-            position: relative;
-            .hero-section-background-img {
-                width: 100%;
-                height: max-content;
-                object-fit: cover;
-                position: relative;
-                z-index: 0;
-            }
-            .hero-section-img {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                z-index: 1;
-                max-width: 80%;
-            }
-        }
-        .rev-slider-effect {
-            position: relative;
-            overflow: hidden;
-            width: 100%;
-            height: 1000px;
-        }
-
-        .rev-slider-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .rev-slider-bg {
-            position: absolute;
-            bottom: 0;
-            right: 0; /* چسبیده به راست */
-            width: auto; /* عرض خودکار بر اساس ارتفاع */
-            height: 400px; /* ارتفاع دقیق تصویر پس‌زمینه به پیکسل */
-            z-index: 1;
-            will-change: transform;
-            transition: transform 0.05s ease-out;
-        }
-
-        .rev-slider-fg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%); /* مرکز دقیق */
-            width: auto; /* عرض خودکار بر اساس ارتفاع */
-            height: 800px; /* ارتفاع دقیق تصویر جلو به پیکسل */
-            z-index: 2;
-            will-change: transform;
-            transition: transform 0.05s ease-out;
-            filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.2));
-        }
-    }
-}
-.card-section {
-    background-color: $sibaneh-blue-background-color;
-    .card-section-container {
-        padding: 1.25rem;
-        .card-section-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: right;
-            text-align: right;
-            background-color: white;
-            border-radius: 1rem;
-            padding: 4rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            gap: 1rem;
-            .card-section-logo-container {
-                display: flex;
-                flex-direction: row;
-                justify-content: right;
-                align-items: center;
-                gap: 0.75rem;
-                margin-bottom: 1rem;
-                .card-section-logo {
-                    display: block;
-                    width: 2rem;
-                    height: 2rem;
-                }
-                .card-section-logo-title {
-                    font-size: 1rem;
-                    font-weight: lighter;
-                    margin-bottom: 0;
-                    color: $primary_text_color;
-                }
-            }
-            .card-section-subtitle {
-                font-size: 1rem;
-                color: #666;
-                margin-bottom: 1.5rem;
-            }
-            .card-section-title {
-                font-size: 1.5rem;
-                font-weight: bold;
-                margin-bottom: 1rem;
-                color: $primary_text_color;
-            }
-            .card-section-learn-more {
-                font-size: 1rem;
-                color: rgb(0, 110, 228);
-                text-decoration: none;
-                margin-bottom: 1rem;
-            }
-            .card-section-btn {
-                display: inline-block;
-                width: fit-content;
-                background-color: $sibaneh-blue-color;
-                color: white;
-                border: none;
-                padding: 11px 21px;
-                border-radius: 980px;
-                font-size: 16px;
-                &:hover {
-                    color: $primary_text_color;
-                }
-            }
-            .pink {
-                background-color: $sibaneh_pink_color;
-            }
-            .orange {
-                background-color: $sibaneh_orange_color;
-            }
-            .card-section-img-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                .card-section-img {
-                    width: 100%;
-                    height: 30rem;
-                }
-            }
-        }
-    }
-}
-.carousel-section {
-    background-color: $sibaneh_blue_background_color;
-    padding-bottom: 3rem;
-    .carousel-container {
-        padding: 1rem 0;
-        .carousel-row {
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 0.5rem;
-            height: 175px;
-            padding: 0;
-            .carousel-track {
-                display: flex;
-                position: absolute;
-                left: 0;
-                top: 0;
-                transition: transform 0.5s ease;
-                &:nth-child(2) {
-                    .carousel-track {
-                        display: flex;
-                        flex-direction: row-reverse;
-                    }
-                }
-                .game-card {
-                    width: 300px;
-                    height: 170px;
-                    flex-shrink: 0;
-                    background: $primary_color;
-                    border-radius: 1rem;
-                    overflow: hidden;
-                    margin-right: 1rem;
-                    .game-image-container {
-                        position: relative;
-                        height: 170px;
-                        .game-image {
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                        }
-                        .game-info {
-                            position: absolute;
-                            bottom: 0;
-                            left: 0;
-                            right: 0;
-                            padding: 1rem;
-                            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-                            color: $secondary_text_color;
-                            direction: ltr;
-                            text-align: left;
-                            .game-category {
-                                font-size: 0.875rem;
-                                color: $secondary_text_color;
-                                margin-bottom: 0.25rem;
-                            }
-
-                            .game-title {
-                                font-size: 1.125rem;
-                                color: $secondary_text_color;
-                                font-weight: bold;
-                            }
-                        }
-                        .game-button {
-                            position: absolute;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%) scale(0.5);
-                            display: flex;
-                            padding: 11px 21px;
-                            border-radius: 980px;
-                            font-size: 0.75rem;
-                            background: $primary_color;
-                            color: $primary_text_color;
-                            border: none;
-                            cursor: pointer;
-                            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                            opacity: 0;
-                            pointer-events: none;
-                            &:hover {
-                                opacity: 0.8;
-                            }
-                        }
-                        &:hover {
-                            .game-image {
-                                opacity: 0.6;
-                            }
-                            .game-button {
-                                opacity: 1;
-                                transform: translate(-50%, -50%) scale(1);
-                                pointer-events: auto;
-                                &:hover {
-                                    opacity: 0.8;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    .carousel-section-button {
-        display: flex;
         justify-content: center;
         align-items: center;
-        margin: 1rem auto;
-        width: fit-content;
-        padding: 11px 21px;
-        border-radius: 980px;
-        font-size: 16px;
-        background: none;
-        border: 1px solid $sibaneh_blue_color;
-        color: $sibaneh_blue_color;
-        cursor: pointer;
-        transition: background-color 0.2s;
-        &:hover {
-            background-color: $sibaneh_blue_color;
-            color: $secondary_text_color;
-        }
-    }
-    .pink-button {
-        color: $sibaneh_pink_color;
-        border: 1px solid $sibaneh_pink_color;
-        &:hover {
-            background-color: $sibaneh_pink_color;
-            color: $secondary_text_color;
-        }
-    }
-    .orange-button {
-        color: $sibaneh_orange_color;
-        border: 1px solid $sibaneh_orange_color;
-        &:hover {
-            background-color: $sibaneh_orange_color;
-            color: $secondary_text_color;
-        }
-    }
-}
-.about-section {
-    background-color: rgb(247, 247, 249);
-    color: #fff;
-    padding: 0.5rem 0.5rem;
-    .about-container {
-        background-color: #000;
-        border-radius: 32px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        padding: 40px 20px;
-        width: 100%;
-        margin: 3rem auto;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        .logo-container {
+        align-content: center;
+        width: 50%;
+        .Authentic-section-card {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
-            margin-bottom: 2rem;
-            .logo {
-                display: inline-block;
-                background: linear-gradient(
-                    120deg,
-                    $sibaneh_blue_color 0%,
-                    $sibaneh_pink_color 40%,
-                    $sibaneh_pink_color 60%,
-                    $sibaneh_orange_color 100%
-                );
-                background-size: 100% 100%;
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-                font-size: 3.5rem;
-                font-weight: bold;
-                white-space: nowrap;
-                margin-bottom: 0px;
+            align-content: center;
+            .Authentic-section-image {
+                display: flex;
+                position: relative;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                width: 680px;
+                height: 680px;
+                aspect-ratio: 680/680;
+                border: 1px solid #111111;
+                img {
+                    width: 478px;
+                    height: 645px;
+                    aspect-ratio: 478/645;
+                }
             }
+            .Authentic-section-blur {
+                display: flex;
+                position: absolute;
+                background-color: rgba(255, 255, 255, 0.4);
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                width: 372.333px;
+                height: 88px;
+                padding: 16px;
+                align-items: center;
+                gap: 32px;
+                flex-shrink: 0;
+                .Authentic-section-caption {
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 32px;
+                }
+                .Authentic-section-badge {
+                    img {
+                        width: 57px;
+                        flex-shrink: 0;
+                        align-self: stretch;
+                        aspect-ratio: 57/56;
+                    }
+                }
+            }
+        }
+    }
+}
+.season-products-second {
+    width: 100%;
+    .season-products-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+        .season-products-main {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            width: 100%;
+            .season-products-bar-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                position: relative;
+                overflow: hidden;
+                width: 100%;
+                max-width: 400px;
+                max-height: 463px;
+                aspect-ratio: 400 / 463;
+
+                @include media-max(mobile-max) {
+                    max-width: 300px;
+                    max-height: 383.51px;
+                    aspect-ratio: 300 / 383.51;
+                }
+            }
+            .background {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                z-index: -1;
+                max-width: 400px;
+                max-height: 463px;
+                aspect-ratio: 400 / 463;
+
+                @include media-max(mobile-max) {
+                    max-width: 300px;
+                    max-height: 383.51px;
+                    aspect-ratio: 300 / 383.51;
+                }
+                .background-figure {
+                    width: 100%;
+                    height: 100%;
+                    margin: 0px;
+                    .background-img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+            .season-products-bar {
+                position: relative;
+                z-index: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                flex-wrap: wrap;
+                padding: 0px 41px;
+                padding-bottom: 0px;
+                max-width: 400px;
+                width: 100%;
+
+                small {
+                    color: #272727;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 200;
+                    line-height: 44px;
+                    @include media-max(mobile-max) {
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: normal;
+                    }
+                }
+                h3 {
+                    color: #111111;
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    @include media-max(mobile-max) {
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                    }
+                }
+                .season-products-meta {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+                    .span {
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: 32px;
+                        @include media-max(mobile-max) {
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 300;
+                            line-height: normal;
+                        }
+                    }
+                    a {
+                        gap: 4px;
+                        span {
+                            color: #111111;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 32px;
+                        }
+                        i {
+                            color: #111111;
+                            font-size: 32px;
+                        }
+                    }
+                }
+                .season-products-all {
+                    order: 2;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    text-decoration: none;
+                    color: inherit;
+                    font-weight: 500;
+                }
+            }
+            .season-products-rail {
+                margin-top: 0px;
+                width: 100%;
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 8px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding-inline-start: 18px;
+                padding-inline-end: 0;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+
+                &::-webkit-scrollbar {
+                    height: 10px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: #e2dbd3;
+                    border-radius: 999px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                .season-products-card {
+                    flex: 0 0 auto;
+                    border: none;
+                    border-radius: 0;
+                    box-shadow: none;
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+                    max-width: 332px;
+                    max-height: 463px;
+                    aspect-ratio: 332 / 463;
+                    width: clamp(275px, 22vw, 332px);
+
+                    @include media-max(mobile-max) {
+                        max-width: 275px;
+                        max-height: 383.51px;
+                        aspect-ratio: 275 / 383.51;
+                    }
+
+                    .season-products-media {
+                        margin: 0;
+                        background: #fffbf6;
+                        width: 100%;
+                        flex-grow: 1;
+                        position: relative;
+                        overflow: hidden;
+
+                        img {
+                            position: absolute;
+                            background: #fffbf6;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.3s ease;
+                        }
+
+                        &:hover img {
+                            transform: scale(1.05);
+                        }
+                    }
+
+                    .season-products-caption {
+                        margin: 0px;
+                        padding: 16px 2px 12px;
+                        font-size: 13px;
+                        color: #3a3a3a;
+                        background-color: #f6f1eb;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-inline-size: 332px;
+
+                        @include media-max(mobile-max) {
+                            max-inline-size: 275px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.season-products-third {
+    width: 100%;
+    .season-products-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+        @include media-max(mobile-max) {
+            flex-direction: column;
+        }
+        .season-products-main {
+            width: 50%;
+            @include media-max(mobile-max) {
+                width: 100%;
+                order: 2;
+                margin-top: 80px;
+            }
+            .season-products-bar {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                align-content: flex-start;
+                flex-wrap: wrap;
+                padding: 0px 47px;
+                padding-bottom: 48px;
+                width: 100%;
+                @include media-max(mobile-max) {
+                    padding-top: 0px;
+                    padding-bottom: 50px;
+                    padding-left: 14px;
+                    padding-right: 18px;
+                }
+                small {
+                    color: #272727;
+                    font-size: 18px;
+                    font-style: normal;
+                    font-weight: 300;
+                    line-height: normal;
+                    margin-bottom: 12px;
+                    @include media-max(mobile-max) {
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: normal;
+                    }
+                }
+                h3 {
+                    color: #111111;
+                    font-size: 32px;
+                    font-style: normal;
+                    font-weight: 500;
+                    line-height: normal;
+                    margin-bottom: 32px;
+                    @include media-max(mobile-max) {
+                        font-size: 24px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                    }
+                }
+                .season-products-meta {
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+                    .span {
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: 32px;
+                        @include media-max(mobile-max) {
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 300;
+                            line-height: normal;
+                        }
+                    }
+                    a {
+                        gap: 4px;
+                        span {
+                            color: #111111;
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 32px;
+                        }
+                        i {
+                            color: #111111;
+                            font-size: 32px;
+                        }
+                    }
+                }
+                .season-products-all {
+                    order: 2;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    text-decoration: none;
+                    color: inherit;
+                    font-weight: 500;
+                }
+            }
+            .season-products-rail {
+                margin-top: 0px;
+                width: 100%;
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 8px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding-inline-start: 18px;
+                padding-inline-end: 0;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: thin;
+
+                &::-webkit-scrollbar {
+                    height: 10px;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background: #e2dbd3;
+                    border-radius: 999px;
+                }
+
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                .season-products-card {
+                    flex: 0 0 auto;
+                    border: none;
+                    border-radius: 0;
+                    box-shadow: none;
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+                    max-width: 332px;
+                    max-height: 463px;
+                    aspect-ratio: 332 / 463;
+                    width: clamp(275px, 22vw, 332px);
+
+                    @include media-max(mobile-max) {
+                        max-width: 275px;
+                        max-height: 383.51px;
+                        aspect-ratio: 275 / 383.51;
+                    }
+
+                    .season-products-media {
+                        margin: 0;
+                        background: #fffbf6;
+                        width: 100%;
+                        flex-grow: 1;
+                        position: relative;
+                        overflow: hidden;
+
+                        img {
+                            position: absolute;
+                            background: #fffbf6;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            transition: transform 0.3s ease;
+                        }
+
+                        &:hover img {
+                            transform: scale(1.05);
+                        }
+                    }
+
+                    .season-products-caption {
+                        margin: 0px;
+                        padding: 16px 2px 12px;
+                        font-size: 13px;
+                        color: #3a3a3a;
+                        background-color: #f6f1eb;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        max-inline-size: 332px;
+
+                        @include media-max(mobile-max) {
+                            max-inline-size: 275px;
+                        }
+                    }
+                }
+            }
+        }
+        .season-products-img {
+            width: 50%;
+            @include media-max(mobile-max) {
+                width: 100%;
+                order: 1;
+            }
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+.info-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+    padding-left: 24px;
+    @include media-max(mobile-max) {
+        padding: 0px;
+    }
+    .info-section-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        width: 100%;
+        gap: 24px;
+        @include media-max(mobile-max) {
+            flex-direction: column;
+        }
+        .info-section-image {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            width: 50%;
+            @include media-max(mobile-max) {
+                order: 2;
+                width: 100%;
+            }
+            img {
+                height: 483px;
+                width: 100%;
+            }
+        }
+        .info-section-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            align-content: flex-start;
+            width: 50%;
+            @include media-max(mobile-max) {
+                order: 1;
+                width: 100%;
+                padding: 0px 16px;
+            }
+
             .subtitle {
-                display: inline-block;
-                background: linear-gradient(
-                    120deg,
-                    $sibaneh_blue_color 0%,
-                    $sibaneh_pink_color 40%,
-                    $sibaneh_pink_color 60%,
-                    $sibaneh_orange_color 100%
-                );
-                background-size: 100% 100%;
-                -webkit-background-clip: text;
-                background-clip: text;
-                color: transparent;
-                white-space: nowrap;
-                font-size: 1.2rem;
-                margin-bottom: 2rem;
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: normal;
             }
-        }
-        .content {
-            color: #ffffff;
-            line-height: 1.8;
-            text-align: justify;
-            padding: 0 15px;
-        }
-        .link-custom {
-            color: #00b4db;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 20px;
-            &:hover {
-                color: #e0338c;
+            .title {
+                font-size: 32px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: normal;
+            }
+            .info {
+                .info-item {
+                    background-color: none;
+                    border-radius: none;
+                    .info-header {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        background: none;
+                        border: none;
+                        width: 100%;
+                        padding: 16px 0;
+                        text-align: right;
+                        span {
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 300;
+                            line-height: 32px;
+                        }
+                        i {
+                            font-size: 24px;
+                        }
+                    }
+                    .info-content {
+                        max-height: 0;
+                        overflow: hidden;
+                        transition: max-height 0.3s ease-out;
+                        padding-right: 10px;
+                        p {
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 200;
+                            line-height: 44px;
+                        }
+                    }
+                }
+                .info-item.is-open {
+                    .info-header {
+                        i {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
             }
         }
     }
