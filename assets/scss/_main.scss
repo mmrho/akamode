@@ -535,146 +535,210 @@
 }
 .Authentic-section {
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: center;
-    align-items: flex-start;
-    align-content: flex-start;
+    align-items: center;
+    align-content: center;
     width: 100%;
-    @include media-max(mobile-max) {
-        flex-direction: column;
-    }
-    .Authentic-section-1 {
+    // background-color: #FFFBF6;
+    padding: 80px 24px;
+    .Authentic-section-container {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
-        align-items: center;
-        align-content: center;
-        width: 50%;
-        .Authentic-section-text {
-            display: flex;
+        align-items: flex-start;
+        align-content: flex-start;
+        width: 100%;
+        max-width: 1400px;
+        gap: 20px;
+        @include media-max(mobile-max) {
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            align-content: center;
-            width: 412px;
-            height: 390px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            flex-shrink: 0;
+            gap: 40px;
         }
-        .Authentic-section-card {
+        .Authentic-section-1 {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             align-content: center;
-            .Authentic-section-image {
+            width: 50%;
+            @include media-max(mobile-max) {
+                width: 100%;
+            }
+            .Authentic-section-text {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                width: 100%;
+                max-width: 412px;
+                height: auto;
+                gap: 24px;
+                flex-shrink: 0;
+              padding-top: 10%;
+              padding-bottom: 25%;
+            }
+            .Authentic-section-card {
                 display: flex;
                 position: relative;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 align-content: center;
-                width: 680px;
-                height: 680px;
-                aspect-ratio: 680/680;
-                border: 1px solid #111111;
-                img {
-                    width: 478px;
-                    height: 645px;
-                    aspect-ratio: 478/645;
+                width: 100%;
+                .Authentic-section-image {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    border: 1px solid #909090;
+                    img {
+                        width: 70%;
+                        aspect-ratio: 478/645;
+                        max-height: 90%;
+                        z-index: 999;
+                    }
+                }
+                .Authentic-section-blur {
+                    display: flex;
+                    position: absolute;
+                    top: 60%; 
+                    left: -20%; 
+                    background-color: rgba(255, 255, 255, 0.6);
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    width: 80%;
+                    max-width: 372px;
+                    height: auto;
+                    padding: 16px;
+                    gap: 32px;
+                    z-index: 1000;
+                    @include media-max(mobile-max) {
+                        top: 5%;
+                        left: 5%;
+                        width: 80%;
+                    }
+                    .Authentic-section-caption {
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 32px;
+                    }
+                    .Authentic-section-badge {
+                        img {
+                            width: 57px;
+                            flex-shrink: 0;
+                            align-self: stretch;
+                            aspect-ratio: 57/56;
+                            z-index: 999;
+                        }
+                    }
                 }
             }
-            .Authentic-section-blur {
+        }
+        .Authentic-section-2 {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            width: 50%;
+            gap: 50px;
+            @include media-max(mobile-max) {
+                width: 100%;
+            }
+            .Authentic-section-card {
                 display: flex;
-                position: absolute;
-                background-color: rgba(255, 255, 255, 0.4);
-                flex-direction: row;
+                position: relative;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 align-content: center;
-                width: 372.333px;
-                height: 88px;
-                padding: 16px;
-                align-items: center;
-                gap: 32px;
-                flex-shrink: 0;
-                .Authentic-section-caption {
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 32px;
-                }
-                .Authentic-section-badge {
+                width: 100%;
+                .Authentic-section-image {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    width: 100%;
+                    aspect-ratio: 1/1; 
+                    border: 1px solid #909090;
                     img {
-                        width: 57px;
-                        flex-shrink: 0;
-                        align-self: stretch;
-                        aspect-ratio: 57/56;
+                        width: 70%;
+                        aspect-ratio: 478/645;
+                        max-height: 90%;
+                        z-index: 999;
+                    }
+                }
+                .Authentic-section-blur {
+                    display: flex;
+                    position: absolute;
+                    top: 65%; 
+                    left: 70%; 
+                    background-color: rgba(255, 255, 255, 0.4);
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    width: 80%;
+                    max-width: 372px;
+                    height: auto;
+                    padding: 16px;
+                    gap: 32px;
+                    z-index: 1000;
+                    @include media-max(mobile-max) {
+                        top: 5%;
+                        left: 5%;
+                        width: 80%;
+                    }
+                    .Authentic-section-caption {
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: 32px;
+                    }
+                    .Authentic-section-badge {
+                        img {
+                            width: 57px;
+                            flex-shrink: 0;
+                            align-self: stretch;
+                            aspect-ratio: 57/56;
+                        }
                     }
                 }
             }
         }
     }
-    .Authentic-section-2 {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-        width: 50%;
-        .Authentic-section-card {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            align-content: center;
-            .Authentic-section-image {
-                display: flex;
-                position: relative;
-                justify-content: center;
-                align-items: center;
-                align-content: center;
-                width: 680px;
-                height: 680px;
-                aspect-ratio: 680/680;
-                border: 1px solid #111111;
-                img {
-                    width: 478px;
-                    height: 645px;
-                    aspect-ratio: 478/645;
-                }
-            }
-            .Authentic-section-blur {
-                display: flex;
-                position: absolute;
-                background-color: rgba(255, 255, 255, 0.4);
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                align-content: center;
-                width: 372.333px;
-                height: 88px;
-                padding: 16px;
-                align-items: center;
-                gap: 32px;
-                flex-shrink: 0;
-                .Authentic-section-caption {
-                    font-size: 14px;
-                    font-style: normal;
-                    font-weight: 400;
-                    line-height: 32px;
-                }
-                .Authentic-section-badge {
-                    img {
-                        width: 57px;
-                        flex-shrink: 0;
-                        align-self: stretch;
-                        aspect-ratio: 57/56;
-                    }
-                }
-            }
+    .Authentic-section-box-1 {
+        position: absolute;
+        top: 25%; 
+        left: 40%;
+        width: 20%;
+        max-width: 400px;
+        aspect-ratio: 400/800;
+        background-color:  #f6f1eb;
+        z-index: 998;
+        @include media-max(mobile-max) {
+            display: none;
+        }
+    }
+    .Authentic-section-box-2 {
+        position: absolute;
+        top: 55%; 
+        left: 45%; 
+        width: 5%;
+        max-width: 400px;
+        aspect-ratio: 100/700;
+        background-color:  #f6f1eb;;
+        z-index: 998;
+        @include media-max(mobile-max) {
+            display: none;
         }
     }
 }

@@ -178,48 +178,51 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
     </div>
 </section>
 <section class="Authentic-section">
-    <div class="Authentic-section-1">
-        <div class="Authentic-section-text">
-            <p class="overline">مشاهده همه</p>
-            <h2 class="title">آیتم های اصیل</h2>
-        </div>
-        <div class="Authentic-section-card">
-            <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
-                <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-2.jpg">
+    <div class="Authentic-section-container">
+        <div class="Authentic-section-1">
+            <div class="Authentic-section-text">
+                <a href="#" class="overline">مشاهده همه</a>
+                <h2 class="title">آیتم های اصیل</h2>
             </div>
-            <div class="Authentic-section-blur">
-                <div class="Authentic-section-badge" aria-hidden="true">
-                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-2.jpg">
+            <a href="#" class="Authentic-section-card">
+                <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
+                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
                 </div>
-                <span class="Authentic-section-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
-            </div>
-
+                <div class="Authentic-section-blur">
+                    <div class="Authentic-section-badge" aria-hidden="true">
+                        <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                    </div>
+                    <span class="Authentic-section-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
+                </div>
+            </a>
+        </div>
+        <div class="Authentic-section-2">
+            <a href="#" class="Authentic-section-card">
+                <div class="Authentic-section-blur">
+                    <span class="Authentic-section-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
+                    <div class="Authentic-section-badge" aria-hidden="true">
+                        <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                    </div>
+                </div>
+                <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
+                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                </div>
+            </a>
+            <a href="#" class="Authentic-section-card">
+                <div class="Authentic-section-blur">
+                    <span class="Authentic-section-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
+                    <div class="Authentic-section-badge" aria-hidden="true">
+                        <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                    </div>
+                </div>
+                <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
+                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                </div>
+            </a>
         </div>
     </div>
-    <div class="Authentic-section-2">
-        <div class="Authentic-section-card">
-            <div class="Authentic-section-blur">
-                <span class="Authentic-section-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
-                <div class="Authentic-section-badge" aria-hidden="true">
-                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-2.jpg">
-                </div>
-            </div>
-            <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
-                <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-2.jpg">
-            </div>
-        </div>
-        <div class="Authentic-section-card">
-            <div class="Authentic-section-blur">
-                <span class="Authentic-section-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
-                <div class="Authentic-section-badge" aria-hidden="true">
-                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-2.jpg">
-                </div>
-            </div>
-            <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
-                <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-2.jpg">
-            </div>
-        </div>
-    </div>
+    <div class="Authentic-section-box-1"></div>
+    <div class="Authentic-section-box-2"></div>
 </section>
 <section class="season-products-second">
     <div class="season-products-container">

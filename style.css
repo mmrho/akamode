@@ -1665,18 +1665,31 @@ body.shopping-open {
 
 .Authentic-section {
   display: flex;
+  position: relative;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+  padding: 80px 24px;
+}
+.Authentic-section .Authentic-section-container {
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: flex-start;
   align-content: flex-start;
   width: 100%;
+  max-width: 1400px;
+  gap: 20px;
 }
 @media (max-width: 849.98px) {
-  .Authentic-section {
+  .Authentic-section .Authentic-section-container {
     flex-direction: column;
+    gap: 40px;
   }
 }
-.Authentic-section .Authentic-section-1 {
+.Authentic-section .Authentic-section-container .Authentic-section-1 {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1684,127 +1697,189 @@ body.shopping-open {
   align-content: center;
   width: 50%;
 }
-.Authentic-section .Authentic-section-1 .Authentic-section-text {
+@media (max-width: 849.98px) {
+  .Authentic-section .Authentic-section-container .Authentic-section-1 {
+    width: 100%;
+  }
+}
+.Authentic-section .Authentic-section-container .Authentic-section-1 .Authentic-section-text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
-  width: 412px;
-  height: 390px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 100%;
+  max-width: 412px;
+  height: auto;
   gap: 24px;
   flex-shrink: 0;
+  padding-top: 10%;
+  padding-bottom: 25%;
 }
-.Authentic-section .Authentic-section-1 .Authentic-section-card {
+.Authentic-section .Authentic-section-container .Authentic-section-1 .Authentic-section-card {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
+  width: 100%;
 }
-.Authentic-section .Authentic-section-1 .Authentic-section-card .Authentic-section-image {
+.Authentic-section .Authentic-section-container .Authentic-section-1 .Authentic-section-card .Authentic-section-image {
   display: flex;
-  position: relative;
   justify-content: center;
   align-items: center;
   align-content: center;
-  width: 680px;
-  height: 680px;
-  aspect-ratio: 680/680;
-  border: 1px solid #111111;
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 1px solid #909090;
 }
-.Authentic-section .Authentic-section-1 .Authentic-section-card .Authentic-section-image img {
-  width: 478px;
-  height: 645px;
+.Authentic-section .Authentic-section-container .Authentic-section-1 .Authentic-section-card .Authentic-section-image img {
+  width: 70%;
   aspect-ratio: 478/645;
+  max-height: 90%;
+  z-index: 999;
 }
-.Authentic-section .Authentic-section-1 .Authentic-section-card .Authentic-section-blur {
+.Authentic-section .Authentic-section-container .Authentic-section-1 .Authentic-section-card .Authentic-section-blur {
   display: flex;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.4);
+  top: 60%;
+  left: -20%;
+  background-color: rgba(255, 255, 255, 0.6);
   flex-direction: row;
   justify-content: center;
   align-items: center;
   align-content: center;
-  width: 372.333px;
-  height: 88px;
+  width: 80%;
+  max-width: 372px;
+  height: auto;
   padding: 16px;
-  align-items: center;
   gap: 32px;
-  flex-shrink: 0;
+  z-index: 1000;
 }
-.Authentic-section .Authentic-section-1 .Authentic-section-card .Authentic-section-blur .Authentic-section-caption {
+@media (max-width: 849.98px) {
+  .Authentic-section .Authentic-section-container .Authentic-section-1 .Authentic-section-card .Authentic-section-blur {
+    top: 5%;
+    left: 5%;
+    width: 80%;
+  }
+}
+.Authentic-section .Authentic-section-container .Authentic-section-1 .Authentic-section-card .Authentic-section-blur .Authentic-section-caption {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
 }
-.Authentic-section .Authentic-section-1 .Authentic-section-card .Authentic-section-blur .Authentic-section-badge img {
+.Authentic-section .Authentic-section-container .Authentic-section-1 .Authentic-section-card .Authentic-section-blur .Authentic-section-badge img {
   width: 57px;
   flex-shrink: 0;
   align-self: stretch;
   aspect-ratio: 57/56;
+  z-index: 999;
 }
-.Authentic-section .Authentic-section-2 {
+.Authentic-section .Authentic-section-container .Authentic-section-2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
   width: 50%;
+  gap: 50px;
 }
-.Authentic-section .Authentic-section-2 .Authentic-section-card {
+@media (max-width: 849.98px) {
+  .Authentic-section .Authentic-section-container .Authentic-section-2 {
+    width: 100%;
+  }
+}
+.Authentic-section .Authentic-section-container .Authentic-section-2 .Authentic-section-card {
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
+  width: 100%;
 }
-.Authentic-section .Authentic-section-2 .Authentic-section-card .Authentic-section-image {
+.Authentic-section .Authentic-section-container .Authentic-section-2 .Authentic-section-card .Authentic-section-image {
   display: flex;
-  position: relative;
   justify-content: center;
   align-items: center;
   align-content: center;
-  width: 680px;
-  height: 680px;
-  aspect-ratio: 680/680;
-  border: 1px solid #111111;
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 1px solid #909090;
 }
-.Authentic-section .Authentic-section-2 .Authentic-section-card .Authentic-section-image img {
-  width: 478px;
-  height: 645px;
+.Authentic-section .Authentic-section-container .Authentic-section-2 .Authentic-section-card .Authentic-section-image img {
+  width: 70%;
   aspect-ratio: 478/645;
+  max-height: 90%;
+  z-index: 999;
 }
-.Authentic-section .Authentic-section-2 .Authentic-section-card .Authentic-section-blur {
+.Authentic-section .Authentic-section-container .Authentic-section-2 .Authentic-section-card .Authentic-section-blur {
   display: flex;
   position: absolute;
+  top: 65%;
+  left: 70%;
   background-color: rgba(255, 255, 255, 0.4);
   flex-direction: row;
   justify-content: center;
   align-items: center;
   align-content: center;
-  width: 372.333px;
-  height: 88px;
+  width: 80%;
+  max-width: 372px;
+  height: auto;
   padding: 16px;
-  align-items: center;
   gap: 32px;
-  flex-shrink: 0;
+  z-index: 1000;
 }
-.Authentic-section .Authentic-section-2 .Authentic-section-card .Authentic-section-blur .Authentic-section-caption {
+@media (max-width: 849.98px) {
+  .Authentic-section .Authentic-section-container .Authentic-section-2 .Authentic-section-card .Authentic-section-blur {
+    top: 5%;
+    left: 5%;
+    width: 80%;
+  }
+}
+.Authentic-section .Authentic-section-container .Authentic-section-2 .Authentic-section-card .Authentic-section-blur .Authentic-section-caption {
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
 }
-.Authentic-section .Authentic-section-2 .Authentic-section-card .Authentic-section-blur .Authentic-section-badge img {
+.Authentic-section .Authentic-section-container .Authentic-section-2 .Authentic-section-card .Authentic-section-blur .Authentic-section-badge img {
   width: 57px;
   flex-shrink: 0;
   align-self: stretch;
   aspect-ratio: 57/56;
+}
+.Authentic-section .Authentic-section-box-1 {
+  position: absolute;
+  top: 25%;
+  left: 40%;
+  width: 20%;
+  max-width: 400px;
+  aspect-ratio: 400/800;
+  background-color: #f6f1eb;
+  z-index: 998;
+}
+@media (max-width: 849.98px) {
+  .Authentic-section .Authentic-section-box-1 {
+    display: none;
+  }
+}
+.Authentic-section .Authentic-section-box-2 {
+  position: absolute;
+  top: 55%;
+  left: 45%;
+  width: 5%;
+  max-width: 400px;
+  aspect-ratio: 100/700;
+  background-color: #f6f1eb;
+  z-index: 998;
+}
+@media (max-width: 849.98px) {
+  .Authentic-section .Authentic-section-box-2 {
+    display: none;
+  }
 }
 
 .season-products-second {
@@ -2376,6 +2451,7 @@ body.shopping-open {
 
 #site-footer {
   margin-top: 163px !important;
+  background-color: #FFFBF6;
 }
 #site-footer .site-footer-container {
   display: flex;
