@@ -113,19 +113,27 @@
                 align-content: center;
                 flex-wrap: wrap;
                 gap: 21px;
-                .site-header-top-icons-a {
+                .desktop-btn {
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
                     align-items: center;
                     align-content: center;
                     flex-wrap: wrap;
-                    font-size: 12px;
+                    font-size: 24px;
                     font-style: normal;
                     font-weight: 300;
                     line-height: 36px;
                     padding: 0px;
                     color: #111111;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                 
+                  
+                 
+                    width: 24px;
+                    height: 24px;
                     i {
                         font-size: 24px;
                         color: #111111;

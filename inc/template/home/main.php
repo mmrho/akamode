@@ -10,6 +10,12 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
                 <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت</p>
                 <a href="#" class="download-btn">فروشگاه</a>
             </div>
+            <div class="slider-blur">
+                <span class="slider-caption">کیف سر دوشی چرم زنانه - چرم گاوی</span>
+                <div class="slider-badge">
+                    <img class="slider-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-1.jpg">
+                </div>
+            </div>
         </div>
         <div class="slide">
             <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-2.jpg" alt="NBA 2K21 Gameplay">
@@ -18,6 +24,12 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
                 <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت</p>
                 <a href="#" class="download-btn">فروشگاه</a>
             </div>
+            <div class="slider-blur">
+                <span class="slider-caption">کیف چرم زنانه - چرم گاوی</span>
+                <div class="slider-badge">
+                    <img class="slider-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-2.jpg">
+                </div>
+            </div>
         </div>
         <div class="slide">
             <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-3.jpg" alt="NBA 2K21 Features">
@@ -25,6 +37,12 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
                 <h2>فروشگاه لباس آکامد</h2>
                 <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت</p>
                 <a href="#" class="download-btn">فروشگاه</a>
+            </div>
+            <div class="slider-blur">
+                <span class="slider-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
+                <div class="slider-badge">
+                    <img class="slider-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-3.jpg">
+                </div>
             </div>
         </div>
         <div class="slider-nav">
@@ -182,7 +200,7 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
         <div class="Authentic-section-1">
             <div class="Authentic-section-text">
                 <a href="#" class="overline">مشاهده همه</a>
-                <h2 class="title">آیتم های اصیل</h2>
+                <h3 class="title">آیتم های اصیل</h3>
             </div>
             <a href="#" class="Authentic-section-card">
                 <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
@@ -221,6 +239,7 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
             </a>
         </div>
     </div>
+    <div class="Authentic-section-box"></div>
     <div class="Authentic-section-box-1"></div>
     <div class="Authentic-section-box-2"></div>
 </section>

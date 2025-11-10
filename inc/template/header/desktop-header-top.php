@@ -19,20 +19,19 @@
                     <img class="img-fluid site-header-top-brand-logo"
                         src="<?php echo $site_data['logo']; ?>"
                         alt="<?php echo $site_data['name']; ?> لوگو">
-
                 </a>
 
                 <!-- Support and Sales Info -->
                 <div class="site-header-top-icons">
-                    <a href="#" class="site-header-top-icons-a">
+                    <button class="search-icon desktop-btn header-element" type="button" id="searchIcon">
                         <i class="<?php echo $support_info['search_icon']; ?>"></i>
-                    </a>
-                    <a href="#" class="site-header-top-icons-a">
+                    </button>
+                    <button class="account_icon desktop-btn header-element" type="button" id="accountIcon">
                         <i class="<?php echo $support_info['account_icon']; ?>"></i>
-                    </a>
-                    <a href="#" class="site-header-top-icons-a">
+                    </button>
+                    <button class="shopping-bag-icon desktop-btn header-element" type="button" id="shoppingBagIcon">
                         <i class="<?php echo $support_info['shoping_bag_icon']; ?>"></i>
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
