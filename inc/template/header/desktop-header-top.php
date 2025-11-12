@@ -20,10 +20,9 @@
                         src="<?php echo $site_data['logo']; ?>"
                         alt="<?php echo $site_data['name']; ?> لوگو">
                 </a>
-
                 <!-- Support and Sales Info -->
                 <div class="site-header-top-icons">
-                    <button class="search-icon desktop-btn header-element" type="button" id="searchIcon">
+                    <button class="search-icon desktop-btn header-element" type="button" id="searchIcon-D">
                         <i class="<?php echo $support_info['search_icon']; ?>"></i>
                     </button>
                     <button class="account_icon desktop-btn header-element" type="button" id="accountIcon">

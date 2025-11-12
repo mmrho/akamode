@@ -28,4 +28,83 @@
     </div>
 </div>
 </div>
+<!-- desktop Search Bar -->
+<div class="desktop-search-bar" id="desktop-search-bar">
+    <div class="search-container">
+        <div class="search-header">
+            <div class="search-input-wrapper">
+                <i class="icon-search-aka"></i>
+                <input type="text" placeholder="<?php echo $site_data['search_placeholder']; ?>" />
+            </div>
+        </div>
+        <div class="search-content">
+            <div class="search-suggestions">
+                <ul>
+                    <li>
+                        <a href=""><span>کت و مانتو</span><i class="icon-up-left-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        کیف
+                    </li>
+                    <li>کلاه</li>
+                    <li>
+                        کفش زمستانی
+                    </li>
+                    <li>
+                        لباس مردانه
+                    </li>
+                    <li>
+                        اکسسوری
+                    </li>
+                </ul>
+            </div>
+            <div class="search-results hidden">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <div class="search-results-blur">
+                                <div class="search-results-badge">
+                                    <img class="search-results-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-1.jpg">
+                                </div>
+                                <div class="search-results-caption">
+                                    <span>کیف سر دوشی چرم زنانه - چرم گاوی</span>
+                                    <i class="icon-up-left-arrow"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="search-results-blur">
+                                <div class="search-results-badge">
+                                    <img class="search-results-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-1.jpg">
+                                </div>
+                                <div class="search-results-caption">
+                                    <span>کیف سر دوشی چرم زنانه - چرم گاوی</span>
+                                    <i class="icon-up-left-arrow"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <div class="search-results-blur">
+                                <div class="search-results-badge">
+                                    <img class="search-results-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-1.jpg">
+                                </div>
+                                <div class="search-results-caption">
+                                    <span>کیف سر دوشی چرم زنانه - چرم گاوی</span>
+                                    <i class="icon-up-left-arrow"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- desktop Navigation Overlay -->
+<div class="desktop-nav-overlay" id="desktop-nav-overlay"></div>
 </div>

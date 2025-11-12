@@ -5,7 +5,7 @@ $site_data = [
     'url' => esc_url(home_url('/')),
     'logo' => get_template_directory_uri() . '/images/svg/akamode-logo.svg',
     'phone' => '۹۸۴۱۳۵۵۲۱۰۹۸',
-    'search_placeholder' => 'جستجو...'
+    'search_placeholder' => 'دنبال چی میگردی؟'
 ];
 
 // Main menus
@@ -110,7 +110,7 @@ $main_menu = [
 // Function buttons
 $action_buttons = [
     'service' => [
-        'text' => 'سرویس‌های سیبانه',
+        'text' => 'سرویس‌های آکامد',
         'class' => 'service-button'
     ],
     'login' => [

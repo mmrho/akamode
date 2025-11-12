@@ -87,7 +87,7 @@
             height: 88px;
             padding: 8px;
             gap: 16px;
-            z-index: 1000;
+            z-index: 100;
             @include media-max(mobile-max) {
                 bottom: 80px;
                 left: 30px;
@@ -104,7 +104,7 @@
                     flex-shrink: 0;
                     align-self: stretch;
                     aspect-ratio: 57/56;
-                    z-index: 999;
+                    z-index: 99;
                 }
             }
         }
