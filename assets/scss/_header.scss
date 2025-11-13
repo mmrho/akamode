@@ -150,13 +150,14 @@
             padding-bottom: 0rem;
             padding-right: 33px;
             padding-left: 30px;
-            position: relative;
-            z-index: 10;
             .site-nav {
                 display: flex;
+                position: relative;
                 align-items: center;
                 align-content: center;
                 justify-content: center;
+                position: relative;
+                width: 100%;
                 .site-nav-list {
                     display: flex;
                     flex-direction: row;
@@ -164,11 +165,19 @@
                     align-items: center;
                     align-content: center;
                     flex-wrap: nowrap;
-                    gap: 40px;
+                    gap: 35px;
+                    //gap: clamp(35px, 1vw, 40px);
                     margin: 0;
                     padding: 0;
                     list-style: none;
                     position: relative;
+                    z-index: 11;
+                    &:hover ~ .mega-menu,
+                    .site-nav-item:hover ~ .mega-menu {
+                        opacity: 1 !important;
+                        visibility: visible !important;
+                        transition: height 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+                    }
 
                     .site-nav-item {
                         position: relative;
@@ -176,7 +185,6 @@
                         .site-nav-link {
                             display: flex;
                             align-items: center;
-                            gap: 5px;
                             text-decoration: none;
                             color: #111111;
                             font-size: 12px;
@@ -187,51 +195,211 @@
                             z-index: 5;
                             padding: 0px;
                             text-wrap: nowrap;
-                            i {
-                                font-size: 0.8rem;
-                                transition: transform 0.3s ease;
+                            cursor: pointer;
+
+                            &:hover {
+                                color: #f857a6;
                             }
                         }
+                    }
+                }
+                .mega-menu {
+                    display: flex !important;
+                    position: absolute !important;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    align-content: center;
+                    left: -54px !important;
+                    top: 0px !important;
+                    width: 100vw !important;
+                    background-color: rgba(255, 251, 246, 0.95) !important;
+                    z-index: 10;
+                    opacity: 0 !important;
+                    visibility: hidden !important;
+                    transition: height 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+                    //height: 70vh !important;
+                    overflow-y: auto !important;
+                    padding: 24px;
+                    padding-top: 76px;
 
-                        .submenu {
-                            position: absolute;
-                            top: 100%;
-                            right: 0;
-                            min-width: 200px;
-                            background-color: #fff;
-                            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-                            border-radius: 8px;
-                            padding: 0.5rem 0;
-                            margin-top: 0.5rem;
-                            opacity: 0;
-                            visibility: hidden;
-                            transform: translateY(10px);
-                            transition: all 0.3s ease;
-                            li {
-                                list-style: none;
+                    .mega-menu-container {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: flex-start;
+                        width: 100%;
+                        .mega-menu-content {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: flex-start;
+                            align-content: center;
+                            align-items: center;
+                            width: 100%;
+                            margin: 0;
+                            gap: 20px;
+                            .submenu-column {
+                                h3 {
+                                    font-size: 12px;
+                                    font-style: normal;
+                                    font-weight: 300;
+                                    line-height: 36px;
+                                    color: #111111;
+                                    margin-bottom: 10px;
+                                }
 
-                                a {
-                                    display: block;
-                                    padding: 0.5rem 1rem;
-                                    color: #000;
-                                    text-decoration: none;
-                                    transition: background-color 0.3s ease;
-                                    &:hover {
-                                        background-color: rgba(0, 123, 255, 0.1);
+                                ul {
+                                    display: flex;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    align-items: flex-start;
+                                    align-content: flex-start;
+                                    text-wrap: wrap;
+                                    width: 100%;
+                                    flex-wrap: wrap;
+                                    li {
+                                        display: flex;
+                                        flex-direction: column;
+                                        justify-content: center;
+                                        align-items: flex-start;
+                                        align-content: flex-start;
+                                        font-size: 12px;
+                                        font-style: normal;
+                                        font-weight: 300;
+                                        line-height: 36px;
+                                        text-wrap: wrap;
+                                        width: auto;
+                                        white-space: normal;
+                                        overflow-wrap: break-word;
+                                        word-break: break-word;
+                                        padding: 4px 8px;
+                                        margin: 0;
+                                       .type-a {
+                                            display: flex;
+                                            flex-direction: row;
+                                            justify-content: center;
+                                            align-items: center;
+                                            align-content: center;
+                                            gap: 8px;
+                                            color: #a5957b;
+                                            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+                                            span {
+                                                font-size: 12px;
+                                                font-style: normal;
+                                                font-weight: 300;
+                                                line-height: 36px;
+                                            }
+                                            i {
+                                                font-size: 16px;
+                                            }
+                                        }
+                                        .type-b {
+                                           
+                                            color: #000000;
+        
+                                        }
                                     }
                                 }
                             }
                         }
-
-                        &.has-submenu:hover {
-                            .submenu {
-                                opacity: 1;
-                                visibility: visible;
-                                transform: translateY(0);
+                        .mega-menu-season-products {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            align-content: center;
+                            position: relative;
+                            overflow: hidden;
+                            width: 100%;
+                            max-width: 350px;
+                            max-height: 400px;
+                            aspect-ratio: 350/400;
+                            .background {
+                                position: absolute;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                z-index: -1;
+                                width: 350px;
+                                height: 400px;
+                                aspect-ratio: 350/400;
+                                .background-figure {
+                                    width: 100%;
+                                    height: 100%;
+                                    margin: 0px;
+                                    .background-img {
+                                        width: 100%;
+                                        height: 100%;
+                                        object-fit: cover;
+                                    }
+                                }
                             }
+                            .mega-menu-season-products-bar {
+                                position: relative;
+                                z-index: 1;
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: center;
+                                align-items: center;
+                                align-content: center;
+                                flex-wrap: wrap;
+                                padding: 0px 41px;
+                                padding-bottom: 0px;
+                                max-width: 350px;
+                                width: 100%;
 
-                            .site-nav-link i {
-                                transform: rotate(180deg);
+                                small {
+                                    color: #272727;
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 200;
+                                    line-height: 44px;
+                                }
+                                h3 {
+                                    color: #111111;
+                                    font-size: 32px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    line-height: normal;
+                                }
+                                .season-products-meta {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: center;
+                                    align-items: center;
+                                    align-content: center;
+                                    width: 100%;
+                                    .span {
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 300;
+                                        line-height: 32px;
+                                    }
+                                    a {
+                                        gap: 4px;
+                                        span {
+                                            color: #111111;
+                                            font-size: 14px;
+                                            font-style: normal;
+                                            font-weight: 400;
+                                            line-height: 32px;
+                                        }
+                                        i {
+                                            color: #111111;
+                                            font-size: 32px;
+                                        }
+                                    }
+                                }
+                                .season-products-all {
+                                    order: 2;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 8px;
+                                    text-decoration: none;
+                                    color: inherit;
+                                    font-weight: 500;
+                                }
                             }
                         }
                     }
@@ -574,7 +742,7 @@
             z-index: 1000;
             height: 0;
             overflow: hidden;
-            transition: height 0.35s cubic-bezier(0.645, 0.045, 0.355, 1); // easing دقیق اپل برای smoothness
+            transition: height 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
 
             &.active {
                 height: calc(100vh - 136px);
@@ -740,7 +908,7 @@
 
             &.active {
                 max-height: calc(100vh - 72px);
-                overflow-y: auto; 
+                overflow-y: auto;
 
                 .mobile-nav-content {
                     .mobile-nav-list {
@@ -1253,7 +1421,6 @@
                 }
             }
         }
-
         // Animation keyframes
         @keyframes slideInFromTop {
             from {
@@ -1266,7 +1433,6 @@
                 transform: translateY(0);
             }
         }
-
         @keyframes slideInFromBottom {
             from {
                 opacity: 0;

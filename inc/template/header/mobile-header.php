@@ -2,7 +2,7 @@
 
 <div class="mobile-header-container">
     <div class="mobile-header-content">
-        <div class="mobile-header-action">
+        <div class="mobile-header-action header-element">
             <button class="mobile-menu-toggle" type="button" id="menuBtnIcon">
                 <i class="<?php echo $support_info['hamburger-menu_icon']; ?>"></i>
             </button>

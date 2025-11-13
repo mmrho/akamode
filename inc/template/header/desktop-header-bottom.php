@@ -1,6 +1,5 @@
 <?php require_once THEME_TEMPLATE . 'header/shared-content.php'; ?>
 
-
 <div class="col-12" style="padding: 0px;">
     <div class="site-header-bottom">
         <!-- Main Navigation -->
@@ -14,16 +13,45 @@
                                 <i class="icon-down"></i>
                             <?php endif; ?>
                         </a>
-                        <?php if ($menu_item['has_submenu'] && isset($menu_item['submenu'])): ?>
-                            <ul class="submenu">
-                                <?php foreach ($menu_item['submenu'] as $sub_item): ?>
-                                    <li><a href="<?php echo $sub_item['url']; ?>"><?php echo $sub_item['title']; ?></a></li>
-                                <?php endforeach; ?>
-                            </ul>
-                        <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>
+            <div class="mega-menu">
+                <div class="mega-menu-container">
+                    <div class="mega-menu-content">
+                        <?php foreach ($main_menu as $menu_item): ?>
+                            <?php if ($menu_item['has_submenu'] && isset($menu_item['submenu'])): ?>
+                                <div class="submenu-column">
+                                    <h3><?php echo $menu_item['title']; ?></h3>
+                                    <ul>
+                                        <li><a class="type-a" href="<?php echo $sub_item['url']; ?>"><?php echo $sub_item['title']; ?> <i class="icon-up-left-arrow"></i></a></li>
+                                        <?php foreach ($menu_item['submenu'] as $sub_item): ?>
+                                            <li><a class="type-b" href="<?php echo $sub_item['url']; ?>"><?php echo $sub_item['title']; ?></a></li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                    <div class="mega-menu-season-products">
+                        <article class="background">
+                            <figure class="background-figure">
+                                <img class="background-img" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-15.png" alt="دستکش چرمی قهوه‌ای">
+                            </figure>
+                        </article>
+                        <div class="mega-menu-season-products-bar">
+                            <small>لورم ایپسوم متن ساختگی با سادگیعت</small>
+                            <h3>محصولات فصل</h3>
+                            <div class="season-products-meta">
+                                <a href="#" class="season-products-all">
+                                    <span>مشاهده همه محصولات</span>
+                                    <i class="icon-left-arrow"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </nav>
     </div>
 </div>
