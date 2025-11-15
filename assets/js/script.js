@@ -1,40 +1,56 @@
-// Toggle button state
-const btn = document.getElementById("menuBtnIcon");
-btn.addEventListener("click", () => {
-  btn.classList.toggle("active");
-  // here you can also toggle your mobile menu
+//category-section
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.querySelector('.grid');
+  const prevBtn = document.querySelector('.arrow-btn[aria-label="Previous"]');
+  const nextBtn = document.querySelector('.arrow-btn[aria-label="Next"]');
+  
+  if (!grid || !prevBtn || !nextBtn) return;
+  
+  const computeScrollAmount = () => {
+      const card = grid.querySelector('.card');
+      if (!card) return 0;
+      const style = getComputedStyle(grid);
+      const gap = parseFloat(style.columnGap) || 0;
+      return card.offsetWidth + gap;
+  };
+  
+  let scrollAmount = computeScrollAmount();
+  
+  // به‌روزرسانی scrollAmount در resize
+  window.addEventListener('resize', () => {
+      scrollAmount = computeScrollAmount();
+  });
+  
+  nextBtn.addEventListener('click', () => {
+      grid.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+  });
+  
+  prevBtn.addEventListener('click', () => {
+      grid.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  });
 });
 
 
 
 
+//info-section
+document.addEventListener("DOMContentLoaded", () => {
+  const accordionItems = document.querySelectorAll(".info-item");
 
+  accordionItems.forEach((item) => {
+    if (item.classList.contains("is-open")) {
+      const content = item.querySelector(".info-content");
 
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
 
-        // جاوا اسکریپت برای مدیریت آکاردئون
-        
-        // اجرا بعد از بارگذاری کامل صفحه
-        document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll(".info-header").forEach((header) => {
+    header.addEventListener("click", () => {
+      const currentItem = header.parentElement;
+      const content = currentItem.querySelector(".info-content");
 
-          const accordionItems = document.querySelectorAll('.info-item');
-
-          // ۱. تنظیم حالت اولیه (باز کردن آیتم‌های .is-open)
-          accordionItems.forEach(item => {
-              if (item.classList.contains('is-open')) {
-                  const content = item.querySelector('.info-content');
-                  // ارتفاع کامل محتوا را به max-height می‌دهد تا باز شود
-                  content.style.maxHeight = content.scrollHeight + 'px';
-              }
-          });
-
-          // ۲. افزودن شنونده کلیک به هدرها
-          document.querySelectorAll('.info-header').forEach(header => {
-              header.addEventListener('click', () => {
-                  const currentItem = header.parentElement;
-                  const content = currentItem.querySelector('.info-content');
-
-                  // بستن تمام آیتم‌های دیگر (اختیاری، اما حرفه‌ای است)
-                  /*
+      /*
                   accordionItems.forEach(item => {
                       if (item !== currentItem && item.classList.contains('is-open')) {
                           item.classList.remove('is-open');
@@ -42,18 +58,20 @@ btn.addEventListener("click", () => {
                       }
                   });
                   */
-                  
-                  // باز/بسته کردن آیتم فعلی
-                  if (currentItem.classList.contains('is-open')) {
-                      // اگر باز است، آن را ببند
-                      currentItem.classList.remove('is-open');
-                      content.style.maxHeight = null;
-                  } else {
-                      // اگر بسته است، آن را باز کن
-                      currentItem.classList.add('is-open');
-                      content.style.maxHeight = content.scrollHeight + 'px';
-                  }
-              });
-          });
 
-      });
+      if (currentItem.classList.contains("is-open")) {
+        currentItem.classList.remove("is-open");
+        content.style.maxHeight = null;
+      } else {
+        currentItem.classList.add("is-open");
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+});
+
+
+
+
+
+

@@ -274,7 +274,7 @@
                                         word-break: break-word;
                                         padding: 4px 8px;
                                         margin: 0;
-                                       .type-a {
+                                        .type-a {
                                             display: flex;
                                             flex-direction: row;
                                             justify-content: center;
@@ -295,9 +295,7 @@
                                             }
                                         }
                                         .type-b {
-                                           
                                             color: #000000;
-        
                                         }
                                     }
                                 }
@@ -615,6 +613,19 @@
                                 word-break: break-word;
                                 padding: 4px 8px;
                                 margin: 0;
+                                &:hover {
+                                    color: #a5957b;
+                                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                                    a {
+                                        span {
+                                            color: #a5957b;
+                                        }
+                                        i {
+                                            display: block;
+                                            color: #a5957b;
+                                        }
+                                    }
+                                }
                                 a {
                                     display: flex;
                                     flex-direction: row;
@@ -622,9 +633,7 @@
                                     align-items: center;
                                     align-content: center;
                                     gap: 8px;
-                                    color: #a5957b;
-                                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
+                                    color: #000;
                                     span {
                                         font-size: 12px;
                                         font-style: normal;
@@ -632,6 +641,7 @@
                                         line-height: 36px;
                                     }
                                     i {
+                                        display: none;
                                         font-size: 16px;
                                     }
                                 }
@@ -809,6 +819,22 @@
                 .header-element {
                     opacity: 0;
                     transform: translateY(-20px);
+                    pointer-events: none;
+                }
+
+                .mobile-header-actions .mobile-btn:not(.close-icon) {
+                    pointer-events: none !important;
+                }
+
+                .mobile-header-action .mobile-menu-toggle {
+                    pointer-events: none !important;
+                }
+
+                .close-icon.active {
+                    opacity: 1;
+                    transform: translateY(0);
+                    transition: opacity 0.3s ease 0.2s;
+                    pointer-events: auto;
                 }
             }
 
@@ -859,12 +885,66 @@
                     height: 24px;
 
                     &.active {
-                        color: #007aff;
+                        color: #000000;
                         transform: scale(1.1);
                     }
 
                     i {
                         font-size: 24px;
+                    }
+                }
+
+                .close-icon {
+                    display: none; // hidden by default
+                    position: absolute;
+                    right: 80%;
+                    width: 24px;
+                    height: 24px;
+                    padding: 0;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+
+                    span {
+                        position: absolute;
+                        left: 0;
+                        width: 100%;
+                        height: 1.2px;
+                        background: #000;
+                        border-radius: 2000px;
+                        transform-origin: center;
+                        transition: transform 0.3s ease;
+
+                        &:nth-child(1) {
+                            top: 50%;
+                            transform: rotate(0deg);
+                        }
+
+                        &:nth-child(2) {
+                            top: 50%;
+                            transform: rotate(0deg);
+                        }
+                    }
+
+                    &.active {
+                        display: block; // show when active
+                        opacity: 1 !important; // override محو شدن header-element
+                        transform: translateY(0) !important; // override translate
+                        pointer-events: auto !important; // همیشه clickable باشه
+
+                        span:nth-child(1) {
+                            transform: rotate(45deg);
+                        }
+
+                        span:nth-child(2) {
+                            transform: rotate(-45deg);
+                        }
+
+                        &:hover {
+                            span {
+                                background: #000000;
+                            }
+                        }
                     }
                 }
             }
@@ -880,14 +960,52 @@
                 transform: translateY(-50%);
 
                 .mobile-menu-toggle {
+                    position: relative;
+                    width: auto;
                     cursor: pointer;
                     background: none;
                     border: none;
                     padding: 0px;
-                    width: 24px;
-                    height: 24px;
+                    min-width: 24px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    overflow: visible;
+
                     i {
                         font-size: 24px;
+                        transition: opacity 0.3s ease;
+                    }
+
+                    .menu-label {
+                        display: none;
+                        position: absolute;
+                        right: 0%;
+                        font-size: 16px;
+                        font-style: normal;
+                        font-weight: 300;
+                        line-height: 40px;
+                        color: #000;
+                        white-space: nowrap;
+                        direction: rtl;
+                        text-align: right;
+                    }
+
+                    &.active {
+                        i {
+                            opacity: 0; // مخفی کردن آیکون
+                        }
+                        .menu-label {
+                            display: block; // نمایش متن
+                        }
+                    }
+                }
+
+                &.menu-open,
+                &.search-open,
+                &.shopping-open {
+                    .mobile-header-action {
+                        flex-grow: 1; // اجازه بده بخش راست هدر بزرگ بشه اگر متن طولانی باشه
                     }
                 }
             }
@@ -899,7 +1017,7 @@
             left: 0;
             width: 100%;
             max-height: 0;
-            background: $sibaneh_header_background_color;
+            background: none;
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -935,7 +1053,7 @@
             }
 
             .mobile-nav-content {
-                padding: 20px;
+                padding: 16px;
                 opacity: 0;
                 transition: opacity 0.3s ease;
 
@@ -951,7 +1069,7 @@
                     .mobile-nav-item {
                         opacity: 0;
                         transform: translateY(20px);
-                        margin-bottom: 8px;
+                        margin: 0px;
 
                         .mobile-nav-link {
                             display: flex;
@@ -960,17 +1078,20 @@
                             padding: 16px 0;
                             color: #000;
                             text-decoration: none;
-                            font-size: 1.1rem;
-                            font-weight: 500;
-                            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+                            font-size: 14px;
+                            font-style: normal;
+                            font-weight: 300;
+                            line-height: normal;
+                            border-bottom: 1px solid #e5e5e5;
+                            transition: border-bottom-width 0.5s ease;
                             transition: color 0.3s ease;
 
                             &:hover {
-                                color: #007aff;
+                                color: #a5957b;
                             }
 
                             i {
-                                font-size: 12px;
+                                font-size: 15px;
                                 transition: transform 0.3s ease;
                             }
                         }
@@ -984,35 +1105,61 @@
                                 max-height: 0;
                                 overflow: hidden;
                                 transition: max-height 0.3s ease;
-                                background: rgba(0, 0, 0, 0.02);
-                                border-radius: 8px;
-                                margin-top: 8px;
+                                background: none;
 
                                 li {
+                                    display: flex;
+                                    flex-direction: row;
+                                    justify-content: flex-start;
+                                    align-items: center;
+                                    align-content: center;
+                                    gap: 8px;
                                     list-style: none;
 
                                     a {
-                                        display: block;
-                                        padding: 12px 20px;
+                                        display: flex;
+                                        flex-direction: row;
+                                        justify-content: center;
+                                        align-items: center;
+                                        align-content: center;
+                                        gap: 8px;
+                                        padding: 0px;
+                                        padding-right: 20px;
                                         color: #666;
                                         text-decoration: none;
-                                        font-size: 0.95rem;
+                                        font-size: 14px;
+                                        font-style: normal;
+                                        font-weight: 200;
+                                        line-height: 44px;
                                         transition: color 0.3s ease;
-
                                         &:hover {
-                                            color: #007aff;
+                                            color: #a5957b;
+                                            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+                                            i {
+                                                display: block;
+                                                color: #a5957b;
+                                            }
+                                        }
+                                        i {
+                                            display: none;
                                         }
                                     }
                                 }
                             }
 
                             &.submenu-open {
+                                .mobile-nav-link {
+                                    border-bottom-width: 0;
+                                    border-bottom: none;
+                                }
+
                                 .mobile-nav-link i {
                                     transform: rotate(180deg);
                                 }
 
                                 .mobile-submenu {
-                                    max-height: 300px;
+                                    max-height: 400px;
                                 }
                             }
                         }
@@ -1101,14 +1248,15 @@
                 }
             }
         }
-        // desktop-nav-overlay
+        // mobile-nav-overlay
         .mobile-nav-overlay {
             position: fixed;
             top: 72px;
             left: 0;
             width: 100%;
-            background: rgba(255, 251, 246, 0.95);
+            background: rgba(255, 251, 246, 0.98);
             backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
             z-index: 1000;
             height: 0;
             overflow: hidden;
@@ -1217,10 +1365,10 @@
                                 justify-content: center;
                                 align-items: flex-start;
                                 align-content: flex-start;
-                                font-size: 12px;
+                                font-size: 14px;
                                 font-style: normal;
-                                font-weight: 300;
-                                line-height: 36px;
+                                font-weight: 200;
+                                line-height: 44px;
                                 text-wrap: wrap;
                                 width: auto;
                                 white-space: normal;
@@ -1228,6 +1376,19 @@
                                 word-break: break-word;
                                 padding: 4px 8px;
                                 margin: 0;
+                                &:hover {
+                                    color: #a5957b;
+                                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                                    a {
+                                        span {
+                                            color: #a5957b;
+                                        }
+                                        i {
+                                            display: block;
+                                            color: #a5957b;
+                                        }
+                                    }
+                                }
                                 a {
                                     display: flex;
                                     flex-direction: row;
@@ -1235,9 +1396,7 @@
                                     align-items: center;
                                     align-content: center;
                                     gap: 8px;
-                                    color: #a5957b;
-                                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-
+                                    color: #000;
                                     span {
                                         font-size: 12px;
                                         font-style: normal;
@@ -1245,6 +1404,7 @@
                                         line-height: 36px;
                                     }
                                     i {
+                                        display: none;
                                         font-size: 16px;
                                     }
                                 }

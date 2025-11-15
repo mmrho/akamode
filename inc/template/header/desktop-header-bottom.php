@@ -73,17 +73,24 @@
                         </a>
                     </li>
                     <li>
-                        کیف
-                    </li>
-                    <li>کلاه</li>
-                    <li>
-                        کفش زمستانی
+                        <a href=""><span>کیف</span><i class="icon-up-left-arrow"></i>
+                        </a>
                     </li>
                     <li>
-                        لباس مردانه
+                        <a href=""><span>کلاه</span><i class="icon-up-left-arrow"></i>
+                        </a>
                     </li>
                     <li>
-                        اکسسوری
+                        <a href=""><span>کفش زمستانی</span><i class="icon-up-left-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href=""><span>لباس مردانه</span><i class="icon-up-left-arrow"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href=""><span>اکسسوری</span><i class="icon-up-left-arrow"></i>
+                        </a>
                     </li>
                 </ul>
             </div>

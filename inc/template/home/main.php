@@ -55,46 +55,95 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
 <section class="category-section">
     <div class="shell">
         <aside class="sidebar">
-            <a class="sidebar__more" href="#">سایر دسته‌ها</a>
-            <h2 class="sidebar__title">دسته‌بندی&nbsp;محصولات</h2>
-
-            <div class="sidebar__arrows" aria-label="پیمایش">
-                <button class="arrow-btn" type="button" aria-label="قبلی">
+            <a class="sidebar-more" href="#">سایر دسته‌ها</a>
+            <h2 class="sidebar-title">دسته بندی محصولات</h2>
+            <div class="sidebar-arrows" aria-label="Navigation">
+                <button class="arrow-btn" type="button" aria-label="Previous">
                     <i class="icon-right-arrow"></i>
                 </button>
-                <button class="arrow-btn" type="button" aria-label="بعدی">
+                <button class="arrow-btn" type="button" aria-label="Next">
                     <i class="icon-left-arrow"></i>
                 </button>
             </div>
         </aside>
         <div class="grid">
-            <article class="card">
-                <figure class="card__media">
+        <article class="card">
+                <figure class="card-media">
                     <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-5.png" alt="دستکش چرمی قهوه‌ای">
                 </figure>
             </article>
             <article class="card">
-                <figure class="card__media">
+                <figure class="card-media">
                     <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-6.png" alt="دستکش چرمی قهوه‌ای">
                 </figure>
             </article>
             <article class="card">
-                <figure class="card__media">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-5.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-6.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-5.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-6.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-5.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-6.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-5.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-6.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
                     <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-7.png" alt="دستکش چرمی قهوه‌ای">
                 </figure>
             </article>
             <article class="card">
-                <figure class="card__media">
+                <figure class="card-media">
                     <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-8.png" alt="دستکش چرمی قهوه‌ای">
                 </figure>
             </article>
             <article class="card">
-                <figure class="card__media">
+                <figure class="card-media">
                     <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-9.png" alt="دستکش چرمی قهوه‌ای">
                 </figure>
             </article>
             <article class="card">
-                <figure class="card__media">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-10.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
+                    <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-10.png" alt="دستکش چرمی قهوه‌ای">
+                </figure>
+            </article>
+            <article class="card">
+                <figure class="card-media">
                     <img class="slide-bg" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-10.png" alt="دستکش چرمی قهوه‌ای">
                 </figure>
             </article>
@@ -104,9 +153,9 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
 <section class="img-section">
     <div class="img-container">
         <div class="img">
-            <img class="images" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-11.png" alt="akamode">
+            <img class="image-1" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-11.png" alt="akamode">
+            <img class="image-2" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-18.png" alt="akamode">
             <div class="img-content">
-
             </div>
         </div>
     </div>
@@ -204,11 +253,11 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
             </div>
             <a href="#" class="Authentic-section-card">
                 <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
-                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-17.png">
                 </div>
                 <div class="Authentic-section-blur">
                     <div class="Authentic-section-badge" aria-hidden="true">
-                        <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                        <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-17.png">
                     </div>
                     <span class="Authentic-section-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
                 </div>
@@ -219,22 +268,22 @@ require_once THEME_TEMPLATE . 'ribbon/ribbon.php';
                 <div class="Authentic-section-blur">
                     <span class="Authentic-section-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
                     <div class="Authentic-section-badge" aria-hidden="true">
-                        <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                        <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-17.png">
                     </div>
                 </div>
                 <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
-                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-17.png">
                 </div>
             </a>
             <a href="#" class="Authentic-section-card">
                 <div class="Authentic-section-blur">
                     <span class="Authentic-section-caption">کیف شانه ای چرم زنانه - چرم گاوی</span>
                     <div class="Authentic-section-badge" aria-hidden="true">
-                        <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                        <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-17.png">
                     </div>
                 </div>
                 <div class="Authentic-section-image" role="img" aria-label="کیف شانه ای چرم زنانه">
-                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-13.png">
+                    <img class="Authentic-section-badge-inner" src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-17.png">
                 </div>
             </a>
         </div>

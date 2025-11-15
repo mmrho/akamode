@@ -126,8 +126,10 @@ $support_info = [
     'support_text' => 'پشتیبانی',
     'support_icon' => 'icon-support_icon',
     'search_icon' => 'icon-search-aka',
+    'close_icon' => 'icon-Multiplication',
     'account_icon' => 'icon-account',
     'shoping_bag_icon' => 'icon-shoping_bag',
     'hamburger-menu_icon' => 'icon-hamburger-menu-aka',
+
 ];
 ?>

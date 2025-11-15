@@ -1,6 +1,6 @@
 #site-footer {
     margin-top: 163px !important;
-    background-color: #FFFBF6;
+    background-color: #fffbf6;
     .site-footer-container {
         display: flex;
         flex-direction: column;
@@ -114,22 +114,23 @@
             align-content: flex-start;
             padding: 0px 24px;
             width: 100%;
+           
             .contact-column {
-                flex-basis: 30%; 
+                flex-basis: 30%;
             }
             .footer-links-group {
-                display: contents; 
+                display: contents;
                 .links-column {
                     &:first-child {
-                        flex-basis: 20%; 
+                        flex-basis: 20%;
                     }
                     &:last-child {
-                        flex-basis: 40%; 
+                        flex-basis: 40%;
                     }
                 }
             }
             .img-column {
-                flex-basis: 10%; 
+                flex-basis: 10%;
             }
             @include media-max(mobile-max) {
                 flex-direction: column;
@@ -156,6 +157,17 @@
                 .img-column {
                     order: 3;
                     flex-basis: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    align-self: center;
+                    align-content: center;
+                    ul {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        align-content: center;
+                    }
                 }
             }
             .footer-column {

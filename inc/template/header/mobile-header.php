@@ -2,9 +2,10 @@
 
 <div class="mobile-header-container">
     <div class="mobile-header-content">
-        <div class="mobile-header-action header-element">
+        <div class="mobile-header-action">
             <button class="mobile-menu-toggle" type="button" id="menuBtnIcon">
                 <i class="<?php echo $support_info['hamburger-menu_icon']; ?>"></i>
+                <span class="menu-label"></span>
             </button>
         </div>
         <!-- Logo and Site Name -->
@@ -27,6 +28,9 @@
             <button class="shopping-bag-icon mobile-btn header-element" type="button" id="shoppingBagIcon">
                 <i class="<?php echo $support_info['shoping_bag_icon']; ?>"></i>
             </button>
+            <button class="close-icon mobile-btn header-element" type="button" id="closeIcon">
+                <i class="<?php echo $support_info['close_icon']; ?>"></i>
+            </button>
         </div>
     </div>
 
@@ -46,37 +50,17 @@
                         <?php if ($menu_item['has_submenu'] && isset($menu_item['submenu'])): ?>
                             <ul class="mobile-submenu">
                                 <?php foreach ($menu_item['submenu'] as $sub_item): ?>
-                                    <li><a href="<?php echo $sub_item['url']; ?>"><?php echo $sub_item['title']; ?></a></li>
+                                    <li><a href="<?php echo $sub_item['url']; ?>"><?php echo $sub_item['title']; ?><i class="icon-up-left-arrow"></i></a></li>
                                 <?php endforeach; ?>
                             </ul>
                         <?php endif; ?>
                     </li>
                 <?php endforeach; ?>
             </ul>
-
-            <!-- Mobile Action Buttons -->
-            <div class="mobile-nav-buttons">
-                <button class="<?php echo $action_buttons['service']['class']; ?> mobile-service-btn">
-                    <span class="service-button-text"><?php echo $action_buttons['service']['text']; ?></span>
-                </button>
-                <button class="<?php echo $action_buttons['login']['class']; ?> mobile-login-btn">
-                    <span class="login-button-text"><?php echo $action_buttons['login']['text']; ?></span>
-                </button>
-            </div>
-
-            <!-- Support Info -->
-            <div class="mobile-nav-support">
-                <span class="site-header-top-sale-number">
-                    <?php echo $support_info['phone_label']; ?> : <?php echo $support_info['phone_number']; ?>
-                </span>
-                <a href="#" class="site-header-top-support-online-a">
-                    <i class="<?php echo $support_info['support_icon']; ?>"></i><?php echo $support_info['support_text']; ?>
-                </a>
-            </div>
         </div>
     </div>
 
-    <!-- desktop Search Bar -->
+    <!-- mobile Search Bar -->
     <div class="mobile-search-bar" id="mobile-search-bar">
         <div class="search-container">
             <div class="search-header">
@@ -93,17 +77,24 @@
                             </a>
                         </li>
                         <li>
-                            کیف
-                        </li>
-                        <li>کلاه</li>
-                        <li>
-                            کفش زمستانی
+                            <a href=""><span>کیف</span><i class="icon-up-left-arrow"></i>
+                            </a>
                         </li>
                         <li>
-                            لباس مردانه
+                            <a href=""><span>کلاه</span><i class="icon-up-left-arrow"></i>
+                            </a>
                         </li>
                         <li>
-                            اکسسوری
+                            <a href=""><span>کفش زمستانی</span><i class="icon-up-left-arrow"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""><span>لباس مردانه</span><i class="icon-up-left-arrow"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href=""><span>اکسسوری</span><i class="icon-up-left-arrow"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>

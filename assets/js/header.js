@@ -7,6 +7,7 @@ try {
         mobile: null,
         desktop: null,
       };
+      this.ribbon = null; // Added: Reference to the ribbon element
       this.listeners = new Map();
       this.scrollPosition = 0;
       this.resizeTimeout = null;
@@ -34,6 +35,9 @@ try {
             icon: document.getElementById("shoppingBagIcon"),
             panel: document.getElementById("mobile-shopping-panel"),
           },
+          close: {
+            icon: document.getElementById("closeIcon"),
+          },
           headerContent: document.querySelector(".mobile-header-content"),
           body: document.body,
         };
@@ -51,6 +55,11 @@ try {
         };
       }
 
+      // Added: Load ribbon element
+      if (!this.ribbon) {
+        this.ribbon = document.querySelector('.ribbon-section');
+      }
+
       return this.elements;
     }
 
@@ -58,7 +67,7 @@ try {
     validate(mode = this.isMobile ? 'mobile' : 'desktop') {
       const els = this.getElements()[mode];
       if (mode === 'mobile') {
-        return !!(els.menu.btn && els.menu.nav && els.menu.overlay && els.search.icon && els.search.bar && els.shopping.icon && els.shopping.panel);
+        return !!(els.menu.btn && els.menu.nav && els.menu.overlay && els.search.icon && els.search.bar && els.shopping.icon && els.shopping.panel && els.close.icon);
       } else {
         return !!(els.search.icon && els.search.bar && els.overlay);
       }
@@ -94,7 +103,38 @@ try {
       ['menu-open', 'search-open', 'shopping-open', 'search-open-desktop'].forEach(cls => {
         document.body.classList.remove(cls);
       });
+      const els = this.getElements().mobile;
+      els.menu.btn?.classList.remove('active');
+      els.menu.nav?.classList.remove('active');
+      els.menu.overlay?.classList.remove('active');
+      els.headerContent?.classList.remove('menu-open');
+      els.headerContent?.classList.remove('search-open');
+      els.headerContent?.classList.remove('shopping-open');
+      const navContent = els.menu.nav?.querySelector('.mobile-nav-content');
+      navContent?.classList.remove('active');
+      els.search.bar?.classList.remove('active');
+      els.shopping.panel?.classList.remove('active');
+      els.close.icon?.classList.remove('active');
+      // Added: Clear the menu label text when closing all panels
+      const menuLabel = els.menu.btn?.querySelector('.menu-label');
+      if (menuLabel) menuLabel.textContent = '';
       this.unlockBody();
+      // Added: Show ribbon when closing all panels
+      this.showRibbon();
+    }
+
+    // Added: Hide ribbon
+    hideRibbon() {
+      if (this.ribbon) {
+        this.ribbon.classList.remove('visible');
+      }
+    }
+
+    // Added: Show ribbon
+    showRibbon() {
+      if (this.ribbon) {
+        this.ribbon.classList.add('visible');
+      }
     }
 
     // Menu handlers (Mobile)
@@ -126,6 +166,12 @@ try {
       const navContent = els.menu.nav?.querySelector('.mobile-nav-content');
       navContent?.classList.add('active');
       this.lockBody();
+      els.close.icon?.classList.add('active');
+      // Added: Set menu label text to 'منو' when opening the menu
+      const menuLabel = els.menu.btn?.querySelector('.menu-label');
+      if (menuLabel) menuLabel.textContent = 'منو';
+      // Added: Hide ribbon when opening menu
+      this.hideRibbon();
     }
 
     closeMenu() {
@@ -138,7 +184,13 @@ try {
       els.headerContent?.classList.remove('menu-open');
       const navContent = els.menu.nav?.querySelector('.mobile-nav-content');
       navContent?.classList.remove('active');
+      els.close.icon?.classList.remove('active');
+      // Added: Clear the menu label text when closing the menu
+      const menuLabel = els.menu.btn?.querySelector('.menu-label');
+      if (menuLabel) menuLabel.textContent = '';
       this.unlockBody();
+      // Added: Show ribbon when closing menu
+      this.showRibbon();
     }
 
     // Search Mobile
@@ -164,6 +216,12 @@ try {
         els.search.input?.focus();
       }, 100);
       this.lockBody();
+      els.close.icon?.classList.add('active');
+      // Added: Set menu label text to 'جستجو در محصولات' when opening search
+      const menuLabel = els.menu.btn?.querySelector('.menu-label');
+      if (menuLabel) menuLabel.textContent = 'جستجو در محصولات';
+      // Added: Hide ribbon when opening search mobile
+      this.hideRibbon();
     }
 
     closeSearchMobile() {
@@ -174,7 +232,13 @@ try {
       els.menu.overlay?.classList.remove('active');
       document.body.classList.remove('search-open');
       els.headerContent?.classList.remove('search-open');
+      els.close.icon?.classList.remove('active');
+      // Added: Clear the menu label text when closing search
+      const menuLabel = els.menu.btn?.querySelector('.menu-label');
+      if (menuLabel) menuLabel.textContent = '';
       this.unlockBody();
+      // Added: Show ribbon when closing search mobile
+      this.showRibbon();
     }
 
     // Shopping Mobile
@@ -196,6 +260,12 @@ try {
       document.body.classList.add('shopping-open');
       els.headerContent?.classList.add('shopping-open');
       this.lockBody();
+      els.close.icon?.classList.add('active');
+      // Added: Set menu label text to 'سبد خرید' when opening shopping
+      const menuLabel = els.menu.btn?.querySelector('.menu-label');
+      if (menuLabel) menuLabel.textContent = 'سبد خرید';
+      // Added: Hide ribbon when opening shopping
+      this.hideRibbon();
     }
 
     closeShopping() {
@@ -206,7 +276,25 @@ try {
       els.menu.overlay?.classList.remove('active');
       document.body.classList.remove('shopping-open');
       els.headerContent?.classList.remove('shopping-open');
+      els.close.icon?.classList.remove('active');
+      // Added: Clear the menu label text when closing shopping
+      const menuLabel = els.menu.btn?.querySelector('.menu-label');
+      if (menuLabel) menuLabel.textContent = '';
       this.unlockBody();
+      // Added: Show ribbon when closing shopping
+      this.showRibbon();
+    }
+
+    // Close handler
+    handleClose(e) {
+      console.log("Close triggered");
+      if (this.isMobile) {
+        if (document.body.classList.contains('search-open')) this.closeSearchMobile();
+        else if (document.body.classList.contains('menu-open')) this.closeMenu();
+        else if (document.body.classList.contains('shopping-open')) this.closeShopping();
+      } else if (document.body.classList.contains('search-open-desktop')) {
+        this.closeSearchDesktop();
+      }
     }
 
     // Search Desktop
@@ -230,6 +318,8 @@ try {
         const input = els.search.bar?.querySelector('input');
         input?.focus();
       }, 100);
+      // Added: Hide ribbon when opening search desktop
+      this.hideRibbon();
     }
 
     closeSearchDesktop() {
@@ -239,6 +329,8 @@ try {
       els.overlay?.classList.remove('active');
       document.body.classList.remove('search-open-desktop');
       this.unlockBody();
+      // Added: Show ribbon when closing search desktop
+      this.showRibbon();
     }
 
     // Submenu (delegation)
@@ -345,6 +437,9 @@ try {
 
           const shoppingIcon = e.target.closest('#shoppingBagIcon');
           if (shoppingIcon) return this.handleShopping(e);
+
+          const closeIcon = e.target.closest('#closeIcon');
+          if (closeIcon) return this.handleClose(e);
 
           const overlay = e.target.closest('#mobile-nav-overlay');
           if (overlay) return this.closeMenu();
