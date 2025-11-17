@@ -13,7 +13,7 @@ if (!class_exists('Redux')) {
 }
 
 // This is your option name where all the Redux data is stored.
-$opt_name = 'sanjeshOptions';  // YOU MUST CHANGE THIS.  DO NOT USE 'redux_demo' IN YOUR PROJECT!!!
+$opt_name = 'akamodeOptions';  // YOU MUST CHANGE THIS.  DO NOT USE 'redux_demo' IN YOUR PROJECT!!!
 
 // Uncomment to disable demo mode.
 /* Redux::disable_demo(); */  // phpcs:ignore Squiz.PHP.CommentedOutCode
@@ -263,88 +263,7 @@ Redux::set_section(
         'icon' => '',
         'subsection' => true,
         'fields' => [
-            [
-                'id' => 'home-top-person-status',
-                'type' => 'button_set',
-                'title' => 'وضعیت',
-                'options' => [
-                    0 => 'فعال',
-                    1 => 'غیرقعال'
-                ],
-                'default' => 1
-            ],
-            [
-                'id' => 'home-tenth-grade-top-person',
-                'type' => 'repeater',
-                'title' => 'نفرات برتر پایه دهم',
-                'sortable' => true,
-                'group_values' => true,
-                'fields' => [
-                    [
-                        'id' => 'title',
-                        'type' => 'text',
-                        'title' => 'نام و نام خانوادگی',
-                    ],
-                    [
-                        'id' => 'image',
-                        'type' => 'media',
-                        'title' => 'تصویر',
-                    ],
-                    [
-                        'id' => 'grade',
-                        'type' => 'text',
-                        'title' => 'رتبه',
-                    ],
-                ]
-            ],
-            [
-                'id' => 'home-eleventh-grade-top-person',
-                'type' => 'repeater',
-                'title' => 'نفرات برتر پایه یازدهم',
-                'sortable' => true,
-                'group_values' => true,
-                'fields' => [
-                    [
-                        'id' => 'title',
-                        'type' => 'text',
-                        'title' => 'نام و نام خانوادگی',
-                    ],
-                    [
-                        'id' => 'image',
-                        'type' => 'media',
-                        'title' => 'تصویر',
-                    ],
-                    [
-                        'id' => 'grade',
-                        'type' => 'text',
-                        'title' => 'رتبه',
-                    ],
-                ]
-            ],
-            [
-                'id' => 'home-twelfth-grade-top-person',
-                'type' => 'repeater',
-                'title' => 'نفرات برتر پایه دوازدهم',
-                'sortable' => true,
-                'group_values' => true,
-                'fields' => [
-                    [
-                        'id' => 'title',
-                        'type' => 'text',
-                        'title' => 'نام و نام خانوادگی',
-                    ],
-                    [
-                        'id' => 'image',
-                        'type' => 'media',
-                        'title' => 'تصویر',
-                    ],
-                    [
-                        'id' => 'grade',
-                        'type' => 'text',
-                        'title' => 'رتبه',
-                    ],
-                ]
-            ],
+          
         ]
     ]
 );

@@ -17,7 +17,9 @@ wp_enqueue_script('loading', THEME_ASSETS . 'js/Modules/loading.js', array('scri
 wp_enqueue_script('wbsChangeUrl', THEME_ASSETS . 'js/Modules/wbsChangeUrl.js', array('script'), THEME_VERSION, true);
 wp_enqueue_script('wbsAjax', THEME_ASSETS . 'js/Modules/wbsAjax.js', array('script'), THEME_VERSION, true);
 //wp_enqueue_script('header', THEME_ASSETS . 'js/header.js', array('script'), THEME_VERSION, true);
-wp_enqueue_script('header', THEME_ASSETS . 'js/header.js', array('jquery', 'script'), THEME_VERSION, true);  // jquery رو هم اضافه کردم اگر لازم باشه
+wp_enqueue_script('header', THEME_ASSETS . 'js/header.js', array('jquery', 'script'), THEME_VERSION, true);
+
 /*
-    wp_enqueue_script('popup', THEME_ASSETS . 'js/modules/popup.js', array('script'), THEME_VERSION, true);
-    wp_enqueue_script('alert', THEME_ASSETS . 'js/modules/alert.js', array('script'), THEME_VERSION, true);*/
+wp_enqueue_script('popup', THEME_ASSETS . 'js/modules/popup.js', array('script'), THEME_VERSION, true);
+wp_enqueue_script('alert', THEME_ASSETS . 'js/modules/alert.js', array('script'), THEME_VERSION, true);
+*/

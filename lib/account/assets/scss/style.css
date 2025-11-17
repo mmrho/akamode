@@ -1,0 +1,25 @@
+/* ==========================================================================
+   AppShowcase Post Styles
+   ========================================================================== */
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0px !important;
+  }
+  body.scrolled {
+    padding-top: 0px !important;
+  }
+}
+
+#site-header .mobile-header .mobile-header-container {
+  position: sticky !important;
+}
+
+.main-content {
+  padding: 10px 0;
+  background-color: #FFFFFF;
+}
+.main-content .container {
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+}/*# sourceMappingURL=style.css.map */

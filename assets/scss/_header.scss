@@ -402,6 +402,13 @@
                         }
                     }
                 }
+                .site-nav-list:hover ~ .mega-menu,
+                .site-nav-item:hover ~ .mega-menu,
+                .mega-menu:hover {
+                    opacity: 1 !important;
+                    visibility: visible !important;
+                    transition: height 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+                }
             }
 
             .search-container {

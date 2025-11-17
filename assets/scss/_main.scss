@@ -389,18 +389,18 @@
         }
     }
 }
-.season-products {
+.carousel-products {
     width: 100%;
-    .season-products-container {
+    .carousel-products-container {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         align-content: center;
         width: 100%;
-        .season-products-main {
+        .carousel-products-main {
             width: 100%;
-            .season-products-bar {
+            .carousel-products-bar {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -444,7 +444,7 @@
                         line-height: normal;
                     }
                 }
-                .season-products-meta {
+                .carousel-products-meta {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
@@ -478,7 +478,7 @@
                         }
                     }
                 }
-                .season-products-all {
+                .carousel-products-all {
                     order: 2;
                     display: flex;
                     align-items: center;
@@ -488,7 +488,7 @@
                     font-weight: 500;
                 }
             }
-            .season-products-rail {
+            .carousel-products-rail {
                 margin-top: 0px;
                 width: 100%;
                 display: flex;
@@ -513,7 +513,7 @@
                 &::-webkit-scrollbar-track {
                     background: transparent;
                 }
-                .season-products-card {
+                .carousel-products-card {
                     flex: 0 0 auto;
                     border: none;
                     border-radius: 0;
@@ -522,17 +522,17 @@
                     flex-direction: column;
                     overflow: hidden;
                     max-width: 332px;
-                    max-height: 463px;
-                    aspect-ratio: 332 / 463;
+                    max-height: 511px;
+                    aspect-ratio: 332 / 511;
                     width: clamp(275px, 22vw, 332px);
 
                     @include media-max(mobile-max) {
                         max-width: 275px;
-                        max-height: 383.51px;
-                        aspect-ratio: 275 / 383.51;
+                        max-height: 432px;
+                        aspect-ratio: 275 / 432;
                     }
 
-                    .season-products-media {
+                    .carousel-products-media {
                         margin: 0;
                         background: #fffbf6;
                         width: 100%;
@@ -556,7 +556,7 @@
                         }
                     }
 
-                    .season-products-caption {
+                    .carousel-products-caption {
                         margin: 0px;
                         padding: 16px 2px 12px;
                         font-size: 13px;
@@ -891,23 +891,23 @@
         }
     }
 }
-.season-products-second {
+.carousel-products-second {
     width: 100%;
-    .season-products-container {
+    .carousel-products-container {
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
         align-content: center;
         width: 100%;
-        .season-products-main {
+        .carousel-products-main {
             display: flex;
             flex-direction: row;
             justify-content: center;
             align-items: center;
             align-content: center;
             width: 100%;
-            .season-products-bar-container {
+            .carousel-products-bar-container {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -917,13 +917,13 @@
                 overflow: hidden;
                 width: 100%;
                 max-width: 400px;
-                max-height: 463px;
-                aspect-ratio: 400 / 463;
+                max-height: 511;
+                aspect-ratio: 400 / 511;
 
                 @include media-max(mobile-max) {
                     max-width: 300px;
-                    max-height: 383.51px;
-                    aspect-ratio: 300 / 383.51;
+                    max-height: 430px;
+                    aspect-ratio: 300 / 430;
                 }
                 .background {
                     position: absolute;
@@ -933,13 +933,13 @@
                     left: 0;
                     z-index: -1;
                     max-width: 400px;
-                    max-height: 463px;
-                    aspect-ratio: 400 / 463;
+                    max-height: 511px;
+                    aspect-ratio: 400 / 511;
 
                     @include media-max(mobile-max) {
                         max-width: 300px;
-                        max-height: 383.51px;
-                        aspect-ratio: 300 / 383.51;
+                        max-height: 430px;
+                        aspect-ratio: 300 / 430;
                     }
                     .background-figure {
                         width: 100%;
@@ -952,7 +952,7 @@
                         }
                     }
                 }
-                .season-products-bar {
+                .carousel-products-bar {
                     position: relative;
                     z-index: 1;
                     display: flex;
@@ -992,7 +992,7 @@
                             line-height: normal;
                         }
                     }
-                    .season-products-meta {
+                    .carousel-products-meta {
                         display: flex;
                         flex-direction: row;
                         justify-content: center;
@@ -1026,7 +1026,7 @@
                             }
                         }
                     }
-                    .season-products-all {
+                    .carousel-products-all {
                         order: 2;
                         display: flex;
                         align-items: center;
@@ -1038,7 +1038,7 @@
                 }
             }
 
-            .season-products-rail {
+            .carousel-products-rail {
                 margin-top: 0px;
                 width: 100%;
                 display: flex;
@@ -1063,26 +1063,25 @@
                 &::-webkit-scrollbar-track {
                     background: transparent;
                 }
-                .season-products-card {
+                .carousel-products-card {
                     flex: 0 0 auto;
                     border: none;
                     border-radius: 0;
                     box-shadow: none;
                     display: flex;
                     flex-direction: column;
-                    overflow: hidden;
                     max-width: 332px;
-                    max-height: 463px;
-                    aspect-ratio: 332 / 463;
+                    max-height: 511px;
+                    aspect-ratio: 332 / 511;
                     width: clamp(275px, 22vw, 332px);
 
                     @include media-max(mobile-max) {
                         max-width: 275px;
-                        max-height: 383.51px;
-                        aspect-ratio: 275 / 383.51;
+                        max-height: 432px;
+                        aspect-ratio: 275 / 432;
                     }
 
-                    .season-products-media {
+                    .carousel-products-media {
                         margin: 0;
                         background: #fffbf6;
                         width: 100%;
@@ -1106,7 +1105,7 @@
                         }
                     }
 
-                    .season-products-caption {
+                    .carousel-products-caption {
                         margin: 0px;
                         padding: 16px 2px 12px;
                         font-size: 13px;
@@ -1126,9 +1125,9 @@
         }
     }
 }
-.season-products-third {
+.carousel-products-third {
     width: 100%;
-    .season-products-container {
+    .carousel-products-container {
         display: flex;
         flex-direction: row;
         justify-content: center;
@@ -1138,14 +1137,14 @@
         @include media-max(mobile-max) {
             flex-direction: column;
         }
-        .season-products-main {
+        .carousel-products-main {
             width: 50%;
             @include media-max(mobile-max) {
                 width: 100%;
                 order: 2;
                 margin-top: 80px;
             }
-            .season-products-bar {
+            .carousel-products-bar {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -1189,7 +1188,7 @@
                         line-height: normal;
                     }
                 }
-                .season-products-meta {
+                .carousel-products-meta {
                     display: flex;
                     flex-direction: row;
                     justify-content: space-between;
@@ -1223,7 +1222,7 @@
                         }
                     }
                 }
-                .season-products-all {
+                .carousel-products-all {
                     order: 2;
                     display: flex;
                     align-items: center;
@@ -1233,7 +1232,7 @@
                     font-weight: 500;
                 }
             }
-            .season-products-rail {
+            .carousel-products-rail {
                 margin-top: 0px;
                 width: 100%;
                 display: flex;
@@ -1258,7 +1257,7 @@
                 &::-webkit-scrollbar-track {
                     background: transparent;
                 }
-                .season-products-card {
+                .carousel-products-card {
                     flex: 0 0 auto;
                     border: none;
                     border-radius: 0;
@@ -1267,17 +1266,17 @@
                     flex-direction: column;
                     overflow: hidden;
                     max-width: 332px;
-                    max-height: 463px;
-                    aspect-ratio: 332 / 463;
+                    max-height: 511px;
+                    aspect-ratio: 332 / 511;
                     width: clamp(275px, 22vw, 332px);
 
                     @include media-max(mobile-max) {
                         max-width: 275px;
-                        max-height: 383.51px;
-                        aspect-ratio: 275 / 383.51;
+                        max-height: 432px;
+                        aspect-ratio: 275 / 432;
                     }
 
-                    .season-products-media {
+                    .carousel-products-media {
                         margin: 0;
                         background: #fffbf6;
                         width: 100%;
@@ -1301,7 +1300,7 @@
                         }
                     }
 
-                    .season-products-caption {
+                    .carousel-products-caption {
                         margin: 0px;
                         padding: 16px 2px 12px;
                         font-size: 13px;
@@ -1319,7 +1318,7 @@
                 }
             }
         }
-        .season-products-img {
+        .carousel-products-img {
             width: 50%;
             @include media-max(mobile-max) {
                 width: 100%;

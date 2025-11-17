@@ -637,6 +637,13 @@ a:focus {
   color: inherit;
   font-weight: 500;
 }
+#site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-list:hover ~ .mega-menu,
+#site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-item:hover ~ .mega-menu,
+#site-header .desktop-header-container .site-header-bottom .site-nav .mega-menu:hover {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transition: height 0.35s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 #site-header .desktop-header-container .site-header-bottom .search-container {
   position: relative;
   flex-shrink: 0;
@@ -2147,10 +2154,10 @@ body.shopping-open {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-.season-products {
+.carousel-products {
   width: 100%;
 }
-.season-products .season-products-container {
+.carousel-products .carousel-products-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2158,10 +2165,10 @@ body.shopping-open {
   align-content: center;
   width: 100%;
 }
-.season-products .season-products-container .season-products-main {
+.carousel-products .carousel-products-container .carousel-products-main {
   width: 100%;
 }
-.season-products .season-products-container .season-products-main .season-products-bar {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2173,14 +2180,14 @@ body.shopping-open {
   width: 100%;
 }
 @media (max-width: 849.98px) {
-  .season-products .season-products-container .season-products-main .season-products-bar {
+  .carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar {
     padding-top: 0px;
     padding-bottom: 50px;
     padding-left: 14px;
     padding-right: 18px;
   }
 }
-.season-products .season-products-container .season-products-main .season-products-bar small {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar small {
   color: #272727;
   font-size: 18px;
   font-style: normal;
@@ -2189,14 +2196,14 @@ body.shopping-open {
   margin-bottom: 12px;
 }
 @media (max-width: 849.98px) {
-  .season-products .season-products-container .season-products-main .season-products-bar small {
+  .carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar small {
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
   }
 }
-.season-products .season-products-container .season-products-main .season-products-bar h3 {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar h3 {
   color: #111111;
   font-size: 32px;
   font-style: normal;
@@ -2205,14 +2212,14 @@ body.shopping-open {
   margin-bottom: 32px;
 }
 @media (max-width: 849.98px) {
-  .season-products .season-products-container .season-products-main .season-products-bar h3 {
+  .carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar h3 {
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
   }
 }
-.season-products .season-products-container .season-products-main .season-products-bar .season-products-meta {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -2220,35 +2227,35 @@ body.shopping-open {
   align-content: center;
   width: 100%;
 }
-.season-products .season-products-container .season-products-main .season-products-bar .season-products-meta .span {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta .span {
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
   line-height: 32px;
 }
 @media (max-width: 849.98px) {
-  .season-products .season-products-container .season-products-main .season-products-bar .season-products-meta .span {
+  .carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta .span {
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
   }
 }
-.season-products .season-products-container .season-products-main .season-products-bar .season-products-meta a {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta a {
   gap: 4px;
 }
-.season-products .season-products-container .season-products-main .season-products-bar .season-products-meta a span {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta a span {
   color: #111111;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
 }
-.season-products .season-products-container .season-products-main .season-products-bar .season-products-meta a i {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta a i {
   color: #111111;
   font-size: 32px;
 }
-.season-products .season-products-container .season-products-main .season-products-bar .season-products-all {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-all {
   order: 2;
   display: flex;
   align-items: center;
@@ -2257,7 +2264,7 @@ body.shopping-open {
   color: inherit;
   font-weight: 500;
 }
-.season-products .season-products-container .season-products-main .season-products-rail {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail {
   margin-top: 0px;
   width: 100%;
   display: flex;
@@ -2270,17 +2277,17 @@ body.shopping-open {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 }
-.season-products .season-products-container .season-products-main .season-products-rail::-webkit-scrollbar {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail::-webkit-scrollbar {
   height: 10px;
 }
-.season-products .season-products-container .season-products-main .season-products-rail::-webkit-scrollbar-thumb {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail::-webkit-scrollbar-thumb {
   background: #e2dbd3;
   border-radius: 999px;
 }
-.season-products .season-products-container .season-products-main .season-products-rail::-webkit-scrollbar-track {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail::-webkit-scrollbar-track {
   background: transparent;
 }
-.season-products .season-products-container .season-products-main .season-products-rail .season-products-card {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card {
   flex: 0 0 auto;
   border: none;
   border-radius: 0;
@@ -2289,18 +2296,18 @@ body.shopping-open {
   flex-direction: column;
   overflow: hidden;
   max-width: 332px;
-  max-height: 463px;
-  aspect-ratio: 332/463;
+  max-height: 511px;
+  aspect-ratio: 332/511;
   width: clamp(275px, 22vw, 332px);
 }
 @media (max-width: 849.98px) {
-  .season-products .season-products-container .season-products-main .season-products-rail .season-products-card {
+  .carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card {
     max-width: 275px;
-    max-height: 383.51px;
-    aspect-ratio: 275/383.51;
+    max-height: 432px;
+    aspect-ratio: 275/432;
   }
 }
-.season-products .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-media {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-media {
   margin: 0;
   background: #fffbf6;
   width: 100%;
@@ -2308,7 +2315,7 @@ body.shopping-open {
   position: relative;
   overflow: hidden;
 }
-.season-products .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-media img {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-media img {
   position: absolute;
   background: #fffbf6;
   top: 0;
@@ -2319,10 +2326,10 @@ body.shopping-open {
      object-fit: cover;
   transition: transform 0.3s ease;
 }
-.season-products .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-media:hover img {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-media:hover img {
   transform: scale(1.05);
 }
-.season-products .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-caption {
+.carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-caption {
   margin: 0px;
   padding: 16px 2px 12px;
   font-size: 13px;
@@ -2334,7 +2341,7 @@ body.shopping-open {
   max-inline-size: 332px;
 }
 @media (max-width: 849.98px) {
-  .season-products .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-caption {
+  .carousel-products .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-caption {
     max-inline-size: 275px;
   }
 }
@@ -2690,10 +2697,10 @@ body.shopping-open {
   }
 }
 
-.season-products-second {
+.carousel-products-second {
   width: 100%;
 }
-.season-products-second .season-products-container {
+.carousel-products-second .carousel-products-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2701,7 +2708,7 @@ body.shopping-open {
   align-content: center;
   width: 100%;
 }
-.season-products-second .season-products-container .season-products-main {
+.carousel-products-second .carousel-products-container .carousel-products-main {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2709,7 +2716,7 @@ body.shopping-open {
   align-content: center;
   width: 100%;
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2719,17 +2726,17 @@ body.shopping-open {
   overflow: hidden;
   width: 100%;
   max-width: 400px;
-  max-height: 463px;
-  aspect-ratio: 400/463;
+  max-height: 511;
+  aspect-ratio: 400/511;
 }
 @media (max-width: 849.98px) {
-  .season-products-second .season-products-container .season-products-main .season-products-bar-container {
+  .carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container {
     max-width: 300px;
-    max-height: 383.51px;
-    aspect-ratio: 300/383.51;
+    max-height: 430px;
+    aspect-ratio: 300/430;
   }
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .background {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .background {
   position: absolute;
   top: 0;
   right: 0;
@@ -2737,28 +2744,28 @@ body.shopping-open {
   left: 0;
   z-index: -1;
   max-width: 400px;
-  max-height: 463px;
-  aspect-ratio: 400/463;
+  max-height: 511px;
+  aspect-ratio: 400/511;
 }
 @media (max-width: 849.98px) {
-  .season-products-second .season-products-container .season-products-main .season-products-bar-container .background {
+  .carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .background {
     max-width: 300px;
-    max-height: 383.51px;
-    aspect-ratio: 300/383.51;
+    max-height: 430px;
+    aspect-ratio: 300/430;
   }
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .background .background-figure {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .background .background-figure {
   width: 100%;
   height: 100%;
   margin: 0px;
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .background .background-figure .background-img {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .background .background-figure .background-img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar {
   position: relative;
   z-index: 1;
   display: flex;
@@ -2772,7 +2779,7 @@ body.shopping-open {
   max-width: 400px;
   width: 100%;
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar small {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar small {
   color: #272727;
   font-size: 14px;
   font-style: normal;
@@ -2780,14 +2787,14 @@ body.shopping-open {
   line-height: 44px;
 }
 @media (max-width: 849.98px) {
-  .season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar small {
+  .carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar small {
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
   }
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar h3 {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar h3 {
   color: #111111;
   font-size: 32px;
   font-style: normal;
@@ -2795,14 +2802,14 @@ body.shopping-open {
   line-height: normal;
 }
 @media (max-width: 849.98px) {
-  .season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar h3 {
+  .carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar h3 {
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
   }
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar .season-products-meta {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar .carousel-products-meta {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2810,35 +2817,35 @@ body.shopping-open {
   align-content: center;
   width: 100%;
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar .season-products-meta .span {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar .carousel-products-meta .span {
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
   line-height: 32px;
 }
 @media (max-width: 849.98px) {
-  .season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar .season-products-meta .span {
+  .carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar .carousel-products-meta .span {
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
   }
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar .season-products-meta a {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar .carousel-products-meta a {
   gap: 4px;
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar .season-products-meta a span {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar .carousel-products-meta a span {
   color: #111111;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar .season-products-meta a i {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar .carousel-products-meta a i {
   color: #111111;
   font-size: 32px;
 }
-.season-products-second .season-products-container .season-products-main .season-products-bar-container .season-products-bar .season-products-all {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-bar-container .carousel-products-bar .carousel-products-all {
   order: 2;
   display: flex;
   align-items: center;
@@ -2847,7 +2854,7 @@ body.shopping-open {
   color: inherit;
   font-weight: 500;
 }
-.season-products-second .season-products-container .season-products-main .season-products-rail {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail {
   margin-top: 0px;
   width: 100%;
   display: flex;
@@ -2860,37 +2867,36 @@ body.shopping-open {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 }
-.season-products-second .season-products-container .season-products-main .season-products-rail::-webkit-scrollbar {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail::-webkit-scrollbar {
   height: 10px;
 }
-.season-products-second .season-products-container .season-products-main .season-products-rail::-webkit-scrollbar-thumb {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail::-webkit-scrollbar-thumb {
   background: #e2dbd3;
   border-radius: 999px;
 }
-.season-products-second .season-products-container .season-products-main .season-products-rail::-webkit-scrollbar-track {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail::-webkit-scrollbar-track {
   background: transparent;
 }
-.season-products-second .season-products-container .season-products-main .season-products-rail .season-products-card {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card {
   flex: 0 0 auto;
   border: none;
   border-radius: 0;
   box-shadow: none;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   max-width: 332px;
-  max-height: 463px;
-  aspect-ratio: 332/463;
+  max-height: 511px;
+  aspect-ratio: 332/511;
   width: clamp(275px, 22vw, 332px);
 }
 @media (max-width: 849.98px) {
-  .season-products-second .season-products-container .season-products-main .season-products-rail .season-products-card {
+  .carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card {
     max-width: 275px;
-    max-height: 383.51px;
-    aspect-ratio: 275/383.51;
+    max-height: 432px;
+    aspect-ratio: 275/432;
   }
 }
-.season-products-second .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-media {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-media {
   margin: 0;
   background: #fffbf6;
   width: 100%;
@@ -2898,7 +2904,7 @@ body.shopping-open {
   position: relative;
   overflow: hidden;
 }
-.season-products-second .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-media img {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-media img {
   position: absolute;
   background: #fffbf6;
   top: 0;
@@ -2909,10 +2915,10 @@ body.shopping-open {
      object-fit: cover;
   transition: transform 0.3s ease;
 }
-.season-products-second .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-media:hover img {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-media:hover img {
   transform: scale(1.05);
 }
-.season-products-second .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-caption {
+.carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-caption {
   margin: 0px;
   padding: 16px 2px 12px;
   font-size: 13px;
@@ -2924,15 +2930,15 @@ body.shopping-open {
   max-inline-size: 332px;
 }
 @media (max-width: 849.98px) {
-  .season-products-second .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-caption {
+  .carousel-products-second .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-caption {
     max-inline-size: 275px;
   }
 }
 
-.season-products-third {
+.carousel-products-third {
   width: 100%;
 }
-.season-products-third .season-products-container {
+.carousel-products-third .carousel-products-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -2941,21 +2947,21 @@ body.shopping-open {
   width: 100%;
 }
 @media (max-width: 849.98px) {
-  .season-products-third .season-products-container {
+  .carousel-products-third .carousel-products-container {
     flex-direction: column;
   }
 }
-.season-products-third .season-products-container .season-products-main {
+.carousel-products-third .carousel-products-container .carousel-products-main {
   width: 50%;
 }
 @media (max-width: 849.98px) {
-  .season-products-third .season-products-container .season-products-main {
+  .carousel-products-third .carousel-products-container .carousel-products-main {
     width: 100%;
     order: 2;
     margin-top: 80px;
   }
 }
-.season-products-third .season-products-container .season-products-main .season-products-bar {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -2967,14 +2973,14 @@ body.shopping-open {
   width: 100%;
 }
 @media (max-width: 849.98px) {
-  .season-products-third .season-products-container .season-products-main .season-products-bar {
+  .carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar {
     padding-top: 0px;
     padding-bottom: 50px;
     padding-left: 14px;
     padding-right: 18px;
   }
 }
-.season-products-third .season-products-container .season-products-main .season-products-bar small {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar small {
   color: #272727;
   font-size: 18px;
   font-style: normal;
@@ -2983,14 +2989,14 @@ body.shopping-open {
   margin-bottom: 12px;
 }
 @media (max-width: 849.98px) {
-  .season-products-third .season-products-container .season-products-main .season-products-bar small {
+  .carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar small {
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
   }
 }
-.season-products-third .season-products-container .season-products-main .season-products-bar h3 {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar h3 {
   color: #111111;
   font-size: 32px;
   font-style: normal;
@@ -2999,14 +3005,14 @@ body.shopping-open {
   margin-bottom: 32px;
 }
 @media (max-width: 849.98px) {
-  .season-products-third .season-products-container .season-products-main .season-products-bar h3 {
+  .carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar h3 {
     font-size: 24px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
   }
 }
-.season-products-third .season-products-container .season-products-main .season-products-bar .season-products-meta {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -3014,35 +3020,35 @@ body.shopping-open {
   align-content: center;
   width: 100%;
 }
-.season-products-third .season-products-container .season-products-main .season-products-bar .season-products-meta .span {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta .span {
   font-size: 16px;
   font-style: normal;
   font-weight: 300;
   line-height: 32px;
 }
 @media (max-width: 849.98px) {
-  .season-products-third .season-products-container .season-products-main .season-products-bar .season-products-meta .span {
+  .carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta .span {
     font-size: 14px;
     font-style: normal;
     font-weight: 300;
     line-height: normal;
   }
 }
-.season-products-third .season-products-container .season-products-main .season-products-bar .season-products-meta a {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta a {
   gap: 4px;
 }
-.season-products-third .season-products-container .season-products-main .season-products-bar .season-products-meta a span {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta a span {
   color: #111111;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 32px;
 }
-.season-products-third .season-products-container .season-products-main .season-products-bar .season-products-meta a i {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-meta a i {
   color: #111111;
   font-size: 32px;
 }
-.season-products-third .season-products-container .season-products-main .season-products-bar .season-products-all {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-bar .carousel-products-all {
   order: 2;
   display: flex;
   align-items: center;
@@ -3051,7 +3057,7 @@ body.shopping-open {
   color: inherit;
   font-weight: 500;
 }
-.season-products-third .season-products-container .season-products-main .season-products-rail {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail {
   margin-top: 0px;
   width: 100%;
   display: flex;
@@ -3064,17 +3070,17 @@ body.shopping-open {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
 }
-.season-products-third .season-products-container .season-products-main .season-products-rail::-webkit-scrollbar {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail::-webkit-scrollbar {
   height: 10px;
 }
-.season-products-third .season-products-container .season-products-main .season-products-rail::-webkit-scrollbar-thumb {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail::-webkit-scrollbar-thumb {
   background: #e2dbd3;
   border-radius: 999px;
 }
-.season-products-third .season-products-container .season-products-main .season-products-rail::-webkit-scrollbar-track {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail::-webkit-scrollbar-track {
   background: transparent;
 }
-.season-products-third .season-products-container .season-products-main .season-products-rail .season-products-card {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card {
   flex: 0 0 auto;
   border: none;
   border-radius: 0;
@@ -3083,18 +3089,18 @@ body.shopping-open {
   flex-direction: column;
   overflow: hidden;
   max-width: 332px;
-  max-height: 463px;
-  aspect-ratio: 332/463;
+  max-height: 511px;
+  aspect-ratio: 332/511;
   width: clamp(275px, 22vw, 332px);
 }
 @media (max-width: 849.98px) {
-  .season-products-third .season-products-container .season-products-main .season-products-rail .season-products-card {
+  .carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card {
     max-width: 275px;
-    max-height: 383.51px;
-    aspect-ratio: 275/383.51;
+    max-height: 432px;
+    aspect-ratio: 275/432;
   }
 }
-.season-products-third .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-media {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-media {
   margin: 0;
   background: #fffbf6;
   width: 100%;
@@ -3102,7 +3108,7 @@ body.shopping-open {
   position: relative;
   overflow: hidden;
 }
-.season-products-third .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-media img {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-media img {
   position: absolute;
   background: #fffbf6;
   top: 0;
@@ -3113,10 +3119,10 @@ body.shopping-open {
      object-fit: cover;
   transition: transform 0.3s ease;
 }
-.season-products-third .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-media:hover img {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-media:hover img {
   transform: scale(1.05);
 }
-.season-products-third .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-caption {
+.carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-caption {
   margin: 0px;
   padding: 16px 2px 12px;
   font-size: 13px;
@@ -3128,20 +3134,20 @@ body.shopping-open {
   max-inline-size: 332px;
 }
 @media (max-width: 849.98px) {
-  .season-products-third .season-products-container .season-products-main .season-products-rail .season-products-card .season-products-caption {
+  .carousel-products-third .carousel-products-container .carousel-products-main .carousel-products-rail .carousel-products-card .carousel-products-caption {
     max-inline-size: 275px;
   }
 }
-.season-products-third .season-products-container .season-products-img {
+.carousel-products-third .carousel-products-container .carousel-products-img {
   width: 50%;
 }
 @media (max-width: 849.98px) {
-  .season-products-third .season-products-container .season-products-img {
+  .carousel-products-third .carousel-products-container .carousel-products-img {
     width: 100%;
     order: 1;
   }
 }
-.season-products-third .season-products-container .season-products-img img {
+.carousel-products-third .carousel-products-container .carousel-products-img img {
   width: 100%;
 }
 
