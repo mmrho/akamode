@@ -1,3 +1,9 @@
+<?php 
+    // Ensure base_url is defined in this file too
+    $base_url = get_permalink(); 
+    $order_id = '23234234'; // This would come from your database loop normally
+?>
+
 <div class="order-content">
     سفارشی وجود ندارد.
 </div>
@@ -20,7 +26,10 @@
             <td>۱ آبان ۱۴۰۴</td>
             <td>در حال پردازش</td>
             <td>مبلغ</td>
-            <td><a href="#">مشاهده سفارش</a></td>
+            <td><a href="<?php echo esc_url( add_query_arg( ['tab' => 'view-order', 'id' => $order_id], $base_url ) ); ?>" 
+           class="view-btn">
+           مشاهده سفارش
+        </a></td>
         </tr>
     </tbody>
 </table>

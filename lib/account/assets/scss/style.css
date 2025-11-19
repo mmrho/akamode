@@ -127,7 +127,108 @@
     display: flex;
     gap: 4px;
 }
+.container .tabs-container .address-content .address .row{
+display: flex;
+}
+.container .tabs-container .address-content .address .row p{
+    color:  #111;
+text-align: justify;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 32px; /* 228.571% */
+width: 50%;
+padding: 0;
+}
+.container .tabs-container .address-content .address .row a{
+width: 50%;
+padding: 0;
+}
+.container .tabs-container .address-content .address-form{
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.address-content .address-form .select{
+  display: flex;
+  padding-top: 8px;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid #909090;
+}
+.address-content .address-form .select.input{
+  position: relative;
+}
+.address-content .address-form .select.input input::placeholder{ 
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12px;
+  color: #272727;
+}
+.address-content .address-form .select input{
+  background: none;
+  border: none;
+  outline: none;
+  padding: 6px 0;
+}
+.address-content .address-form .buttons{
+    gap: 16px;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 50%;
+    margin-right: auto;
+}
+.address-content .address-form .buttons .close{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    border: 1px solid #272727;
+    background: none;
+    padding: 0 40px;
+    width: 48%;
+    font-size: 12px;
+}
+.address-content .address-form .buttons .logout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111111;
+    color: #ffffff !important;
+    border: 1px solid #FFFFFF;
+    padding: 0 40px;
+    width: 48%;
+    font-size: 12px;
+}
+.address-content .address-form .select select{
+    /* 1. Reset Browser Styles */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-radius: 0; /* Removes default rounded corners on iOS */
 
+    /* 2. Box Styling */
+    background: none;
+    width: 100%;/* Bottom grey border */
+    padding: 15px 0; /* Spacing inside */
+    
+    /* 3. Text Styling */
+    font-family: inherit; /* Use your theme's font */
+    font-size: 12px;
+    color: #272727;
+    text-align: right; /* Ensure text aligns right */
+    direction: rtl;
+
+    /* 4. Custom Arrow (SVG) Positioned on Left */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: left 10px center; /* 10px from left side */
+    background-size: 30px;
+    cursor: pointer;
+}
 .container .tabs-container .details-content{
   display: flex;
   flex-direction: column;
@@ -278,4 +379,198 @@ table.orders tbody tr td a{
 .pagination .page.active{
   background-color: #111;
   color: #fff;
+}
+.order-details-container{
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+.order-details-container .details-header a{
+  color: #272727;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  display: flex;
+}
+.order-details-container .details-header a i{
+    transform: rotate(90deg);
+    display: inline-block;
+    font-size: 21px;
+}
+.order-details-container .order-info .right{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.order-details-container .order-info .items{
+  display: flex;
+      flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+}
+.order-details-container .order-info .item{
+    gap: 24px;
+    display: flex;
+    align-items: center;
+}
+.order-details-container .order-info .item .img{
+    width: 112px;
+}
+.order-details-container .order-info .item img{
+    width: 100%;
+}
+.order-details-container .order-info .item-details{
+        display: flex;
+    flex-direction: column;
+}
+.order-details-container .order-info .item-details .title{
+    color: #111;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+}
+.order-details-container .order-info .item-details .color{
+  color:  #666;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 36px;
+}
+.order-details-container .order-info .item-details .price{
+  color: #272727;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.order-details-container .order-info{
+    display: flex;
+    gap: 64px;
+}
+.order-details-container .order-info > div{
+    width: 100%;
+}
+.order-details-container .order-info .top{
+      text-align: right;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+.order-details-container table{
+  width: 100%;
+}
+.order-details-container table td{
+  width: 50%;
+}
+.order-details-container .order-info .left{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.order-details-container .order-info .left table tr td:first-child{
+  color: #909090;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+}
+.order-details-container .order-info .left table tr td:last-child{
+  color:  #111;
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+}
+.order-details-container .financial-container{
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.order-details-container .financial-container table tr td:first-child{
+  color: #909090;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+}
+.order-details-container .financial-container table tr td:last-child{
+  color:  #111;
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+}
+.order-details-container .financial-container .top{
+      text-align: right;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+/* Responsive codes */
+
+@media screen and (max-width: 430px){
+  .container .tabs-container .tabs{
+    overflow-x: scroll;
+  }
+  .container .main .top h1{
+    font-size: 24px;
+  }
+  .container .tabs-container .tabs .tab {
+    width: 121px;
+    padding: 8px 16px 16px 16px;
+    gap: 10px;
+    border-bottom: 2px solid #f6f1eb;
+    text-align: center;
+    font-weight: 300;
+    color: #111111;
+    white-space: nowrap;
+  }
+  .container .tabs-container .tabs {
+      display: flex;
+      justify-content: unset;
+      border-bottom: 1px solid #CECECE;
+      gap: unset;
+  }
+  .container .tabs-container .body p{
+    display: block;
+    text-align: justify;
+  }
+  .orders th, .orders td{
+    font-size: 11px;
+    font-weight: 200;
+  }
+  .container .main{
+    width: 91%;
+  }
+  .order-details-container .order-info{
+    flex-direction: column-reverse;
+  }
+  .order-details-container .order-info .left table p{
+    font-size: 14px;
+    font-weight: 300;
+  }
+  .container .tabs-container .address-content{
+    flex-direction: column-reverse;
+  }
+  .container .tabs-container .address-content .address p.title{
+    font-size: 16px;
+  }
+  .container .tabs-container .address-content .address a{
+    font-size: 14px;
+  }
+  .container .tabs-container .address-content .address{
+    width: 100%;
+  }
+  .container .tabs-container .details-content .submit{
+    font-size: 12px;
+  }
+  .modal-container .modal{
+    width: 91%;
+    right: 4%;
+  }
 }
