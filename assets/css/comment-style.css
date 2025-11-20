@@ -1,0 +1,203 @@
+/*
+ * Custom Comment Section Styles
+ *
+ * Pixel-perfect styles to match the design mockups.
+ * - Form fields: border-bottom only.
+ * - Form stars: outlined (empty).
+ * - Comment list: no borders, margin-based separation.
+ * - Reply link: positioned absolutely to the left.
+ */
+
+/* --- 1. Form Section --- */
+.comment-section {
+    direction: rtl;
+    font-family: 'Tahoma', sans-serif;
+    background: #f9f5f0;
+    padding: 25px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.comment-header {
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+.comment-form-subtitle {
+    text-align: right;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 25px;
+}
+.comment-form {
+    margin-bottom: 30px;
+}
+.comment-form input[type="text"],
+.comment-form input[type="email"],
+.comment-form textarea {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 8px 0;
+    border: none;
+    border-bottom: 1px solid #333;
+    background: transparent;
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.comment-form input:focus,
+.comment-form textarea:focus {
+    outline: none;
+    border-bottom-color: #000;
+}
+.comment-form textarea {
+    min-height: 40px;
+    resize: vertical;
+}
+.comment-form-checkbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 15px 0;
+    direction: rtl;
+}
+.comment-form-checkbox label {
+    font-size: 13px;
+    color: #555;
+    margin-right: 8px;
+    cursor: pointer;
+}
+.comment-form-checkbox input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+}
+.rating-label {
+    font-size: 14px;
+    color: #333;
+    margin: 15px 0 10px;
+    text-align: right;
+}
+.stars {
+    display: flex;
+    direction: rtl;
+    justify-content: flex-start;
+    margin: 10px 0 20px;
+}
+.stars input { display: none; }
+.stars label {
+    font-size: 22px;
+    color: #ccc; /* Empty star color */
+    cursor: pointer;
+    margin-left: 5px;
+}
+.stars label:before { content: '\2606'; } /* Outline star */
+.stars label:hover,
+.stars label:hover ~ label {
+    color: #000;
+    content: '\2605'; /* Filled star */
+}
+.stars label:hover:before,
+.stars label:hover ~ label:before {
+    content: '\2605';
+}
+.stars input:checked ~ label {
+    color: #000;
+}
+.stars input:checked ~ label:before {
+    content: '\2605'; /* Filled star */
+}
+.comment-form button {
+    background: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    display: block;
+    margin: 20px 0 0 auto;
+    transition: background-color 0.2s;
+}
+.comment-form button:hover { background: #333; }
+.comment-form button:disabled {
+    background: #888;
+    cursor: not-allowed;
+}
+
+/* --- 2. Comment List Section --- */
+.comment-list-header {
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 30px 0 20px;
+    color: #333;
+}
+.comment-item {
+    position: relative;
+    padding: 15px 0;
+    padding-left: 60px; /* Room for the reply link */
+    border-bottom: none; /* No separator lines */
+    margin-bottom: 15px;
+}
+.comment-header-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+.comment-author-info {
+    display: flex;
+    align-items: center;
+}
+.comment-name {
+    font-weight: bold;
+    color: #333;
+    font-size: 14px;
+}
+.comment-date {
+    color: #888;
+    font-size: 12px;
+    margin-right: 10px;
+}
+.comment-rating {
+    direction: ltr;
+    unicode-bidi: bidi-override;
+}
+.comment-rating span {
+    font-size: 16px;
+    color: #ccc;
+}
+.comment-rating span.filled {
+    color: #000;
+}
+.comment-text {
+    margin: 5px 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.comment-reply-link {
+    position: absolute;
+    left: 0;
+    top: 15px;
+    font-size: 13px;
+    color: #555;
+    text-decoration: none;
+    direction: ltr;
+}
+.comment-reply-link:hover {
+    text-decoration: underline;
+}
+
+/* --- 3. Helper/Status Classes --- */
+.form-status, .comment-list-status {
+    text-align: right;
+    margin: 10px 0;
+    font-size: 13px;
+}
+.form-status.success { color: green; }
+.form-status.error { color: red; }
+.comment-list-status { color: #888; }
