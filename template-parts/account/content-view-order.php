@@ -29,7 +29,7 @@ $back_url = add_query_arg('tab', 'orders', $base_url);
                 <?php for($i = 0; $i < 3; $i++){ ?>
                 <div class="item">
                     <div class="img">
-                        <img src="<?php echo THEME_IMG; ?>temp/bag.jpg" alt="">
+                        <img src="<?php echo THEME_IMG; ?>temp/bag.png" alt="">
                     </div>
                     <div class="item-details">
                         <p class="title">کت چرم کالکشن بهار</p>

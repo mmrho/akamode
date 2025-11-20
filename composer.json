@@ -29,7 +29,8 @@
       "lib/Single/wbsSingle.php",
       "lib/singleProduct/wbsSingleProduct.php",
       "lib/tableOfContents/wbsTableOfContents.php",
-      "lib/account/wbsLoadAccount.php"
+      "lib/account/wbsLoadAccount.php",
+      "lib/cart/wbsLoadCart.php"
       
     ]
   },
