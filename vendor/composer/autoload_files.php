@@ -22,4 +22,5 @@ return array(
     'ded4fcffe7fd07b9bf363d649b367048' => $baseDir . '/lib/Single/wbsSingle.php',
     'dd65f1a8b889fac72648542122cbbdfb' => $baseDir . '/lib/singleProduct/wbsSingleProduct.php',
     '0edae4f958ef402e9fba83fda8de89d6' => $baseDir . '/lib/account/wbsLoadAccount.php',
+    '7256479c411a20e6e8a1eff468f7890a' => $baseDir . '/lib/category/wbsLoadCategory.php',
 );

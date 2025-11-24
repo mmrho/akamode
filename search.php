@@ -6,8 +6,8 @@ if (!defined('ABSPATH')) {
 get_header();
 ?>
 <!-- Main -->
-<main class="main-content category-main">
-    <?php wbsLoadCategory(); ?>
+<main class="main-content search-main">
+    <?php // wbsLoadSearch(); ?>
 </main>
 
 <?php get_footer(); ?>
