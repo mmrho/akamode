@@ -21,7 +21,6 @@ return array(
     '4a83b37129298a7e10da35add94b49a8' => $baseDir . '/lib/Login/wbsLogin.php',
     'ded4fcffe7fd07b9bf363d649b367048' => $baseDir . '/lib/Single/wbsSingle.php',
     'dd65f1a8b889fac72648542122cbbdfb' => $baseDir . '/lib/singleProduct/wbsSingleProduct.php',
-    '72347806510dcd929b8fdeb57ca59266' => $baseDir . '/lib/tableOfContents/wbsTableOfContents.php',
     '0edae4f958ef402e9fba83fda8de89d6' => $baseDir . '/lib/account/wbsLoadAccount.php',
     '2ad637ef6edd81637c1db9dd6fffad26' => $baseDir . '/lib/cart/wbsLoadCart.php',
     '6d17666ec57a940ad7e2f29c46989ad8' => $baseDir . '/lib/checkout/wbsLoadCheckout.php',
@@ -31,4 +30,6 @@ return array(
     'b304037f89d75e8abd2afc4ba9487324' => $baseDir . '/lib/404/wbsLoad404.php',
     '105dbb95050c00427118ebb5a901b1b6' => $baseDir . '/lib/500/wbsLoad500.php',
     'ff1d3ffdcc721576a495bfe52a751f4f' => $baseDir . '/lib/faq/wbsLoadFaq.php',
+    '7256479c411a20e6e8a1eff468f7890a' => $baseDir . '/lib/category/wbsLoadCategory.php',
+    '1c31d30b70dff70f84715cdd35db7a4a' => $baseDir . '/lib/contactUs/wbsLoadContactUs.php',
 );

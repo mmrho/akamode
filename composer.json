@@ -37,8 +37,10 @@
       "lib/aboutUs/wbsLoadAboutUs.php",
       "lib/404/wbsLoad404.php",
       "lib/500/wbsLoad500.php",
-      "lib/faq/wbsLoadFaq.php"
-      
+      "lib/faq/wbsLoadFaq.php",
+      "lib/account/wbsLoadAccount.php",
+      "lib/category/wbsLoadCategory.php",
+      "lib/contactUs/wbsLoadContactUs.php"
     ]
   },
   "require": {

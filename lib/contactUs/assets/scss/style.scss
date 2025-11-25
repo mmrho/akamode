@@ -1,0 +1,239 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixin";
+/* ==========================================================================
+   Category Styles
+   ========================================================================== */
+body {
+    @include media-max(mobile-max) {
+        padding-top: 0px !important;
+
+        &.scrolled {
+            padding-top: 0px !important;
+        }
+    }
+}
+#site-header {
+    .mobile-header {
+        .mobile-header-container {
+            position: sticky !important;
+        }
+    }
+}
+.main-content {
+    width: 100%;
+
+    /* --- Hero Section --- */
+    .hero-section {
+        display: flex;
+        flex-direction: row-reverse; /* Image Right, Text Left */
+        width: 100%;
+        min-height: 550px;
+
+        // Nested Hero Text
+        .hero-text {
+            width: 50%;
+            padding: 4rem 5rem 2rem 5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .title {
+                font-size: 2.2rem;
+                font-weight: 800;
+                margin-bottom: 1.5rem;
+                color: #222222; /* Previously var(--text-main) */
+            }
+
+            .description {
+                font-size: 0.95rem;
+                color: #777777;
+                margin-bottom: 3.5rem;
+                max-width: 520px;
+                text-align: justify;
+                line-height: 2;
+            }
+
+            .contact-info {
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                width: 100%;
+
+                .info-row {
+                    display: flex;
+                    align-items: center;
+                    gap: 1.2rem;
+                    font-size: 0.95rem;
+                    color: #555555;
+
+                    .ltr-text {
+                        direction: ltr;
+                        font-family: sans-serif;
+                        letter-spacing: 0.5px;
+                    }
+
+                    .icon {
+                        width: 18px;
+                        height: 18px;
+                        opacity: 0.4;
+                    }
+                }
+            }
+        }
+
+        // Nested Hero Image
+        .hero-image {
+            width: 50%;
+            background-image: url("https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=1000&auto=format&fit=crop");
+            background-size: cover;
+            background-position: center;
+        }
+
+        // Hero Responsive Logic
+        @media (max-width: 992px) {
+            flex-direction: column;
+            height: auto;
+
+            .hero-text {
+                width: 100%;
+                padding: 3rem 1.5rem;
+
+                .title {
+                    font-size: 1.8rem;
+                }
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 350px;
+            }
+        }
+    }
+
+    /* --- Form Section --- */
+    .form-section {
+        position: relative;
+        padding: 6rem 2rem;
+        background-color: #fcfbf9;
+        background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/World_map_blank_without_borders.svg/2000px-World_map_blank_without_borders.svg.png");
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: overlay;
+
+        // Overlay pseudo-element
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(252, 251, 249, 0.92);
+            z-index: 1;
+        }
+
+        .form-container {
+            position: relative;
+            z-index: 2;
+            max-width: 950px;
+            margin: 0 auto;
+
+            .form-header {
+                margin-bottom: 4rem;
+                text-align: right;
+
+                h2 {
+                    font-size: 2.2rem;
+                    margin-bottom: 0.8rem;
+                    font-weight: 800;
+                }
+
+                p {
+                    font-size: 0.9rem;
+                    color: #888888;
+                }
+            }
+
+            .form-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 3rem;
+                row-gap: 4.5rem;
+
+                .input-group {
+                    position: relative;
+
+                    &.full-width {
+                        grid-column: span 2;
+                    }
+                }
+
+                // Input Styling
+                input,
+                textarea {
+                    width: 100%;
+                    background: transparent;
+                    border: none;
+                    border-bottom: 1px solid #d4d4d4; /* Previously var(--border-light) */
+                    padding: 8px 0;
+                    font-family: "Vazirmatn", sans-serif;
+                    font-size: 0.95rem;
+                    color: #222222; /* Previously var(--text-main) */
+                    transition: border-color 0.3s;
+                    border-radius: 0;
+
+                    &:focus {
+                        outline: none;
+                        border-bottom-color: #000000; /* Previously var(--btn-black) */
+                    }
+
+                    &::placeholder {
+                        color: #333333;
+                        font-size: 0.9rem;
+                        font-weight: 500;
+                        opacity: 1;
+                    }
+                }
+
+                // Button Area
+                .btn-container {
+                    grid-column: span 2;
+                    display: flex;
+                    justify-content: flex-end; /* Left in RTL */
+                    margin-top: 1rem;
+
+                    .submit-btn {
+                        background-color: #000000; /* Previously var(--btn-black) */
+                        color: white;
+                        border: none;
+                        padding: 14px 55px;
+                        font-size: 0.9rem;
+                        cursor: pointer;
+                        font-family: "Vazirmatn", sans-serif;
+                        transition: opacity 0.3s;
+
+                        &:hover {
+                            opacity: 0.8;
+                        }
+                    }
+                }
+
+                // Form Responsive Logic
+                @media (max-width: 992px) {
+                    grid-template-columns: 1fr;
+                    gap: 3rem;
+
+                    .input-group.full-width,
+                    .btn-container {
+                        grid-column: span 1;
+                    }
+                }
+            }
+        }
+
+        // Section Padding on Mobile
+        @media (max-width: 992px) {
+            padding: 4rem 1.5rem;
+        }
+    }
+}

@@ -20,3 +20,5 @@ function wbs_enqueue_scripts()
 
     wp_localize_script('script', 'wbs_script', $items); 
 }
+
+

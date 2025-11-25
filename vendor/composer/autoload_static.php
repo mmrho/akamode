@@ -22,7 +22,6 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         '4a83b37129298a7e10da35add94b49a8' => __DIR__ . '/../..' . '/lib/Login/wbsLogin.php',
         'ded4fcffe7fd07b9bf363d649b367048' => __DIR__ . '/../..' . '/lib/Single/wbsSingle.php',
         'dd65f1a8b889fac72648542122cbbdfb' => __DIR__ . '/../..' . '/lib/singleProduct/wbsSingleProduct.php',
-        '72347806510dcd929b8fdeb57ca59266' => __DIR__ . '/../..' . '/lib/tableOfContents/wbsTableOfContents.php',
         '0edae4f958ef402e9fba83fda8de89d6' => __DIR__ . '/../..' . '/lib/account/wbsLoadAccount.php',
         '2ad637ef6edd81637c1db9dd6fffad26' => __DIR__ . '/../..' . '/lib/cart/wbsLoadCart.php',
         '6d17666ec57a940ad7e2f29c46989ad8' => __DIR__ . '/../..' . '/lib/checkout/wbsLoadCheckout.php',
@@ -32,6 +31,8 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         'b304037f89d75e8abd2afc4ba9487324' => __DIR__ . '/../..' . '/lib/404/wbsLoad404.php',
         '105dbb95050c00427118ebb5a901b1b6' => __DIR__ . '/../..' . '/lib/500/wbsLoad500.php',
         'ff1d3ffdcc721576a495bfe52a751f4f' => __DIR__ . '/../..' . '/lib/faq/wbsLoadFaq.php',
+        '7256479c411a20e6e8a1eff468f7890a' => __DIR__ . '/../..' . '/lib/category/wbsLoadCategory.php',
+        '1c31d30b70dff70f84715cdd35db7a4a' => __DIR__ . '/../..' . '/lib/contactUs/wbsLoadContactUs.php',
     );
 
     public static $prefixLengthsPsr4 = array (

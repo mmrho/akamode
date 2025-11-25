@@ -1,47 +1,57 @@
 <?php
-if (!defined('ABSPATH')) {
+if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
-get_header('single');
-if (have_posts()) : ?>
-    <ul>
-        <?php while (have_posts()) : the_post(); ?>
-            <?php
-            $category = get_queried_object();
-            $slug = $category->slug;
-            $template_path = get_template_directory() . '/category-parts/';
-            $template_uri = get_template_directory_uri() . '/category-parts/';
 
-            $custom_template = $template_path . $slug . '.php';
+get_header();
 
-            // Check if custom template for this category exists
-            if (file_exists($custom_template)) {
-                include $custom_template;
-            }
-            // If not, check if it has a parent category
-            elseif ($category->parent) {
-                $parent = get_category($category->parent);
-                $parent_template = $template_path . $parent->slug . '.php';
+// 1. Define template selection logic BEFORE the loop (Efficiency improvement)
+$category = get_queried_object();
+$slug     = $category->slug;
 
-                if (file_exists($parent_template)) {
-                    include $parent_template;
-                } else {
-                    include $template_path . 'default.php';
-                }
-            }
-            // If no custom template and no parent category, use default
-            else {
-                include $template_path . 'default.php';
-            }
+// Define the path to your template parts
+$template_path    = get_template_directory() . '/category-parts/';
+$template_to_load = '';
+
+// Check for a custom template based on the current category slug
+if ( file_exists( $template_path . $slug . '.php' ) ) {
+    $template_to_load = $template_path . $slug . '.php';
+} 
+// If no custom template, check if the category has a parent and look for parent's template
+elseif ( $category->parent ) {
+    $parent = get_category( $category->parent );
+    if ( file_exists( $template_path . $parent->slug . '.php' ) ) {
+        $template_to_load = $template_path . $parent->slug . '.php';
+    } else {
+        // Fallback if parent template doesn't exist
+        $template_to_load = $template_path . 'default.php';
+    }
+} 
+// Fallback to default template for all other cases
+else {
+    $template_to_load = $template_path . 'default.php';
+}
+
+// 2. Load the selected template file
+// IMPORTANT: The files inside 'category-parts/' must contain the WordPress Loop (while have_posts...)
+if ( file_exists( $template_to_load ) ) {
+    include $template_to_load;
+} else {
+    // Fallback UI if even default.php is missing
+    if ( have_posts() ) : 
+        echo '<ul>';
+        while ( have_posts() ) : the_post();
             ?>
-
-
             <li>
                 <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                 (<?php echo get_post_type(); ?>)
             </li>
-        <?php endwhile; ?>
-    </ul>
-<?php else : ?>
-    <p>No content found in this category.</p>
-<?php endif; ?>
+            <?php
+        endwhile; 
+        echo '</ul>';
+    else :
+        echo '<p>No content found.</p>';
+    endif;
+}
+
+get_footer();

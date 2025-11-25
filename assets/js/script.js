@@ -30,9 +30,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-
-
-
 //info-section
 document.addEventListener("DOMContentLoaded", () => {
   const accordionItems = document.querySelectorAll(".info-item");
@@ -69,6 +66,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
 
 
 

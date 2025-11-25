@@ -7,6 +7,8 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
+        'reference' => '9e9c3dfba443da270cab5dc394b9d351368c96db',
+        'name' => 'mohammadreza/sibaneh',
         'dev' => true,
     ),
     'versions' => array(
@@ -17,6 +19,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
+            'reference' => '9e9c3dfba443da270cab5dc394b9d351368c96db',
             'dev_requirement' => false,
         ),
     ),

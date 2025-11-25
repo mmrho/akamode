@@ -1,9 +1,18 @@
-@charset "UTF-8";
 html,
 body {
+  width: 100%;
   height: 100%;
-  margin: 0;
-  background-color: rgb(250, 250, 250);
+  margin: 0px !important;
+  padding: 0px !important;
+}
+html #site-main,
+body #site-main {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+html #site-main .container-fluid,
+body #site-main .container-fluid {
+  border-top-width: 0px !important;
 }
 
 .loginContainer {
@@ -11,260 +20,262 @@ body {
   width: 100%;
   margin: 0;
   border-top: 1px solid #ddd;
+  /* Main Container Tree */
 }
-.loginContainer form {
+.loginContainer .login-main-container {
+  width: 100%;
+  /* Background Image (Desktop) */
+  /* Flex Wrapper */
+}
+.loginContainer .login-main-container .background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+.loginContainer .login-main-container .background-container img {
+  width: 100%;
+  height: 100%;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center left;
+     object-position: center left;
+}
+.loginContainer .login-main-container .main-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  /* --- RIGHT PANEL (Form) --- */
+  /* --- LEFT PANEL (Image/Logo) --- */
+  /* --- RESPONSIVE DESIGN (Mobile) --- */
+}
+.loginContainer .login-main-container .main-wrapper .form-panel {
+  flex: 1;
+  max-width: 50%;
+  /* Glassmorphism Effect */
+  background: rgba(255, 251, 246, 0.9);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
-  width: 100%;
   justify-content: center;
-}
-.loginContainer form .loginRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-}
-.loginContainer form .loginRow .loginExit {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
   align-items: center;
-  align-content: center;
-  width: 100%;
-  margin-top: 30px;
-  margin-left: 30px;
-}
-.loginContainer form .loginRow .loginExit a {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  align-content: center;
-  gap: 6px;
-}
-.loginContainer form .loginRow .loginLogo {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.loginContainer form .loginRow .loginLogo img {
-  height: 100px;
-  width: 100px;
-}
-.loginContainer form .loginRow .loginTitle {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.loginContainer form .loginRow .loginInput {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-.loginContainer form .loginRow .loginInput label {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-}
-.loginContainer form .loginRow .loginInput label .input-container {
+  padding: 32px;
   position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  max-width: 400px;
+  /* Back Link (Top Right) */
+  /* Inner Content Wrapper */
+  /* Help Link (Bottom) */
 }
-.loginContainer form .loginRow .loginInput label .input-container input {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 7px;
-  height: 50px;
-  padding-left: 50px;
-}
-.loginContainer form .loginRow .loginInput label .input-container input::-moz-placeholder {
-  text-align: center;
-}
-.loginContainer form .loginRow .loginInput label .input-container input::placeholder {
-  text-align: center;
-}
-.loginContainer form .loginRow .loginInput label .input-container span {
+.loginContainer .login-main-container .main-wrapper .form-panel .back-link {
   position: absolute;
-  display: flex;
-  align-items: center;
-  top: 50%;
-  transform: translateY(-50%);
-  right: 90%;
-  font-size: 35px;
-}
-.loginContainer form .loginRow .loginInput label .input-container span i {
-  font-size: 25px;
-}
-.loginContainer form .loginRow .loginButton {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.loginContainer form .loginRow .loginButton button {
-  width: 100%;
-  max-width: 400px;
-  border-radius: 7px;
-  height: 50px;
-  border: none;
-  background-color: #0a60fe;
-  color: white;
-  font-size: 20px;
-}
-.loginContainer form .loginRow .loginButton button:disabled, .loginContainer form .loginRow .loginButton button.disabled {
-  background-color: #c2bbbb !important;
-  cursor: not-allowed;
-  opacity: 0.7;
-}
-.loginContainer form .loginRow .loginAgreement {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-wrap: wrap;
-  width: 100%;
-  margin-top: 40px;
-  margin-bottom: 10px;
-}
-.loginContainer form .loginRow .loginAgreement label {
-  font-size: 15px;
-}
-.loginContainer form .loginRow .loginFooterImage {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-.loginContainer form .loginRow .loginFooterImage img {
-  height: 100px;
-  width: 100px;
-}
-
-.SignUpForm {
-  width: 100%;
-  max-width: 500px;
-  margin: 0 auto;
-  background-color: #f9f9f9;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  /* ردیف‌های فرم */
-}
-.SignUpForm .SignUpRow {
-  margin-bottom: 15px;
-  /* لینک بازگشت */
-  /* لوگو */
-  /* عنوان فرم */
-  /* ورودی‌های فرم */
-  /* دکمه ثبت اطلاعات */
-}
-.SignUpForm .SignUpRow:last-child {
-  margin-bottom: 0;
-}
-.SignUpForm .SignUpRow .SignUpExit a {
-  color: #555;
+  top: 30px;
+  right: 40px;
   text-decoration: none;
-  font-size: 14px;
+  color: #272727;
   display: flex;
   align-items: center;
+  gap: 8px;
+  transition: color 0.3s;
 }
-.SignUpForm .SignUpRow .SignUpExit a i {
-  margin-left: 5px;
-}
-.SignUpForm .SignUpRow .SignUpExit a:hover {
-  color: #333;
-}
-.SignUpForm .SignUpRow .SignUpLogo {
-  text-align: center;
-  margin-bottom: 20px;
-}
-.SignUpForm .SignUpRow .SignUpLogo a img {
-  width: 120px;
-  height: auto;
-}
-.SignUpForm .SignUpRow .SignUpTitle h2 {
-  text-align: center;
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-  color: #333;
-}
-.SignUpForm .SignUpRow .SignUpInput fieldset {
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  padding: 15px;
-}
-.SignUpForm .SignUpRow .SignUpInput fieldset legend {
-  font-size: 1.1rem;
-  color: #666;
-  padding: 0 10px;
-}
-.SignUpForm .SignUpRow .SignUpInput fieldset .fieldset-item {
-  margin-bottom: 10px;
-}
-.SignUpForm .SignUpRow .SignUpInput fieldset .fieldset-item label {
-  display: block;
-  margin-bottom: 5px;
-  color: #333;
-}
-.SignUpForm .SignUpRow .SignUpInput fieldset .fieldset-item input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+.loginContainer .login-main-container .main-wrapper .form-panel .back-link span {
   font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
 }
-.SignUpForm .SignUpRow .SignUpInput fieldset .fieldset-item input:focus {
-  outline: none;
-  border-color: #009688;
+.loginContainer .login-main-container .main-wrapper .form-panel .back-link i {
+  font-size: 24px;
+  transform: scaleX(-1);
+  display: inline-block;
 }
-.SignUpForm .SignUpRow .SignUpButton {
+.loginContainer .login-main-container .main-wrapper .form-panel .back-link:hover {
+  color: #000;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Mobile Logo (Hidden on Desktop) */
+  /* Login Form Area */
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .mobile-logo {
+  display: none;
+  margin-bottom: 40px;
   text-align: center;
 }
-.SignUpForm .SignUpRow .SignUpButton button {
-  background-color: #009688;
-  color: white;
-  padding: 10px 20px;
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .mobile-logo .logo-icon img {
+  max-width: 120px;
+  height: auto;
+  /* Filter to make logo brownish */
+  filter: sepia(1) hue-rotate(-50deg) saturate(0.5) brightness(0.8);
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container {
+  width: 100%;
+  max-width: 470px;
+  text-align: center;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container h2 {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: #000;
+  margin-bottom: 0px;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .subtitle {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 44px;
+  color: #272727;
+  margin-bottom: 40px;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .form-group {
+  position: relative;
+  margin-bottom: 40px;
+  text-align: right;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .form-group .input {
+  width: 100%;
+  background: transparent;
   border: none;
-  border-radius: 8px;
-  font-size: 16px;
+  border-bottom: 1px solid #ccc;
+  padding: 10px 5px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #000;
+  border-radius: 0;
+  /* Floating Label Logic */
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .form-group .input:not(:-moz-placeholder) ~ .form-label {
+  transform: translateY(-30px);
+  font-size: 11px;
+  color: #333;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .form-group .input:focus ~ .form-label, .loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .form-group .input:not(:placeholder-shown) ~ .form-label {
+  transform: translateY(-30px);
+  font-size: 11px;
+  color: #333;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .form-group .form-label {
+  position: absolute;
+  right: 0;
+  bottom: 12px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: #272727;
+  pointer-events: none;
+  transition: 0.3s ease all;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .login-btn {
+  display: flex;
+  height: 40px;
+  padding: 0 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  align-self: stretch;
+  width: 100%;
+  background-color: #111;
+  color: #fff;
+  padding: 15px 0;
+  border: none;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.SignUpForm .SignUpRow .SignUpButton button:hover {
-  background-color: #00796b;
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .login-btn:hover {
+  background-color: #333;
 }
-
-.loginFooterRow {
+.loginContainer .login-main-container .main-wrapper .form-panel .help-link {
+  margin-top: 40px;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: center;
-  width: 100%;
+  gap: 8px;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 36px;
+  color: #a5957b;
+  text-decoration: none;
 }
-.loginFooterRow .loginFooterImage {
+.loginContainer .login-main-container .main-wrapper .form-panel .help-link i {
+  font-size: 24px;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .help-link:hover {
+  color: #666;
+}
+.loginContainer .login-main-container .main-wrapper .image-panel {
+  flex: 1;
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
 }
-.loginFooterRow .loginFooterImage img {
-  max-width: 100%;
+.loginContainer .login-main-container .main-wrapper .image-panel .logo-box {
+  width: 180px;
+  height: 120px;
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.loginContainer .login-main-container .main-wrapper .image-panel .logo-box .logo-icon img {
+  max-width: 100px;
   height: auto;
+  /* Force White Color */
+  filter: brightness(0) invert(1);
+}
+@media (max-width: 849.98px) {
+  .loginContainer .login-main-container .main-wrapper {
+    height: auto;
+    min-height: 100vh;
+    /* Hide Image Side */
+    /* Adjust Form Side */
+  }
+  .loginContainer .login-main-container .main-wrapper .image-panel {
+    display: none;
+  }
+  .loginContainer .login-main-container .main-wrapper .form-panel {
+    max-width: 100%;
+    padding: 20px;
+    justify-content: space-between;
+    box-shadow: none;
+    min-height: 100vh;
+  }
+  .loginContainer .login-main-container .main-wrapper .form-panel .back-link {
+    top: 25px;
+    right: 25px;
+  }
+  .loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .mobile-logo {
+    display: block;
+    margin-top: 250px;
+  }
+  .loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container {
+    padding: 0 20px;
+  }
+  .loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .subtitle {
+    margin-bottom: 40px;
+  }
+  .loginContainer .login-main-container .main-wrapper .form-panel .help-link {
+    margin-bottom: 20px;
+  }
 }/*# sourceMappingURL=style.css.map */
