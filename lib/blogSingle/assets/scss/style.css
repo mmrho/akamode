@@ -1,0 +1,429 @@
+/* ==========================================================================
+   AppShowcase Post Styles
+   ========================================================================== */
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0px !important;
+  }
+  body.scrolled {
+    padding-top: 0px !important;
+  }
+}
+
+#site-header .mobile-header .mobile-header-container {
+  position: sticky !important;
+}
+
+.main-content {
+  padding: 10px 0;
+}
+.main-content .container {
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+}/*# sourceMappingURL=style.css.map */
+
+.container{
+
+}
+.container .main{
+    width: 85%;
+    margin-top: 3%;
+    margin-right: auto;
+    margin-left: auto;
+    gap: 64px;
+    display: flex;
+    flex-direction: column;
+}
+.container .main .top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+.container .main .top .top-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.container .main .top h1{
+    font-size: 32px;
+    color: #111111;
+    line-height: 100%;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+.container .main .top p{
+  font-size: 18px;
+  font-weight: 300;
+    color: #272727;
+}
+.breadcrumb-list{
+      display: flex;
+    align-items: center;
+}
+.breadcrumb-list li{
+    display: flex;
+    align-items: center;
+    color: #272727;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+.breadcrumb-list li a{
+    color: #272727;
+}
+.breadcrumb-list li:not(:last-child)::after {
+    content: '';
+    background-image: url('../../../../images/temp/left.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+    display: block;
+    margin: 0 8px;
+}
+.blog-content{
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.blog-content > div{
+    width: 71%;
+    margin: auto;
+}
+.blog-content .blog-img{
+  width: 100%;
+}
+.blog-content .blog-img img{
+  width: 100%;
+}
+.blog-content .content{
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  text-align: justify;
+  border-bottom: 1px solid #E5E5E5;
+  padding-bottom: 15px;
+}
+.blog-content .meta {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 30px; /* فاصله بین دو باکس اصلی */
+    flex-wrap: wrap; /* اجازه میده تو موبایل برن زیر هم */
+}
+
+/* استایل مشترک برای باکس دسته‌بندی و اشتراک‌گذاری */
+.blog-content .meta .share,
+.blog-content .meta .category {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1; /* هر دو باکس سعی میکنن اندازه هم باشن */
+    min-width: 300px; /* اگر صفحه خیلی کوچک شد، اجازه میده برن زیر هم */
+}
+
+/* بخش آیکون‌ها و متن‌ها */
+.blog-content .meta .share .socials,
+.blog-content .meta .category .categories {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap; /* جلوگیری از شکستن متن */
+}
+
+/* --- فیکس کردن خط (جادوی فلکس) --- */
+.blog-content .meta .line {
+    flex-grow: 1; /* یعنی: هرچی فضای خالی مونده رو تو پر کن */
+    height: 1px;
+    background: #909090; /* رنگ خط رو مستقیم همینجا بده */
+    min-width: 20px; /* حداقل یه خط کوتاه همیشه باشه */
+}
+
+/* حذف div اضافی .theline چون خود .line کافیه */
+.blog-content .meta .share .theline,
+.blog-content .meta .category .theline {
+    display: none; 
+}
+
+/* استایل متن‌ها */
+.blog-content .meta p {
+    font-size: 12px;
+    font-weight: 300;
+    color: #111;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+.submit-comment{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E5E5E5;
+    width: 71%;
+    margin: auto;
+}
+.submit-comment .top{
+  gap: 8px !important;
+  align-items: flex-start !important;
+}
+.submit-comment .top p{
+  margin-bottom: 0 !important;
+}
+.submit-comment .top .title{
+    font-size: 18px;
+    font-weight: 500 !important;
+    color: #111111;
+    line-height: 100%;
+}
+.submit-comment .top .sub-text{
+    font-size: 12px !important;
+    font-weight: 300 !important;
+    color: #272727;
+}
+.submit-comment .submit-comment-main form{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.submit-comment .submit-comment-main .input{
+  display: flex;
+  padding-top: 8px;
+  flex-direction: column;
+  gap: 8px;
+  border-bottom: 1px solid #909090;
+}
+.submit-comment .submit-comment-main form input{
+  position: relative;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 6px 0;
+}
+.submit-comment .submit-comment-main form input::placeholder{ 
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12px;
+  color: #272727;
+}
+
+.submit-comment .submit-comment-main form textarea{
+  position: relative;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 6px 0;
+  height: 85px;
+}
+.submit-comment .submit-comment-main form textarea::placeholder{ 
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12px;
+  color: #272727;
+  padding-top: 10px;
+}
+
+.submit-comment form input[type="checkbox"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #111;
+    background-color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: all 0.2s ease-in-out;
+}
+
+/* 3. Create the inner dot using ::before pseudo-element */
+.submit-comment form input[type="checkbox"]::before {
+    content: "";
+    width: 12px;
+    height: 12px;
+    background-color: #111; /* The dot color */
+    
+    /* Start hidden (scaled down to 0) */
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out;
+}
+
+/* 4. When Checked: Show the dot */
+.submit-comment form input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+/* Optional: Change border color when checked */
+.submit-comment form input[type="checkbox"]:checked {
+    border-color: #111;
+}
+
+.submit-comment .submit-comment-main form label{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #272727;
+  font-weight: 300;
+}
+
+.submit-comment .submit-comment-main form button[type=submit]{
+  color: #FFF;
+  font-size: 12px;
+  font-weight: 400; 
+  display: flex;
+  height: 40px;
+  padding: 0 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #FFF;
+  background: #111;
+  margin-right: auto;
+}
+
+.comment-section .comment{
+    display: flex;
+    gap: 24px;
+}
+.comment-section .user-profile img {
+    width: 48px;  /* Standard Avatar Size */
+    height: 48px;
+    object-fit: cover;
+}
+.comments-container .top{
+    flex-direction: row !important;
+}
+.comments-container{
+    display: flex;
+    flex-direction: column;
+    gap: 43px;
+    width: 71%;
+    margin: auto;
+}
+.comments-container .top p{
+    font-size: 18px;
+    font-weight: 500 !important;
+    color: #111111;
+    line-height: 100%;
+    margin-bottom: 0;
+}
+.comment-section .content{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.comment-section .reply .inner{
+    padding-right: 72px;
+}
+.comment-section .reply .inner{
+    display: flex;
+    gap: 24px;
+}
+.comment-section .content .text{
+    font-size: 12px;
+    font-weight: 300;
+    color: #666;
+}
+.comment-section .content .author-section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.comment-section .author-section .author{
+  font-size: 14px;
+  font-weight: 400;
+  color: #111;
+}
+.comment-section .author-section .date{
+  font-size: 12px;
+  font-weight: 300;
+  color: #666;
+}
+.comment-section .author-section .reply-btn p{
+  font-size: 12px;
+  font-weight: 300;
+  color: #666;
+  margin-bottom: 0;
+}
+.comment-section .author-section .right{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.comment-section .author-section .left .reply-btn{
+    display: flex;
+    align-items: center;
+}
+.blog-img .mobile-v{
+    display: none;
+  }
+
+
+/* --- ریسپانسیو برای موبایل --- */
+@media (max-width: 768px) {
+    
+    
+    .blog-content .meta .share,
+    .blog-content .meta .category {
+        width: 100%; /* تمام عرض رو بگیرن */
+    }
+}
+
+#site-footer{
+  margin-top: 10px !important;
+}
+
+@media screen and (max-width: 849.98px){
+  .blog-img .desktop-v{
+    display: none;
+  }
+  .blog-img .mobile-v{
+    display: block;
+  }
+  .blog-content > div{
+    width: 100%;
+  }
+  .blog-content .meta {
+        flex-direction: column-reverse; /* زیر هم قرار بگیرن */
+        gap: 24px;
+  }
+  .submit-comment {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #E5E5E5;
+    width: 100%;
+    margin: auto;
+}
+.comments-container {
+    display: flex;
+    flex-direction: column;
+    gap: 43px;
+    width: 100%;
+    margin: auto;
+}
+.submit-comment .top .title {
+    font-size: 16px !important;
+}
+.comments-container .top p {
+    font-size: 16px !important;
+}
+.container .main .top h1 {
+    font-size: 24px;
+}
+.container .main .top p {
+    font-size: 16px;
+}
+.submit-comment .submit-comment-main form button[type=submit] {
+    font-weight: 400;
+}
+}
+

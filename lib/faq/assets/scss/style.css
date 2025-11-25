@@ -1,0 +1,204 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixin";
+/* ==========================================================================
+   AppShowcase Post Styles
+   ========================================================================== */
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0px !important;
+  }
+  body.scrolled {
+    padding-top: 0px !important;
+  }
+}
+
+:root {
+    --faq-transition-speed: 0.4s;
+    --faq-easing: cubic-bezier(0.25, 0.8, 0.25, 1); /* Modern, snappy easing */
+}
+
+#site-header .mobile-header .mobile-header-container {
+  position: sticky !important;
+}
+
+.main-content {
+  padding: 10px 0;
+}
+.main-content .container {
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+}/*# sourceMappingURL=style.css.map */
+
+.container{
+
+}
+.container .main{
+    width: 80%;
+    margin-top: 3%;
+    margin-right: auto;
+    margin-left: auto;
+    gap: 56px;
+    display: flex;
+    flex-direction: column;
+}
+.container .main .top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.container .main .top h1{
+    font-size: 32px;
+    color: #111111;
+    line-height: 100%;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+.container .main .top p{
+    color: #272727;
+}
+
+/* Container */
+.faq-section-container {
+    max-width: 900px; /* Adjust based on your layout container */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Single FAQ Item */
+.faq-item {
+    border-bottom: 1px solid #909090;
+    overflow: hidden;
+}
+
+/* The clickable button (Question) */
+.faq-trigger {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: right; /* Ensures text aligns right in RTL */
+    transition: color 0.3s ease;
+}
+
+.faq-trigger:hover {
+    color: #000; /* Slightly darker on hover */
+}
+
+.faq-title {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #272727;
+}
+
+/* --- The CSS Icon (+ / -) --- */
+.faq-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    margin-right: 16px; /* Spacing between text and icon */
+    flex-shrink: 0; /* Prevents icon from squishing on small screens */
+}
+
+/* Creating the two lines of the plus sign */
+.faq-icon::before,
+.faq-icon::after {
+    content: '';
+    position: absolute;
+    background-color: currentColor; /* Inherits text color */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform var(--faq-transition-speed) var(--faq-easing);
+}
+
+.faq-icon::before {
+    width: 100%;
+    height: 2px; /* Horizontal line */
+}
+
+.faq-icon::after {
+    height: 100%;
+    width: 2px; /* Vertical line */
+}
+
+/* --- The Answer Content (Modern Grid Animation) --- */
+.faq-content {
+    display: grid;
+    grid-template-rows: 0fr; /* Start closed (0 height) */
+    transition: grid-template-rows var(--faq-transition-speed) var(--faq-easing);
+}
+
+.faq-content-inner {
+    overflow: hidden; /* Crucial for the animation */
+}
+
+/* Style inside the answer box */
+.faq-content-inner p {
+    margin: 0;
+    padding-bottom: 24px;
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 200;
+    color: #272727;
+    
+    /* Subtle fade/slide effect for the text itself */
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    transition-delay: 0s;
+}
+
+
+/* ====== ACTIVE STATE (When open) ====== */
+
+/* Rotate the vertical line to turn '+' into '-' */
+.faq-item.active .faq-icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+/* Open the grid container */
+.faq-item.active .faq-content {
+    grid-template-rows: 1fr; /* Animate to full height */
+}
+
+/* Fade in the text with a slight delay */
+.faq-item.active .faq-content-inner p {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.15s; /* Waits until box starts opening */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .faq-trigger {
+        padding: 20px 0;
+    }
+    .faq-title {
+        font-size: 15px;
+    }
+}
+
+/* Responsive codes */
+
+@media screen and (max-width: 849.98px){
+  .container .main .top h1{
+    font-size: 24px;
+  }
+  .container .main{
+    width: 91%;
+  }
+  .faq-title {
+    font-size: 14px;
+    font-weight: 300;
+}
+}
+
+
+
