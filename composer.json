@@ -29,8 +29,8 @@
       "lib/Single/wbsSingle.php",
       "lib/singleProduct/wbsSingleProduct.php",
       "lib/account/wbsLoadAccount.php",
-      "lib/category/wbsLoadCategory.php"
-      
+      "lib/category/wbsLoadCategory.php",
+      "lib/contactUs/wbsLoadContactUs.php"
     ]
   },
   "require": {

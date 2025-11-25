@@ -1,42 +1,44 @@
-<form id="loginForm" class="login-form" method="post">
-    <section class="loginRow">
-        <div class="loginExit">
-            <a href="">بازگشت<i class="icon-left-open"></i></a>
-        </div>
-    </section>
-    <section class="loginRow">
-        <div class="loginLogo">
-            <img src="<?php echo get_template_directory_uri(); ?>/images/temp/sibaneh-login-logo.png" alt="سیبانه لوگو">
-        </div>
-    </section>
-    <section class="loginRow">
-        <div class="loginTitle">
-            <h2>ورود | عضویت</h2>
-        </div>
-    </section>
-    <section class="loginRow">
-        <div class="loginInput">
-            <label for="mobile">
-                <div class="input-container">
-                    <input dir="ltr" class="input" type="text" inputmode="numeric" maxlength="11" autocomplete="off" id="mobile" name="mobile" placeholder="لطفا شماره موبایل خود را وارد کنید" />
-                    <span class="input-icon"> | <i class="icon-iphone-icon"></i></span>
+<div class="login-main-container">
+    <div class="background-container">
+        <img src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-login.jpg" alt="akamode-login-img">
+    </div>
+    <div class="main-wrapper">
+        <section class="form-panel">
+            <a href="#" class="back-link">
+                <i class="icon-up-left-arrow"></i>
+                <span> بازگشت به سایت</span>
+            </a>
+            <div class="content-wrapper">
+                <div class="mobile-logo">
+                    <div class="logo-icon">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/SVG/akamode-logo.svg" alt="akamode-logo">
+                    </div>
                 </div>
-            </label>
-
-        </div>
-    </section>
-    <section class="loginRow">
-        <div class="loginButton">
-            <button class="login-btn" type="submit">ورود به حساب کاربری</button>
-        </div>
-    </section>
-    <section class="loginRow">
-        <div class="loginAgreement">
-            <label class="agreement-container">
-                <input type="checkbox" id="agreement-checkbox">
-                <span class="checkmark"></span>
-                <span class="agreement-text">با ورود و یا ثبت نام در سیبانه، شما قوانین استفاده از سایت و سرویس‌های سیبانه را می‌پذیرید.</span>
-            </label>
-        </div>
-    </section>
-</form>
+                <div class="login-container">
+                    <h2>ورود | ثبت نام</h2>
+                    <p class="subtitle">شماره موبایل خود را وارد نمایید</p>
+                    <form id="loginForm" class="login-form" method="post">
+                        <div class="form-group">
+                            <input dir="ltr" class="input" type="text" inputmode="numeric" maxlength="11" autocomplete="off" id="mobile" name="mobile" placeholder="" />
+                            <label for="mobile" class="form-label">شماره موبایل</label>
+                        </div>
+                        <button type="submit" class="login-btn">ورود</button>
+                    </form>
+                </div>
+            </div>
+            <a href="#" class="help-link">
+                <span>
+                    مشکل دارید؟
+                </span>
+                <i class="icon-up-left-arrow"></i>
+            </a>
+        </section>
+        <section class="image-panel">
+            <div class="logo-box">
+                <div class="logo-icon">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/SVG/akamode-logo.svg" alt="akamode-logo">
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
