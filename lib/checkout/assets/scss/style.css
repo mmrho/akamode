@@ -1,0 +1,574 @@
+/* ==========================================================================
+   AppShowcase Post Styles
+   ========================================================================== */
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0px !important;
+  }
+  body.scrolled {
+    padding-top: 0px !important;
+  }
+}
+
+#site-header .mobile-header .mobile-header-container {
+  position: sticky !important;
+}
+
+.main-content {
+  padding: 10px 0;
+}
+.main-content .container {
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+}/*# sourceMappingURL=style.css.map */
+
+.container{
+
+}
+.container .main{
+    width: 85%;
+    margin-top: 3%;
+    margin-right: auto;
+    margin-left: auto;
+    gap: 56px;
+    display: flex;
+    flex-direction: column;
+}
+.container .main .top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.container .main .top h1{
+    font-size: 32px;
+    color: #111111;
+    line-height: 100%;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+.container .main .top p{
+    color: #272727;
+}
+.checkout-container{
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+.checkout-container .right .top span{
+  color:  #666;
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+}
+.checkout-container .right .top a{
+  color: #111;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: auto;
+  text-underline-offset: auto;
+  text-underline-position: from-font;
+}
+.checkout-container .right .discount .sdiscount{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111111;
+    color: #ffffff !important;
+    border: 1px solid #FFFFFF;
+    width: 48%;
+    font-size: 12px;
+    height: 40px;
+    width: 99px;
+    gap: 4px;
+    flex-shrink: 0;
+}
+.checkout-container .right .ship-info .title{
+  color: #111;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0;
+}
+.checkout-container .right .ship-info .text{
+  color: #272727;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 36px; /* 300% */
+  margin-bottom: 0;
+}
+.ship-info .select.input{
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: 1px solid #909090;
+    gap: 8px;
+    flex: 13 0 0;
+}
+.ship-info .select.input input::placeholder{ 
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12px;
+  color: #272727;
+}
+.ship-info {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.ship-info .form {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+.ship-info .form .select{
+  width: 100%;
+}
+.ship-info .form > div{
+  display: flex;
+  gap: 32px;
+}
+.ship-info .form input {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 6px 0;
+}
+.ship-info .form select{
+    /* 1. Reset Browser Styles */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    border-radius: 0; /* Removes default rounded corners on iOS */
+
+    /* 2. Box Styling */
+    background: none;
+    width: 100%;/* Bottom grey border */
+    padding: 15px 0; /* Spacing inside */
+    
+    /* 3. Text Styling */
+    font-family: inherit; /* Use your theme's font */
+    font-size: 12px;
+    color: #272727;
+    text-align: right; /* Ensure text aligns right */
+    direction: rtl;
+
+    /* 4. Custom Arrow (SVG) Positioned on Left */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: left 10px center; /* 10px from left side */
+    background-size: 30px;
+    cursor: pointer;
+}
+.ship-method{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+.ship-method > div{
+    gap: 8px;
+}
+.ship-method .title{
+  color: #111;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0;
+}
+.ship-method .text{
+  color: #272727;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 36px; /* 300% */
+  margin-bottom: 0;
+}
+.ship-method input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #111;
+    background-color: #fff;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: all 0.2s ease-in-out;
+}
+
+    /* 3. Create the inner dot using ::before pseudo-element */
+.ship-method input[type="radio"]::before {
+        content: "";
+        width: 12px;
+        height: 12px;
+        background-color: #111; /* The dot color */
+        
+        /* Start hidden (scaled down to 0) */
+        transform: scale(0);
+        transition: transform 0.2s ease-in-out;
+    }
+
+    /* 4. When Checked: Show the dot */
+    .ship-method input[type="radio"]:checked::before {
+        transform: scale(1);
+    }
+
+    /* Optional: Change border color when checked */
+   .ship-method input[type="radio"]:checked {
+        border-color: #111;
+    }
+.ship-method .hr{
+  background: #E5E5E5;
+  width: 100%;
+  height: 1px;
+  display: block;
+}
+.ship-method .methods{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ship-method .methods .price{
+  color: #111;
+  font-size: 16px;
+  font-weight: 500;
+}
+.ship-method .methods > div{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.ship-method .methods > div > label{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ship-method .methods > div > label > span{
+  color: #272727;
+  text-align: justify;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px; /* 228.571% */
+}
+.checkout-container .right .top .dis {
+    display: flex;
+    padding: 24px 24px 32px 24px;
+    flex-direction: column;
+    gap: 24px;
+    align-self: stretch;
+}
+.checkout-container .right .top .dis > p{
+    color: #666;
+    text-align: right;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: normal;
+}
+.checkout-container .details-header a{
+  color: #272727;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: normal;
+  display: flex;
+}
+.checkout-container .details-header a i{
+    transform: rotate(90deg);
+    display: inline-block;
+    font-size: 21px;
+}
+.checkout-container .right{
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 65%;
+}
+.checkout-container .right .items{
+  display: flex;
+      flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+}
+.checkout-container .right .item{
+    gap: 24px;
+    display: flex;
+    align-items: center;
+}
+.checkout-container .right .item .img{
+    width: 112px;
+}
+.checkout-container .right .item img{
+    width: 100%;
+}
+.checkout-container .right .item .counter > div {
+    width: 24px;
+    height: 24px;
+}
+.checkout-container .right .item .counter .remove {
+    cursor: pointer;
+}
+.checkout-container .right .item .counter .plus, .checkout-container .right .item .counter .minus  {
+    cursor: pointer;
+}
+.checkout-container .right .item .quantity{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+.checkout-container .right .item .counter{
+    background-color: #FFFBF6;
+    display: flex;
+    padding: 6px 8px;
+    align-items: flex-start;
+    gap: 10px;
+}
+.checkout-container .right .item .counter .number{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 300;
+}
+.discount{
+      display: flex;
+    align-items: center;
+    gap: 24px;
+}
+.discount .select.input{
+  position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    border-bottom: 1px solid #909090;
+    gap: 8px;
+    flex: 13 0 0;
+}
+.discount .select.input input::placeholder{ 
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12px;
+  color: #272727;
+}
+.discount .select.input input {
+    background: none;
+    border: none;
+    outline: none;
+    padding: 6px 0;
+}
+.checkout-container .right .item-details{
+        display: flex;
+    flex-direction: column;
+    width: 42%;
+}
+.checkout-container .right .item-details .title{
+    color: #111;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 32px;
+}
+.checkout-container .right .item-details .color{
+  color:  #666;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: 36px;
+}
+.checkout-container .right .item-details .price{
+  color: #272727;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.checkout-container .right{
+    display: flex;
+    gap: 64px;
+}
+.checkout-container .right > div{
+    width: 100%;
+}
+.checkout-container .right > .top{
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.checkout-container .right > .top > div{
+    width: 100%;
+}
+.checkout-container table{
+  width: 100%;
+}
+.checkout-container table td{
+  width: 50%;
+}
+.checkout-container table tr td:last-child p{
+  text-align: left;
+}
+.checkout-container .left{
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 35%;
+}
+.checkout-container .right .left table tr td:first-child{
+  color: #909090;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+}
+.checkout-container .right .left table tr td:last-child{
+  color:  #111;
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+}
+.checkout-container .financial-container{
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  height: 100%;
+}
+.checkout-container .financial-container .bottom{
+  margin-top: 30%;
+}
+.checkout-container .financial-container .bottom .submit-purchase{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #111111;
+    color: #ffffff !important;
+    border: 1px solid #FFFFFF;
+    width: 48%;
+    font-size: 12px;
+    height: 40px;
+    width: 100%;
+    gap: 4px;
+    flex-shrink: 0;
+}
+.checkout-container .financial-container .hr{
+  background: #E5E5E5;
+  height: 1px;
+  width: 100%;
+  display: block;
+}
+.checkout-container .financial-container table tr td:first-child{
+  color: #909090;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+}
+.checkout-container .financial-container table tr td:last-child{
+  color:  #111;
+  text-align: right;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+}
+.checkout-container .financial-container .top{
+      text-align: right;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+/* Responsive codes */
+
+@media screen and (max-width: 849.98px){
+  h1{
+  font-size: 24px !important;
+  font-style: normal;
+  font-weight: 500 !important;
+  line-height: normal;
+  margin-bottom: 0 !important;
+  }
+  .main > .top > p{
+    color: #272727;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .checkout-container .right .top span {
+    font-weight: 300;
+}
+  .checkout-container .right .top a {
+    font-weight: 300;
+}
+.checkout-container .right .ship-info .title {
+    font-size: 16px;
+}
+.ship-info .form > div{
+  flex-direction: column;
+}
+.ship-method .title{
+  font-size: 16px;
+}
+.ship-method .methods > div > label > span{
+  font-weight: 300;
+}
+.ship-method .methods .price{
+  font-size: 14px;
+}
+  .checkout-container{
+    flex-direction: column;
+    gap: 48px;
+  }
+  .checkout-container .financial-container .bottom{
+    margin-top: 0;
+  }
+  .checkout-container .right, .checkout-container .left{
+    width: 100%;
+  }
+  .checkout-container .right .item .quantity{
+    flex-direction: column-reverse;
+    gap: 0;
+    align-self: normal;
+  }
+  .checkout-container .right .item .quantity .remove{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .checkout-container .right .item-details .title{
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+  .checkout-container .right .item-details .price{
+    font-size: 14px;
+  }
+  .checkout-container .left > p{
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .checkout-container .financial-container table tr td:first-child, .checkout-container .financial-container table tr td:last-child{
+    font-size: 14px;
+  }
+  .checkout-container .financial-container table tr td:last-child{
+    text-align: left;
+  }
+}

@@ -3,7 +3,7 @@
         'name' => 'mohammadreza/sibaneh',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'a28c878d140a441e78c2d719db7c2d7571658f90',
+        'reference' => '6ae830dee5c8cc00f8d70caab2fb4d40a089fae5',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'mohammadreza/sibaneh' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'a28c878d140a441e78c2d719db7c2d7571658f90',
+            'reference' => '6ae830dee5c8cc00f8d70caab2fb4d40a089fae5',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

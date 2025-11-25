@@ -30,7 +30,14 @@
       "lib/singleProduct/wbsSingleProduct.php",
       "lib/tableOfContents/wbsTableOfContents.php",
       "lib/account/wbsLoadAccount.php",
-      "lib/cart/wbsLoadCart.php"
+      "lib/cart/wbsLoadCart.php",
+      "lib/checkout/wbsLoadCheckout.php",
+      "lib/blog/wbsLoadBlog.php",
+      "lib/blogSingle/wbsLoadBlogSingle.php",
+      "lib/aboutUs/wbsLoadAboutUs.php",
+      "lib/404/wbsLoad404.php",
+      "lib/500/wbsLoad500.php",
+      "lib/faq/wbsLoadFaq.php"
       
     ]
   },

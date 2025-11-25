@@ -1,0 +1,96 @@
+/* ==========================================================================
+   AppShowcase Post Styles
+   ========================================================================== */
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0px !important;
+  }
+  body.scrolled {
+    padding-top: 0px !important;
+  }
+}
+
+#site-header .mobile-header .mobile-header-container {
+  position: sticky !important;
+}
+#site-header{
+  margin-bottom: 163px;
+}
+
+.main-content {
+  padding: 10px 0;
+}
+.main-content .container {
+  max-width: 100%;
+  margin: 0px;
+  padding: 0px;
+}/*# sourceMappingURL=style.css.map */
+
+.container{
+
+}
+.container .main{
+    width: 85%;
+    margin-top: 3%;
+    margin-right: auto;
+    margin-left: auto;
+    gap: 56px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.the404-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+}
+.the404-container p{
+  margin-bottom: 0;
+}
+.the404-container .content{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+h1{
+  color: #111;
+  text-align: center;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+.content p{
+  color: #272727;
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  margin-bottom: 0;
+}
+.btn a{
+  display: flex;
+  height: 40px;
+  padding: 0 40px;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid #FFF;
+  background: #111;
+  color: #fff;
+}
+
+
+@media screen and (max-width: 849.98px){
+  h1 {
+    font-size: 24px;
+}
+.content p{
+  font-size: 16px;
+  font-weight: 300;
+}
+}
+
