@@ -20,7 +20,6 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         'c208f475b61717233f8225fa0353d0ae' => __DIR__ . '/../..' . '/inc/functions/theme-options.php',
         '88aabc3238c321670e20a5476124a576' => __DIR__ . '/../..' . '/inc/functions/admin-CPT.php',
         '4a83b37129298a7e10da35add94b49a8' => __DIR__ . '/../..' . '/lib/Login/wbsLogin.php',
-        'ded4fcffe7fd07b9bf363d649b367048' => __DIR__ . '/../..' . '/lib/Single/wbsSingle.php',
         'dd65f1a8b889fac72648542122cbbdfb' => __DIR__ . '/../..' . '/lib/singleProduct/wbsSingleProduct.php',
         '0edae4f958ef402e9fba83fda8de89d6' => __DIR__ . '/../..' . '/lib/account/wbsLoadAccount.php',
         '2ad637ef6edd81637c1db9dd6fffad26' => __DIR__ . '/../..' . '/lib/cart/wbsLoadCart.php',

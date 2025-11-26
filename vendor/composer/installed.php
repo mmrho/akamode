@@ -1,13 +1,11 @@
 <?php return array(
     'root' => array(
-        'name' => 'mohammadreza/sibaneh',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '6ae830dee5c8cc00f8d70caab2fb4d40a089fae5',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '9e9c3dfba443da270cab5dc394b9d351368c96db',
+        'reference' => '7413a98813058591d87bff461d640adedd31c54e',
         'name' => 'mohammadreza/sibaneh',
         'dev' => true,
     ),
@@ -15,11 +13,10 @@
         'mohammadreza/sibaneh' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '6ae830dee5c8cc00f8d70caab2fb4d40a089fae5',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '9e9c3dfba443da270cab5dc394b9d351368c96db',
+            'reference' => '7413a98813058591d87bff461d640adedd31c54e',
             'dev_requirement' => false,
         ),
     ),

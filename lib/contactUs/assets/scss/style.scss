@@ -84,13 +84,12 @@ body {
         // Nested Hero Image
         .hero-image {
             width: 50%;
-            background-image: url("https://images.unsplash.com/photo-1590874103328-eac38a683ce7?q=80&w=1000&auto=format&fit=crop");
             background-size: cover;
             background-position: center;
         }
 
         // Hero Responsive Logic
-        @media (max-width: 992px) {
+        @include media-max(mobile-max) {
             flex-direction: column;
             height: auto;
 

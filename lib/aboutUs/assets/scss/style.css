@@ -1,208 +1,208 @@
 /* ==========================================================================
    AppShowcase Post Styles
    ========================================================================== */
-@media (max-width: 849.98px) {
-  body {
-    padding-top: 0px !important;
+   @media (max-width: 849.98px) {
+    body {
+      padding-top: 0px !important;
+    }
+    body.scrolled {
+      padding-top: 0px !important;
+    }
   }
-  body.scrolled {
-    padding-top: 0px !important;
+  
+  #site-header .mobile-header .mobile-header-container {
+    position: sticky !important;
   }
-}
-
-#site-header .mobile-header .mobile-header-container {
-  position: sticky !important;
-}
-
-.main-content {
-  padding: 10px 0;
-}
-.main-content .container {
-  max-width: 100%;
-  margin: 0px;
-  padding: 0px;
-}/*# sourceMappingURL=style.css.map */
-
-.container{
-
-}
-.container .main{
-    width: 85%;
-    margin-top: 3%;
-    margin-right: auto;
-    margin-left: auto;
-    gap: 56px;
+  
+  .main-content {
+    padding: 10px 0;
+  }
+  .main-content .container {
+    max-width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }/*# sourceMappingURL=style.css.map */
+  
+  .container{
+  
+  }
+  .container .main{
+      width: 85%;
+      margin-top: 3%;
+      margin-right: auto;
+      margin-left: auto;
+      gap: 56px;
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .about-us-container{
+      display: flex;
+      flex-direction: column;
+      gap: 120px;
+  }
+  .about-us-container p{
+    margin-bottom: 0;
+  }
+  
+  .section1{
+      display: flex;
+      gap: 24px;
+  }
+  .section1 h1{
+    color: #111;
+    text-align: right;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .section1 .content{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  .section1 .content .inner{
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+  }
+  .section1 .content .inner > div:first-child{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 24px;
+  }
+  .section1 .content .inner p{
+    color: #111;
+    text-align: justify;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 44px;
+  }
+  .section1 .thumb-imgs{
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      justify-content: flex-end;
+  }
+  .section2{
+      display: flex;
+      gap: 24px;
+  }
+  .section2 .content {
+      display: flex;
+      background: linear-gradient(0deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%), url(../../../../images/temp/about-text-bg.jpg) lightgray 50% / cover no-repeat;
+      padding: 80px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex: 1 0 0;
+  }
+  .section2 .content .inner > div:first-child{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 32px;
+  }
+  .section2 .content .inner .sec1, .section2 .content .inner .sec2, .section2 .content .inner .sec3s{
     display: flex;
     flex-direction: column;
-}
-
-.about-us-container{
-    display: flex;
-    flex-direction: column;
-    gap: 120px;
-}
-.about-us-container p{
-  margin-bottom: 0;
-}
-
-.section1{
-    display: flex;
-    gap: 24px;
-}
-.section1 h1{
-  color: #111;
-  text-align: right;
-  font-size: 32px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-.section1 .content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.section1 .content .inner{
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-}
-.section1 .content .inner > div:first-child{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-}
-.section1 .content .inner p{
-  color: #111;
-  text-align: justify;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 200;
-  line-height: 44px;
-}
-.section1 .thumb-imgs{
-    display: flex;
-    align-items: center;
     gap: 16px;
-    justify-content: flex-end;
-}
-.section2{
-    display: flex;
-    gap: 24px;
-}
-.section2 .content {
-    display: flex;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%), url(../../../../images/temp/about-text-bg.jpg) lightgray 50% / cover no-repeat;
-    padding: 80px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    flex: 1 0 0;
-}
-.section2 .content .inner > div:first-child{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 32px;
-}
-.section2 .content .inner .sec1, .section2 .content .inner .sec2, .section2 .content .inner .sec3s{
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.section2 .content .inner .title{
-  color: #111;
-  text-align: right;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-.section2 .content .inner .text{
-  color: #111;
-  text-align: right;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-}
-.section3{
-    display: flex;
-    gap: 24px;
-}
-.section3 h2{
-  color: #111;
-  text-align: right;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-}
-.section3 .content .inner p{
-  color: #111;
-  text-align: justify;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 200;
-  line-height: 44px;
-}
-.section3 .content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-.section4{
-    display: flex;
-    gap: 24px;
-}
-.section4 h2{
-  color: #111;
-  text-align: right;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: normal;
-}
-.section4 .content .inner p{
-  color: #111;
-  text-align: justify;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 200;
-  line-height: 44px;
-}
-.section4 .content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-@media screen and (max-width: 849.98px){
-.about-us-container section {
-    flex-direction: column;
-}
-.about-us-container img{
-  width: 100%;
-}
-.about-us-container h1, .about-us-container h2{
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
-.about-us-container {
-    gap: 80px;
-}
-.section1 .thumb-imgs {
-    justify-content: center;
-}
-.about-us-container .section2 {
-    flex-direction: column-reverse;
-}
-}
-
+  }
+  .section2 .content .inner .title{
+    color: #111;
+    text-align: right;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .section2 .content .inner .text{
+    color: #111;
+    text-align: right;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  .section3{
+      display: flex;
+      gap: 24px;
+  }
+  .section3 h2{
+    color: #111;
+    text-align: right;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  .section3 .content .inner p{
+    color: #111;
+    text-align: justify;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 44px;
+  }
+  .section3 .content{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  .section4{
+      display: flex;
+      gap: 24px;
+  }
+  .section4 h2{
+    color: #111;
+    text-align: right;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+  }
+  .section4 .content .inner p{
+    color: #111;
+    text-align: justify;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 200;
+    line-height: 44px;
+  }
+  .section4 .content{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  @media screen and (max-width: 849.98px){
+  .about-us-container section {
+      flex-direction: column;
+  }
+  .about-us-container img{
+    width: 100%;
+  }
+  .about-us-container h1, .about-us-container h2{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  .about-us-container {
+      gap: 80px;
+  }
+  .section1 .thumb-imgs {
+      justify-content: center;
+  }
+  .about-us-container .section2 {
+      flex-direction: column-reverse;
+  }
+  }
+  

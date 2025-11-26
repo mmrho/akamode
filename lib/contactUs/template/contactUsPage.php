@@ -37,7 +37,9 @@
         </div>
     </div>
 
-    <div class="hero-image"></div>
+    <div class="hero-image">
+    <img src="<?php echo THEME_IMG; ?>/temp/akamode-30.jpg" alt="">
+    </div>
 </section>
 
 <section class="form-section">

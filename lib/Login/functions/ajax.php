@@ -1,6 +1,6 @@
 <?php
 function sibaneh_api_request($endpoint, $data) {
-    $url = "https://api.sibaneh.punasdev.ir/api/" . $endpoint;
+    $url = "https://9rvlngz4-8000.uks1.devtunnels.ms/api/" . $endpoint;
     
     $args = array(
         'body'        => json_encode($data),
@@ -157,7 +157,7 @@ function submitLoginFormCallback() {
         "service" => 1
     );
     
-    $response = sibaneh_api_request('Account/Otp', $data);
+    $response = sibaneh_api_request('login/send-otp', $data);
     $body = sibaneh_process_api_response($response);
     
     if (!$body) {
