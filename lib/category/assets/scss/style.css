@@ -274,6 +274,23 @@
   color: #111;
   text-align: left;
 }
+.main-content .main-container .category-container .page-content-container .product-grid .product-card .product-price span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+  color: #111;
+  text-align: left;
+}
+.main-content .main-container .category-container .page-content-container .product-grid .product-card .product-price del {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 32px;
+  color: #999;
+  text-align: left;
+  margin-left: 5px;
+}
 .main-content .main-container .category-container .page-content-container .product-grid .product-card:hover .product-image-wrapper img {
   transform: scale(1.08);
 }

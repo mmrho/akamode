@@ -278,6 +278,23 @@ body {
                             line-height: 32px;
                             color: #111;
                             text-align: left;
+                            span {
+                                font-size: 16px;
+                                font-style: normal;
+                                font-weight: 300;
+                                line-height: 32px;
+                                color: #111;
+                                text-align: left;
+                            }
+                            del{
+                                font-size: 14px;
+                                font-style: normal;
+                                font-weight: 300;
+                                line-height: 32px;
+                                color: #999;
+                                text-align: left;
+                                margin-left:5px;
+                            }
                         }
 
                         // Hover Effects
