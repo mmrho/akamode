@@ -107,7 +107,7 @@ class Laravel_API_Client {
     }
 
     public function get_products($page = 1) {
-        return $this->request_with_cache('/api/v/products', ['page' => $page], HOUR_IN_SECONDS);
+        return $this->request_with_cache('/api/v1/products', ['page' => $page], HOUR_IN_SECONDS);
     }
 
     public function get_product_single($slug) {
