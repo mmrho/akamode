@@ -40,7 +40,8 @@
       "lib/faq/wbsLoadFaq.php",
       "lib/account/wbsLoadAccount.php",
       "lib/category/wbsLoadCategory.php",
-      "lib/contactUs/wbsLoadContactUs.php"
+      "lib/contactUs/wbsLoadContactUs.php",
+      "lib/search/wbsLoadSearch.php"
     ]
   },
   "require": {

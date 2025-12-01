@@ -34,6 +34,7 @@ class ComposerStaticInit926082df67eab15f4b36522a3f043517
         'ff1d3ffdcc721576a495bfe52a751f4f' => __DIR__ . '/../..' . '/lib/faq/wbsLoadFaq.php',
         '7256479c411a20e6e8a1eff468f7890a' => __DIR__ . '/../..' . '/lib/category/wbsLoadCategory.php',
         '1c31d30b70dff70f84715cdd35db7a4a' => __DIR__ . '/../..' . '/lib/contactUs/wbsLoadContactUs.php',
+        'b4c59466756be98e2663653da86030d4' => __DIR__ . '/../..' . '/lib/search/wbsLoadSearch.php',
     );
 
     public static $prefixLengthsPsr4 = array (

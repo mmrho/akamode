@@ -2,7 +2,7 @@
 function wbs_no_admin_access(): void
 {
     if (!wp_doing_ajax()) {
-        $redirect = home_url('/my-account/');
+        $redirect = home_url('/userdashboard/');
         if (!current_user_can('administrator')) {
             exit(wp_redirect($redirect));
         }

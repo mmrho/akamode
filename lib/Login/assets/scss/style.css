@@ -200,6 +200,42 @@ body #site-main .container-fluid {
 .loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .login-btn:hover {
   background-color: #333;
 }
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .otp-input {
+  text-align: center;
+  letter-spacing: 1.5rem;
+  font-weight: bold;
+  font-family: monospace;
+  direction: ltr;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .otp-input:not(:-moz-placeholder) ~ .form-label {
+  transform: translate(-50%, -40px) !important;
+  left: 50% !important;
+  right: auto !important;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .otp-input:focus ~ .form-label, .loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .otp-input:not(:placeholder-shown) ~ .form-label {
+  transform: translate(-50%, -40px) !important;
+  left: 50% !important;
+  right: auto !important;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .otp-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 0 5px;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .otp-actions button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 11px;
+  color: #999;
+  padding: 0;
+  font-weight: 300;
+  transition: color 0.3s;
+}
+.loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container .login-form .otp-actions button:hover {
+  color: #000;
+}
 .loginContainer .login-main-container .main-wrapper .form-panel .help-link {
   margin-top: 40px;
   display: flex;

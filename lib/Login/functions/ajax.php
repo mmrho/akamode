@@ -1,281 +1,192 @@
 <?php
-function sibaneh_api_request($endpoint, $data) {
-    $url = "https://9rvlngz4-8000.uks1.devtunnels.ms/api/" . $endpoint;
-    
-    $args = array(
-        'body'        => json_encode($data),
-        'headers'     => array(
-            'Content-Type' => 'application/json-patch+json',
-            'Accept'       => '*/*'
-        ),
-        'method'      => 'POST',
-        'data_format' => 'body',
-        'timeout'     => 15
-    );
-    
-    return wp_remote_post($url, $args);
-}
+// =============================================================================
+//  توابع کمکی و هندلرهای لاگین با API
+// =============================================================================
 
-function sibaneh_send_error($message, $redirect = false) {
-    wp_die(json_encode([
-        'status' => 'error',
+/**
+ * ارسال پاسخ خطا استاندارد
+ */
+function akamode_send_error($message, $redirect = false) {
+    wp_send_json_error([
         'message' => $message,
         'redirect' => $redirect
-    ]));
+    ]);
 }
 
-function sibaneh_send_success($data) {
-    $response = array_merge(['status' => 'success'], $data);
-    wp_die(json_encode($response));
+/**
+ * ارسال پاسخ موفقیت استاندارد
+ */
+function akamode_send_success($data) {
+    wp_send_json_success($data);
 }
 
-function sibaneh_store_temp_data($phone, $data) {
-    $unique_key = md5($phone . '_' . microtime());
+/**
+ * تبدیل اعداد فارسی/عربی به انگلیسی و تمیزکاری
+ */
+function akamode_sanitize_mobile($number) {
+    $number = sanitize_text_field($number);
+    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+    $arabic  = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+    $number = str_replace($persian, $english, $number);
+    $number = str_replace($arabic, $english, $number);
     
-    foreach ($data as $key => $value) {
-        set_transient('sibaneh_' . $key . '_' . $unique_key, $value, 3 * MINUTE_IN_SECONDS);
-    }
-    
-    setcookie('sibaneh_session_key', $unique_key, time() + 3 * MINUTE_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
-    
-    return $unique_key;
+    // فقط اعداد باقی بمانند
+    return preg_replace('/[^0-9]/', '', $number);
 }
 
-function sibaneh_get_temp_data($key) {
-    if (!isset($_COOKIE['sibaneh_session_key'])) {
-        return false;
-    }
-    
-    $unique_key = sanitize_text_field($_COOKIE['sibaneh_session_key']);
-    return get_transient('sibaneh_' . $key . '_' . $unique_key);
-}
+/**
+ * ایجاد یا بروزرسانی کاربر در وردپرس پس از لاگین موفق
+ */
+function akamode_create_or_update_user($api_user_data, $token) {
+    $mobile = isset($api_user_data['mobile']) ? $api_user_data['mobile'] : '';
+    $name   = isset($api_user_data['name']) ? $api_user_data['name'] : '';
+    $api_id = isset($api_user_data['id']) ? $api_user_data['id'] : 0;
 
-function sibaneh_increment_verify_attempts() {
-    $attempts = sibaneh_get_temp_data('verify_attempts');
-    $attempts = ($attempts === false) ? 1 : $attempts + 1;
-    
-    $unique_key = sanitize_text_field($_COOKIE['sibaneh_session_key']);
-    set_transient('sibaneh_verify_attempts_' . $unique_key, $attempts, 3 * MINUTE_IN_SECONDS);
-    
-    return $attempts;
-}
+    if (empty($mobile)) return new WP_Error('no_mobile', 'شماره موبایل در پاسخ API وجود ندارد.');
 
-function sibaneh_clear_temp_data() {
-    if (!isset($_COOKIE['sibaneh_session_key'])) {
-        return;
-    }
-    
-    $unique_key = sanitize_text_field($_COOKIE['sibaneh_session_key']);
-    $prefixes = ['phone', 'hashId', 'remainingTime', 'login_time', 'verify_attempts', 'isRegistered'];
-    
-    foreach ($prefixes as $prefix) {
-        delete_transient('sibaneh_' . $prefix . '_' . $unique_key);
-    }
-    
-    setcookie('sibaneh_session_key', '', time() - 3600, COOKIEPATH, COOKIE_DOMAIN, is_ssl(), true);
-}
-
-function sibaneh_process_api_response($response) {
-    if (is_wp_error($response)) {
-        sibaneh_send_error('خطا در ارتباط با سرور خارجی: ' . $response->get_error_message());
-        return false;
-    }
-    
-    $body = json_decode(wp_remote_retrieve_body($response));
-    
-    if (!isset($body) || !is_object($body)) {
-        sibaneh_send_error('پاسخ نامعتبر از سرور دریافت شد!');
-        return false;
-    }
-    
-    return $body;
-}
-
-function sibaneh_create_or_update_user($phone, $customerId, $isRegistered, $token) {
-    $user = get_user_by('login', $phone);
+    $user = get_user_by('login', $mobile);
     
     if (!$user) {
-        $random_password = wp_generate_password(16, true, true);
-        
+        // ثبت نام کاربر جدید
         $userdata = array(
-            'user_login'      => $phone,
-            'user_pass'       => $random_password,
+            'user_login'      => $mobile,
+            'user_pass'       => wp_generate_password(16, true, true),
             'role'            => 'subscriber',
-            'display_name'    => $phone,
+            'display_name'    => $name,
+            'first_name'      => $name,
             'user_registered' => current_time('mysql')
         );
         
         $userID = wp_insert_user($userdata);
         
         if (is_wp_error($userID)) {
-            sibaneh_send_error('خطا در ایجاد کاربر: ' . $userID->get_error_message());
-            return false;
+            return $userID;
         }
-        
-        update_user_meta($userID, 'sibaneh_api_customer_id', $customerId);
-        update_user_meta($userID, 'sibaneh_is_registered', $isRegistered);
-        update_user_meta($userID, 'sibaneh_token', $token);
-        update_user_meta($userID, 'sibaneh_registration_date', current_time('mysql'));
     } else {
+        // کاربر قدیمی
         $userID = $user->ID;
-        
-        update_user_meta($userID, 'sibaneh_api_customer_id', $customerId);
-        update_user_meta($userID, 'sibaneh_is_registered', $isRegistered);
-        update_user_meta($userID, 'sibaneh_token', $token);
-        update_user_meta($userID, 'sibaneh_last_login', current_time('mysql'));
+        // بروزرسانی نام اگر تغییر کرده باشد
+        if (!empty($name) && $user->display_name !== $name) {
+            wp_update_user(['ID' => $userID, 'display_name' => $name, 'first_name' => $name]);
+        }
     }
+    
+    // ذخیره متادیتاهای مهم
+    update_user_meta($userID, '_laravel_user_id', $api_id);
+    update_user_meta($userID, '_laravel_api_token', $token);
     
     return $userID;
 }
 
-function submitLoginFormCallback() {
-    check_ajax_referer('wbs_check_nonce', 'security', true);
+// =============================================================================
+//  AJAX HANDLERS
+// =============================================================================
 
-    $phone = WbsUtility::convertFaNum2EN(WbsUtility::inputClean($_POST['fields']['phone']));
+// 1. هندلر ارسال کد تایید (Send OTP)
+add_action('wp_ajax_nopriv_akamode_send_otp', 'akamode_handle_send_otp');
+add_action('wp_ajax_akamode_send_otp', 'akamode_handle_send_otp');
 
-    if (!WbsUtility::wbsCheckPhone($phone)) {
-        sibaneh_send_error('شماره موبایل وارد شده صحیح نمی باشد!');
+function akamode_handle_send_otp() {
+    check_ajax_referer('akamode_auth_nonce', 'security');
+
+    // خواندن از آرایه fields (طبق ساختار wbsAjax)
+    $fields = isset($_POST['fields']) ? $_POST['fields'] : [];
+    $phone  = isset($fields['mobile']) ? akamode_sanitize_mobile($fields['mobile']) : '';
+
+    if (empty($phone) || strlen($phone) < 10) {
+        akamode_send_error('شماره موبایل وارد شده صحیح نمی‌باشد!');
         return;
     }
 
-    $user = get_user_by('login', $phone);
-    $customerId = "";
-    
-    if ($user) {
-        $customerId = $user->ID;
-    }
+    $api = Laravel_API_Client::get_instance();
+    $response = $api->send_otp($phone);
 
-    ob_start();
-    require THEME_LIB_DIR . "login/template/verfiyForm.php";
-    $verify_form_html = ob_get_clean();
-
-    $data = array(
-        "userName" => $phone,
-        "lastPage" => "string",
-        "customerId" => $customerId,
-        "referer" => "string",
-        "service" => 1
-    );
-    
-    $response = sibaneh_api_request('login/send-otp', $data);
-    $body = sibaneh_process_api_response($response);
-    
-    if (!$body) {
+    // خطای کلی ارتباط
+    if (is_wp_error($response)) {
+        akamode_send_error('خطا در ارتباط با سامانه پیامکی.');
         return;
     }
 
-    if (isset($body->IsSuccess) && $body->IsSuccess == true) {
-        $hashId = $body->Value->HashId;
-        $userName = $body->Value->MobileNumber;
-        $remainingTime = $body->Value->RemainingSecound;
-        $isRegistered = $body->Value->IsRegistered;
+    // بررسی موفقیت منطقی
+    if (isset($response['success']) && $response['success'] == true) {
+        // نکته مهم: پیام موفقیت را دستی می‌نویسیم تا کد تایید (اگر در پاسخ API بود) لو نرود.
+        akamode_send_success([
+            'message' => 'کد تایید با موفقیت ارسال شد.',
+            'mobile'  => $phone
+        ]);
+    } else {
+        $msg = isset($response['message']) ? $response['message'] : 'خطا در ارسال پیامک!';
+        akamode_send_error($msg);
+    }
+}
 
-        if ($remainingTime <= 0) {
-            sibaneh_send_error('زمان ارسال کد به پایان رسیده است. لطفا دوباره تلاش کنید.');
+// 2. هندلر بررسی کد و ورود (Verify OTP)
+add_action('wp_ajax_nopriv_akamode_verify_otp', 'akamode_handle_verify_otp');
+add_action('wp_ajax_akamode_verify_otp', 'akamode_handle_verify_otp');
+
+function akamode_handle_verify_otp() {
+    check_ajax_referer('akamode_auth_nonce', 'security');
+
+    $fields = isset($_POST['fields']) ? $_POST['fields'] : [];
+    $phone  = isset($fields['mobile']) ? akamode_sanitize_mobile($fields['mobile']) : '';
+    $code   = isset($fields['otp']) ? akamode_sanitize_mobile($fields['otp']) : '';
+
+    if (empty($phone) || empty($code)) {
+        akamode_send_error('لطفا کد تایید را وارد کنید.');
+        return;
+    }
+
+    $api = Laravel_API_Client::get_instance();
+    $response = $api->verify_otp($phone, $code);
+
+    // مدیریت خطای API (مثل کد اشتباه)
+    if (is_wp_error($response)) {
+        // تلاش برای استخراج پیام خطای دقیق از API
+        $error_msg = $response->get_error_message();
+        
+        // اگر API مسیج خاصی فرستاده بود، همان را نمایش بده
+        if (empty($error_msg)) {
+            $error_msg = 'کد تایید اشتباه است یا منقضی شده است.';
+        }
+        
+        akamode_send_error($error_msg);
+        return;
+    }
+
+    // بررسی موفقیت
+    if (isset($response['success']) && $response['success'] == true) {
+        
+        $token = isset($response['token']) ? $response['token'] : null;
+        $user_data = isset($response['user']) ? $response['user'] : [];
+
+        if (!$token) {
+            akamode_send_error('خطا: توکن ورود دریافت نشد.');
             return;
         }
 
-        $temp_data = [
-            'phone' => $phone,
-            'hashId' => $hashId,
-            'remainingTime' => $remainingTime,
-            'isRegistered' => $isRegistered,
-            'login_time' => time(),
-            'verify_attempts' => 0
-        ];
-        
-        sibaneh_store_temp_data($phone, $temp_data);
+        // عملیات ثبت/آپدیت در دیتابیس وردپرس
+        $userID = akamode_create_or_update_user($user_data, $token);
 
-        sibaneh_send_success([
-            'message' => $body->Message,
-            'content' => $verify_form_html,
-            'hashId' => $hashId,
-            'userName' => $userName,
-            'remainingTime' => $remainingTime,
-            'isRegistered' => $isRegistered
-        ]);
-    }
-
-    sibaneh_send_error(isset($body->Message) ? $body->Message : 'خطا در دریافت اطلاعات از سرور خارجی!');
-}
-
-function submitVerifyFormCallback() {
-    check_ajax_referer('wbs_check_nonce', 'security', true);
-
-    $phone = sibaneh_get_temp_data('phone');
-    $hashId = sibaneh_get_temp_data('hashId');
-    $login_time = sibaneh_get_temp_data('login_time');
-    
-    if (!$phone || !$hashId) {
-        sibaneh_send_error('کد منقضی شده است. لطفا دوباره تلاش کنید', true);
-        return;
-    }
-
-    if ($login_time && (time() - $login_time > 120)) {
-        sibaneh_clear_temp_data();
-        sibaneh_send_error('کد منقضی شده است. لطفا دوباره تلاش کنید', true);
-        return;
-    }
-
-    $attempts = sibaneh_increment_verify_attempts();
-    if ($attempts > 5) {
-        sibaneh_clear_temp_data();
-        sibaneh_send_error('تعداد تلاش‌های ناموفق بیش از حد مجاز است. لطفا دوباره تلاش کنید.', true);
-        return;
-    }
-
-    $code = WbsUtility::convertFaNum2EN(WbsUtility::inputClean($_POST['fields']['code']));
-
-    $data = array(
-        "hashId" => $hashId,
-        "confirmCode" => $code
-    );
-    
-    $response = sibaneh_api_request('Account/ConfirmCode', $data);
-    $body = sibaneh_process_api_response($response);
-    
-    if (!$body) {
-        return;
-    }
-
-    if (isset($body->IsSuccess) && $body->IsSuccess == true) {
-        $customerId = $body->Value->CustomerId;
-        $userName = $body->Value->UserName;
-        $token = $body->Value->Token;
-        $isRegistered = $body->Value->IsRegistered;
-
-        if (isset($token)) {
-            $_SESSION['external_user'] = [
-                'user_token' => $token,
-                'user_login' => $phone,
-                'customer_id' => $customerId,
-                'is_registered' => $isRegistered
-            ];
-            
-            $userID = sibaneh_create_or_update_user($phone, $customerId, $isRegistered, $token);
-            if (!$userID) {
-                return;
-            }
-
-            wp_set_current_user($userID);
-            wp_set_auth_cookie($userID);
-
-            setcookie('sibaneh_last_phone', $phone, time() + 30 * DAY_IN_SECONDS, COOKIEPATH, COOKIE_DOMAIN, is_ssl());
-
-            sibaneh_clear_temp_data();
-
-            sibaneh_send_success([
-                'url' => home_url(), 
-                'message' => $body->Message,
-                'isRegistered' => $isRegistered
-            ]);
-        } else {
-            sibaneh_send_error('توکن نامعتبر است!');
+        if (is_wp_error($userID)) {
+            akamode_send_error('خطا در ثبت کاربر در سایت.');
+            return;
         }
+
+        // لاگین اجباری
+        wp_set_current_user($userID);
+        wp_set_auth_cookie($userID);
+
+        akamode_send_success([
+            'message'      => 'ورود موفقیت‌آمیز بود.',
+            'redirect_url' => home_url('/dashboard') // لینک ریدایرکت را اینجا تنظیم کنید
+        ]);
+
     } else {
-        sibaneh_send_error(isset($body->Message) ? $body->Message : 'احراز هویت ناموفق بود!');
+        // حالتی که سرور 200 برگردانده اما success فالس است
+        $msg = isset($response['message']) ? $response['message'] : 'کد تایید اشتباه است.';
+        akamode_send_error($msg);
     }
 }
-
-add_action('wp_ajax_nopriv_submitLoginForm', 'submitLoginFormCallback');
-add_action('wp_ajax_nopriv_submitVerifyForm', 'submitVerifyFormCallback');
+?>

@@ -14,7 +14,6 @@ if (!isset($item_id)) {
     */
     .comment-section {
         direction: rtl;
-        font-family: 'Tahoma', sans-serif;
         background: #f9f5f0;
         padding: 25px;
         border-radius: 8px;
@@ -30,90 +29,135 @@ if (!isset($item_id)) {
         margin-bottom: 5px;
         color: #333;
     }
+
     .comment-form-subtitle {
         text-align: right;
         font-size: 14px;
         color: #555;
         margin-bottom: 25px;
     }
+
     .comment-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-wrap: wrap;
+        width: 100%;
         margin-bottom: 30px;
     }
+
     .comment-form input[type="text"],
     .comment-form input[type="email"],
     .comment-form textarea {
         width: 100%;
-        margin-bottom: 20px; /* فاصله بیشتر */
-        padding: 8px 0; /* فقط پدینگ بالا و پایین */
-        border: none; /* بدون کادر */
-        border-bottom: 1px solid #333; /* فقط خط زیرین */
+        margin-bottom: 20px;
+        padding: 8px 0;
+        border: none;
+        border-bottom: 1px solid #333;
         background: transparent;
-        font-family: inherit;
         font-size: 14px;
         box-sizing: border-box;
     }
+
     .comment-form input:focus,
     .comment-form textarea:focus {
-        outline: none; /* حذف outline در زمان فوکوس */
+        outline: none;
         border-bottom-color: #000;
     }
+
     .comment-form textarea {
         min-height: 40px;
         resize: vertical;
     }
+
     .comment-form-checkbox {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: flex-start;
+        width: 100%;
         margin: 15px 0;
         direction: rtl;
     }
+
     .comment-form-checkbox label {
         font-size: 13px;
         color: #555;
         margin-right: 8px;
         cursor: pointer;
+        width: 100%;
     }
+
     .comment-form-checkbox input[type="checkbox"] {
         width: auto;
         margin: 0;
     }
+
     .rating-label {
+        width: 100%;
         font-size: 14px;
         color: #333;
         margin: 15px 0 10px;
         text-align: right;
     }
+
     .stars {
         display: flex;
         direction: rtl;
         justify-content: flex-start;
+        width: 100%;
         margin: 10px 0 20px;
     }
-    .stars input { display: none; }
+
+    .stars input {
+        display: none;
+    }
+
     .stars label {
         font-size: 22px;
-        color: #ccc; /* رنگ ستاره‌های خالی فرم */
+        color: #ccc;
+        /* رنگ ستاره‌های خالی فرم */
         cursor: pointer;
         margin-left: 5px;
     }
-    .stars label:before { content: '\2606'; } /* ستاره توخالی (Outline) */
-    .stars label:hover,
-    .stars label:hover ~ label {
-        color: #000;
-        content: '\2605'; /* ستاره توپر */
+
+    .stars label:before {
+        content: '\2606';
     }
+
+    /* ستاره توخالی (Outline) */
+    .stars label:hover,
+    .stars label:hover~label {
+        color: #000;
+        content: '\2605';
+        /* ستاره توپر */
+    }
+
     .stars label:hover:before,
-    .stars label:hover ~ label:before {
+    .stars label:hover~label:before {
         content: '\2605';
     }
-    .stars input:checked ~ label {
+
+    .stars input:checked~label {
         color: #000;
     }
-    .stars input:checked ~ label:before {
-        content: '\2605'; /* ستاره توپر */
+
+    .stars input:checked~label:before {
+        content: '\2605';
     }
+    .submit-button{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
     .comment-form button {
+       
         background: #000;
         color: #fff;
         padding: 10px 20px;
@@ -125,7 +169,11 @@ if (!isset($item_id)) {
         margin: 20px 0 0 auto;
         transition: background-color 0.2s;
     }
-    .comment-form button:hover { background: #333; }
+
+    .comment-form button:hover {
+        background: #333;
+    }
+
     .comment-form button:disabled {
         background: #888;
         cursor: not-allowed;
@@ -139,74 +187,95 @@ if (!isset($item_id)) {
         margin: 30px 0 20px;
         color: #333;
     }
-    .comment-list {}
+
     .comment-item {
         position: relative;
-        padding: 15px 0; /* پدینگ عمودی */
-        padding-left: 60px; /* ایجاد فضا برای لینک "پاسخ" */
-        border-bottom: none; /* حذف تمام خطوط جداکننده */
-        margin-bottom: 15px; /* جداسازی فقط با مارجین */
+        padding: 15px 0;
+        padding-left: 60px;
+        border-bottom: none;
+        margin-bottom: 15px;
     }
+
     .comment-header-info {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         margin-bottom: 8px;
+        width: 100%;
     }
+
     .comment-author-info {
         display: flex;
         align-items: center;
     }
+
     .comment-name {
         font-weight: bold;
         color: #333;
         font-size: 14px;
     }
+
     .comment-date {
         color: #888;
         font-size: 12px;
         margin-right: 10px;
     }
+
     .comment-rating {
         direction: ltr;
         unicode-bidi: bidi-override;
     }
+
     .comment-rating span {
         font-size: 16px;
-        color: #ccc; /* ستاره‌های خالی لیست */
+        color: #ccc;
     }
+
     .comment-rating span.filled {
-        color: #000; /* ستاره‌های پر */
+        color: #000;
     }
+
     .comment-text {
         margin: 5px 0;
         color: #555;
         font-size: 14px;
         line-height: 1.6;
     }
+
     .comment-reply-link {
         position: absolute;
-        left: 0; /* چسبیده به چپ */
-        top: 15px; /* هم‌تراز با پدینگ بالا */
+        left: 0;
+        top: 15px;
         font-size: 13px;
         color: #555;
         text-decoration: none;
-        direction: ltr; /* برای نمایش صحیح فلش */
+        direction: ltr;
     }
+
     .comment-reply-link:hover {
         text-decoration: underline;
     }
-    
-    /* کلاس‌های کمکی برای وضعیت‌ها */
-    .form-status, .comment-list-status {
+
+
+    .form-status,
+    .comment-list-status {
         text-align: right;
         margin: 10px 0;
         font-size: 13px;
     }
-    .form-status.success { color: green; }
-    .form-status.error { color: red; }
-    .comment-list-status { color: #888; }
-    
+
+    .form-status.success {
+        color: green;
+    }
+
+    .form-status.error {
+        color: red;
+    }
+
+    .comment-list-status {
+        color: #888;
+    }
 </style>
 
 <div class="comment-section">
@@ -216,7 +285,7 @@ if (!isset($item_id)) {
     <form id="comment-form" class="comment-form">
         <input type="text" id="name" name="name" placeholder="نام" required>
         <input type="email" id="email" name="email" placeholder="ایمیل" required>
-        
+
         <div class="comment-form-checkbox">
             <input type="checkbox" id="lorem-ipsum-check">
             <label for="lorem-ipsum-check">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است</label>
@@ -232,8 +301,9 @@ if (!isset($item_id)) {
         </div>
 
         <textarea id="comment" name="comment" placeholder="متن نظر" required></textarea>
-        
-        <button type="submit" id="submit-button">ثبت دیدگاه</button>
+        <div class="submit-button">
+            <button class="sbutton" type="submit" id="submit-button">ثبت دیدگاه</button>
+        </div>
         <div id="form-status" class="form-status"></div>
     </form>
 
@@ -251,20 +321,19 @@ if (!isset($item_id)) {
     (function() {
         // --- 1. تعریف متغیرها و گرفتن عناصر DOM ---
         const itemId = <?php echo json_encode($item_id); ?>;
-        
+
         // عناصر فرم
         const commentForm = document.getElementById('comment-form');
         const submitButton = document.getElementById('submit-button');
         const formStatus = document.getElementById('form-status');
-        
+
         // عناصر لیست
         const commentList = document.getElementById('comment-list');
         const commentListHeader = document.getElementById('comment-list-header');
         const commentListStatus = document.getElementById('comment-list-status');
 
         // داده‌های آزمایشی (Mock Data) - دقیقاً مطابق عکس‌ها
-        const mockApiData = [
-            {
+        const mockApiData = [{
                 id: 1,
                 name: 'علی فهمیده',
                 date: '۱۳ مهر ۱۴۰۴',
@@ -286,7 +355,7 @@ if (!isset($item_id)) {
                 comment: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است که لازم در ستون و سطرآنچنان که لازم است',
             }
         ];
-        
+
         // --- 2. توابع کمکی ---
 
         /**
@@ -315,10 +384,10 @@ if (!isset($item_id)) {
         function renderComment(comment) {
             const item = document.createElement('div');
             item.className = 'comment-item';
-            
+
             item.innerHTML = `
                 <a href="#" class="comment-reply-link" onclick="replyToComment(${comment.id}); return false;">
-                    پاسخ &larr;
+                    <i class="icon-up-left-arrow"></i> پاسخ 
                 </a>
                 <div class="comment-header-info">
                     <div class="comment-author-info">
@@ -344,9 +413,9 @@ if (!isset($item_id)) {
 
             try {
                 // شبیه‌سازی فراخوانی API
-                await sleep(500); 
+                await sleep(500);
                 // TODO: در اینجا `mockApiData` را با `fetch('api/comments?item_id=' + itemId)` جایگزین کنید
-                const comments = mockApiData; 
+                const comments = mockApiData;
 
                 if (comments && comments.length > 0) {
                     commentListStatus.style.display = 'none';
@@ -371,7 +440,7 @@ if (!isset($item_id)) {
          */
         async function handleFormSubmit(e) {
             e.preventDefault();
-            
+
             // قفل کردن فرم
             submitButton.disabled = true;
             submitButton.textContent = 'در حال ارسال...';
@@ -396,7 +465,7 @@ if (!isset($item_id)) {
                 // چون از API واقعی استفاده نمی‌کنیم، فقط به لیست Mock اضافه می‌کنیم
                 mockApiData.unshift(data); // اضافه کردن به ابتدای لیست
                 loadComments(); // بارگذاری مجدد کل لیست
-                
+
                 formStatus.textContent = 'دیدگاه شما با موفقیت ثبت شد.';
                 formStatus.className = 'form-status success';
                 commentForm.reset(); // پاک کردن فرم

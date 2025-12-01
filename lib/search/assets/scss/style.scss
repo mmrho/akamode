@@ -30,7 +30,7 @@ body {
         }
 
         /* --- Layout --- */
-        .category-container {
+        .search-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -55,7 +55,7 @@ body {
                 }
 
                 /* --- Header --- */
-                .page-title {
+                .search-title {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;

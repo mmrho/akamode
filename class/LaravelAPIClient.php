@@ -122,12 +122,18 @@ class Laravel_API_Client {
         return $this->request_with_cache("/api/v1/blog/posts/{$slug}", [], 2 * HOUR_IN_SECONDS);
     }
 
-    /**
-     * Search should NOT be cached usually, or cached for very short time.
-     */
-    public function search($query) {
-        return $this->make_request('/api/v1/search', 'GET', ['q' => $query]);
+   /**
+ * Search accepts an array of parameters now.
+ * $params example: ['q' => 'shoe', 'sort' => 'newest', 'min_price' => 1000, 'color' => 'red']
+ */
+public function search($params) {
+    
+    if (is_string($params)) {
+        $params = ['q' => $params];
     }
+    
+    return $this->make_request('/api/v1/search', 'GET', $params);
+}
 
     // =========================================================================
     // 3. USER PRIVATE DATA (Protected, No Cache)

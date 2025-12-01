@@ -1,9 +1,9 @@
 <?php
 /* Template Name: login */
-/*if (is_user_logged_in()) {
-    wp_redirect(home_url('/my-account/'));
+if (is_user_logged_in()) {
+    wp_redirect(home_url('/userdashboard/'));
     exit();
-}*/
+}
 ?>
 
 <div class="wrapper">

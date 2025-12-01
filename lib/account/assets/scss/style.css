@@ -23,11 +23,8 @@
   max-width: 100%;
   margin: 0px;
   padding: 0px;
-}/*# sourceMappingURL=style.css.map */
-
-.container{
-
 }
+
 .container .main{
     width: 80%;
     margin-top: 3%;
@@ -576,5 +573,6 @@ table.orders tbody tr td a{
     right: 4%;
   }
 }
+
 
 

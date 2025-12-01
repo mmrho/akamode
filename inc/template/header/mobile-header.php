@@ -22,9 +22,9 @@
             <button class="search-icon mobile-btn header-element" type="button" id="searchIcon">
                 <i class="<?php echo $support_info['search_icon']; ?>"></i>
             </button>
-            <button class="account_icon mobile-btn header-element" type="button" id="accountIcon">
+            <a href="<?php echo esc_url($account_href); ?>" class="account_icon mobile-btn header-element" type="button" id="accountIcon">
                 <i class="<?php echo $support_info['account_icon']; ?>"></i>
-            </button>
+            </a>
             <button class="shopping-bag-icon mobile-btn header-element" type="button" id="shoppingBagIcon">
                 <i class="<?php echo $support_info['shoping_bag_icon']; ?>"></i>
             </button>

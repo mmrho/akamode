@@ -6,7 +6,7 @@ require_once "functions/wp-enqueue.php";
 require_once "functions/ajax.php";
 
 
-function wbsLoadCategory()
+function wbsLoadSearch()
 {
-    require_once "template/categoryPage.php";
+    require_once "template/searchPage.php";
 }

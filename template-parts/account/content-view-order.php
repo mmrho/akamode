@@ -1,17 +1,20 @@
 <?php
-/**
- * Template part for displaying single order details
- */
-
-// 1. Get the Order ID from the URL
+$api = get_query_var('api_client');
 $order_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
-
-// 2. (Optional) Security check: Ensure this order belongs to the current user
-// if ( ! is_user_owner_of_order($order_id) ) { echo 'Access Denied'; return; }
-
-// 3. URL to go back to the list
 $base_url = get_permalink();
 $back_url = add_query_arg('tab', 'orders', $base_url);
+
+// آدرس پایه استوریج لاراول (باید مطابق با دامنه API شما باشد)
+// تصاویر معمولا در public/storage هستند
+define('API_STORAGE_BASE', 'https://akamode.com/storage/'); 
+
+$order = $api->get_order_single($order_id);
+
+if (is_wp_error($order) || !$order) {
+    echo '<div class="error">سفارش یافت نشد.</div>';
+    echo '<a href="'.$back_url.'">بازگشت</a>';
+    return;
+}
 ?>
 
 <div class="order-details-container">
@@ -24,57 +27,61 @@ $back_url = add_query_arg('tab', 'orders', $base_url);
 
     <div class="order-info">
         <div class="right">
-            <div class="top">آیتم های سفارش</div>
+            <div class="top">آیتم های سفارش (<?php echo count($order['items']); ?>)</div>
             <div class="items">
-                <?php for($i = 0; $i < 3; $i++){ ?>
+                <?php foreach($order['items'] as $item): 
+                    $product = $item['product_variant']['product'];
+                    $variant = $item['product_variant'];
+                    
+                    // پیدا کردن تصویر
+                    $img_path = '';
+                    if(!empty($product['images'])){
+                        $img_path = API_STORAGE_BASE . $product['images'][0]['path'];
+                    } else {
+                        $img_path = THEME_IMG . 'placeholder.png'; // Placeholder
+                    }
+                ?>
                 <div class="item">
                     <div class="img">
-                        <img src="<?php echo THEME_IMG; ?>temp/bag.png" alt="">
+                        <img src="<?php echo esc_url($img_path); ?>" alt="<?php echo esc_attr($item['product_name']); ?>">
                     </div>
                     <div class="item-details">
-                        <p class="title">کت چرم کالکشن بهار</p>
-                        <p class="color">رنگ قهوه ای - سایز ۴۴</p>
-                        <p class="price">۲۳۰۰۰ تومان</p>
+                        <p class="title"><?php echo esc_html($item['product_name']); ?></p>
+                        <p class="color">
+                            <?php if(isset($variant['color'])) echo 'رنگ: ' . esc_html($variant['color']); ?> 
+                            <?php if(isset($variant['size'])) echo ' - سایز: ' . esc_html($variant['size']); ?>
+                        </p>
+                        <p class="price"><?php echo number_format($item['price']); ?> تومان</p>
+                        <p class="qty">تعداد: <?php echo $item['quantity']; ?></p>
                     </div>
                 </div>
-                <?php } ?>
+                <?php endforeach; ?>
             </div>
         </div>
+        
         <div class="left">
             <div class="top">جزئیات سفارش</div>
             <table>
                 <tbody>
                     <tr>
                         <td><p>شناسه سفارش</p></td>
-                        <td><p>تست تست</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>نام و نام خانوادگی</p></td>
-                        <td><p>تست تست</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>شماره تماس</p></td>
-                        <td><p>تست تست</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>ایمیل</p></td>
-                        <td><p>تست تست</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>آدرس</p></td>
-                        <td><p>تست تست</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>کد پستی</p></td>
-                        <td><p>تست تست</p></td>
-                    </tr>
-                    <tr>
-                        <td><p>روش ارسال</p></td>
-                        <td><p>تست تست</p></td>
+                        <td><p><?php echo esc_html($order['order_code']); ?></p></td>
                     </tr>
                     <tr>
                         <td><p>وضعیت</p></td>
-                        <td><p>تست تست</p></td>
+                        <td><p><?php echo esc_html($order['status']); ?></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>روش ارسال</p></td>
+                        <td><p><?php echo esc_html($order['shipping_method']); ?></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>روش پرداخت</p></td>
+                        <td><p><?php echo esc_html($order['payment_method']); ?></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>تاریخ ثبت</p></td>
+                        <td style="direction:ltr"><p><?php echo date('Y-m-d H:i', strtotime($order['created_at'])); ?></p></td>
                     </tr>
                 </tbody>
             </table>
@@ -87,16 +94,22 @@ $back_url = add_query_arg('tab', 'orders', $base_url);
             <table>
                 <tbody>
                     <tr>
-                        <td><p>هزینه مالیات بر ارزش افزوده</p></td>
-                        <td><p>۲۳ میلیون تومان</p></td>
+                        <td><p>مبلغ کل آیتم‌ها (Subtotal)</p></td>
+                        <td><p><?php echo number_format($order['subtotal']); ?> تومان</p></td>
                     </tr>
                     <tr>
                         <td><p>هزینه ارسال</p></td>
-                        <td><p>۲۳ میلیون تومان</p></td>
+                        <td><p><?php echo number_format($order['shipping_cost']); ?> تومان</p></td>
                     </tr>
+                    <?php if($order['discount_amount'] > 0): ?>
                     <tr>
-                        <td><p>مجموع مبلغ</p></td>
-                        <td><p>۲۳ میلیون تومان</p></td>
+                        <td><p>تخفیف</p></td>
+                        <td><p style="color:red">- <?php echo number_format($order['discount_amount']); ?> تومان</p></td>
+                    </tr>
+                    <?php endif; ?>
+                    <tr style="font-weight:bold; background:#fafafa;">
+                        <td><p>مبلغ نهایی پرداختی</p></td>
+                        <td><p><?php echo number_format($order['total']); ?> تومان</p></td>
                     </tr>
                 </tbody>
             </table>

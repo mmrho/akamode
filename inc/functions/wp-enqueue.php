@@ -14,7 +14,7 @@ function wbs_enqueue_scripts()
 
     $items = [
         'AjaxUrl' => admin_url('admin-ajax.php'),
-        'SecurityNonce' => wp_create_nonce("wbs_check_nonce"),
+        'SecurityNonce' => wp_create_nonce("akamode_auth_nonce"),
         'themeUrl' => get_template_directory_uri()
     ];
 
