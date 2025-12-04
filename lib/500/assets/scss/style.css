@@ -1,5 +1,5 @@
 /* ==========================================================================
-   AppShowcase Post Styles
+   500 Styles
    ========================================================================== */
    @media (max-width: 849.98px) {
     body {
@@ -24,10 +24,6 @@
     max-width: 100%;
     margin: 0px;
     padding: 0px;
-  }/*# sourceMappingURL=style.css.map */
-  
-  .container{
-  
   }
   .container .main{
       width: 85%;
@@ -93,4 +89,5 @@
     font-weight: 300;
   }
   }
+  
   

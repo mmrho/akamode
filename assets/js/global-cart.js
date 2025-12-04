@@ -1,6 +1,6 @@
 /**
  * مسیر فایل: assets/js/global-cart.js
- * نسخه اصلاح شده: فقط مدیریت داده‌ها و نمایش عدد
+ * نسخه نهایی و اصلاح شده (حذف HTML اضافی تخفیف)
  */
 
 class CartManager {
@@ -139,7 +139,7 @@ class CartManager {
         let html = '';
         this.cart.forEach(item => {
             html += `
-            <div class="item">
+            <div class="item cart-item-row" data-variant-id="${item.variant_id || item.id}" data-qty="${item.quantity}">
                 <div class="img"><img src="${item.image}" alt="${item.name}"></div>
                 <div class="item-details">
                     <p class="title">${item.name}</p>
@@ -160,11 +160,7 @@ class CartManager {
             <div class="hr"></div>`;
         });
         
-        html += `
-        <div class="discount">
-            <div class="select input"><input type="text" placeholder="کد تخفیف"></div>
-            <a href="#" class="sdiscount">ثبت کد</a>
-        </div>`;
+        // *** بخش مزاحم حذف شد: اینجا قبلا کد تخفیف دوم اضافه می‌شد ***
 
         this.cartItemsWrapper.innerHTML = html;
         this.updateTotals(this.getTotalPrice());

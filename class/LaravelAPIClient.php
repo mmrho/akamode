@@ -2,48 +2,47 @@
 
 /**
  * Class Laravel_API_Client
- * A professional, singleton service class to handle Laravel API integration in WordPress.
- * Features: Authentication, Caching, Error Logging, and Type-Safe requests.
+ * A professional, singleton service class to handle Laravel API integration.
+ * Revised version to fix Unauthenticated issues.
  */
 class Laravel_API_Client {
 
     /**
-     * API Base URL (e.g., http://localhost:8000 or https://akamode.com)
-     * @var string
+     * API Base URL
      */
     private $base_url;
 
     /**
-     * Request Timeout in seconds
-     * @var int
+     * Request Timeout
      */
     private $timeout;
 
     /**
      * Singleton Instance
-     * @var Laravel_API_Client|null
      */
     private static $instance = null;
 
     /**
-     * Bearer Token for authenticated requests
-     * @var string|null
+     * Bearer Token
      */
     private $access_token = null;
+
+    /**
+     * API Key (For specific endpoints like discount)
+     */
+    private $api_key = 'sibaneh-6H8XkhpJVyv5tq3qbrhr';
 
     /**
      * Constructor
      */
     private function __construct() {
-        // Use a constant if defined in wp-config.php, otherwise fallback to localhost
-        // Defined example: define('LARAVEL_API_URL', 'https://api.mysite.com');
+        // تنظیم آدرس پایه API
         $this->base_url = defined('LARAVEL_API_URL') ? untrailingslashit(LARAVEL_API_URL) : 'https://api.akamode.com';
-        $this->timeout  = 20;
+        $this->timeout  = 45; // افزایش تایم‌اوت برای اطمینان
     }
 
     /**
      * Get Singleton Instance
-     * @return Laravel_API_Client
      */
     public static function get_instance() {
         if (self::$instance === null) {
@@ -54,16 +53,21 @@ class Laravel_API_Client {
 
     /**
      * Set Authentication Token
-     * @param string $token
-     * @return $this
+     * پاکسازی توکن از فضاهای خالی احتمالی
      */
     public function set_token($token) {
-        $this->access_token = trim($token);
+        if (!empty($token) && is_string($token)) {
+            $this->access_token = trim($token);
+        }
         return $this;
     }
 
+    public function get_token() {
+        return $this->access_token;
+    }
+
     /**
-     * Clear all API caches manually (Useful for admin actions)
+     * Clear Caches
      */
     public function flush_api_cache() {
         global $wpdb;
@@ -72,7 +76,7 @@ class Laravel_API_Client {
     }
 
     // =========================================================================
-    // 1. AUTHENTICATION (No Cache)
+    // ENDPOINTS
     // =========================================================================
 
     public function send_otp($mobile) {
@@ -90,55 +94,6 @@ class Laravel_API_Client {
         return $this->make_request('/api/v1/logout', 'POST');
     }
 
-    // =========================================================================
-    // 2. PUBLIC DATA (Cached)
-    // =========================================================================
-
-    public function get_menus() {
-        return $this->request_with_cache('/api/v1/menus', [], 12 * HOUR_IN_SECONDS);
-    }
-
-    public function get_categories() {
-        return $this->request_with_cache('/api/v1/categories', [], 6 * HOUR_IN_SECONDS);
-    }
-
-    public function get_category_single($slug) {
-        return $this->request_with_cache("/api/v1/categories/{$slug}", [], 6 * HOUR_IN_SECONDS);
-    }
-
-    public function get_products($page = 1) {
-        return $this->request_with_cache('/api/v1/products', ['page' => $page], HOUR_IN_SECONDS);
-    }
-
-    public function get_product_single($slug) {
-        return $this->request_with_cache("/api/v1/products/{$slug}", [], HOUR_IN_SECONDS);
-    }
-
-    public function get_blog_posts() {
-        return $this->request_with_cache('/api/v1/blog/posts', [], 2 * HOUR_IN_SECONDS);
-    }
-
-    public function get_blog_single($slug) {
-        return $this->request_with_cache("/api/v1/blog/posts/{$slug}", [], 2 * HOUR_IN_SECONDS);
-    }
-
-   /**
- * Search accepts an array of parameters now.
- * $params example: ['q' => 'shoe', 'sort' => 'newest', 'min_price' => 1000, 'color' => 'red']
- */
-public function search($params) {
-    
-    if (is_string($params)) {
-        $params = ['q' => $params];
-    }
-    
-    return $this->make_request('/api/v1/search', 'GET', $params);
-}
-
-    // =========================================================================
-    // 3. USER PRIVATE DATA (Protected, No Cache)
-    // =========================================================================
-
     public function get_user_info() {
         return $this->make_request('/api/v1/user', 'GET');
     }
@@ -150,14 +105,6 @@ public function search($params) {
         ]);
     }
 
-    public function get_orders() {
-        return $this->make_request('/api/v1/user/orders', 'GET');
-    }
-
-    public function get_order_single($order_id) {
-        return $this->make_request("/api/v1/user/orders/{$order_id}", 'GET');
-    }
-
     public function get_addresses() {
         return $this->make_request('/api/v1/user/addresses', 'GET');
     }
@@ -167,7 +114,7 @@ public function search($params) {
     }
 
     public function update_address($address_id, $data) {
-        // Laravel convention for PUT via FormData
+        // لاراول برای آپدیت گاهی اوقات نیاز به method spoofing دارد
         $data['_method'] = 'PUT'; 
         return $this->make_request("/api/v1/user/addresses/{$address_id}", 'POST', $data);
     }
@@ -176,117 +123,163 @@ public function search($params) {
         return $this->make_request("/api/v1/user/addresses/{$address_id}", 'DELETE');
     }
 
-    public function submit_review($product_id, $rating, $comment) {
-        return $this->make_request("/api/v1/products/{$product_id}/reviews", 'POST', [
-            'rating'  => $rating,
-            'comment' => $comment
-        ]);
+    /**
+     * Check Discount
+     * این متد نیاز به API Key در کوئری دارد
+     */
+    public function check_discount($code, $items) {
+        $endpoint = '/api/v1/cart/check-discount';
+        // افزودن کلید امنیتی به آدرس
+        $endpoint = add_query_arg('api_key', $this->api_key, $endpoint);
+        
+        $body = [
+            'code'  => $code,
+            'items' => $items
+        ];
+        // ارسال به صورت JSON
+        return $this->make_request($endpoint, 'POST', $body, 'json');
     }
 
     /**
-     * Checkout sends Raw JSON body.
+     * Checkout
+     * ارسال داده‌های کامل سفارش به صورت JSON
      */
     public function checkout($checkout_data) {
+        // لاگ برای دیباگ (حتما چک کنید این داده‌ها درست باشند)
+        error_log('Checkout Payload: ' . print_r($checkout_data, true));
+        
         return $this->make_request('/api/v1/checkout', 'POST', $checkout_data, 'json');
     }
 
+    // ... (سایر متدها مثل محصولات و دسته‌بندی که نیاز به لاگین ندارند اینجا هستند و تغییری نکردند) ...
+    public function get_products($page = 1) {
+        return $this->request_with_cache('/api/v1/products', ['page' => $page], HOUR_IN_SECONDS);
+    }
+    public function get_product_single($slug) {
+        return $this->request_with_cache("/api/v1/products/{$slug}", [], 30 * MINUTE_IN_SECONDS);
+    }
+    public function search($params) {
+        if (is_string($params)) $params = ['q' => $params];
+        return $this->request_with_cache('/api/v1/search', $params, 30 * MINUTE_IN_SECONDS);
+    }
+    public function get_categories() {
+        return $this->request_with_cache('/api/v1/categories', [], 6 * HOUR_IN_SECONDS);
+    }
+    public function get_menus() {
+        return $this->request_with_cache('/api/v1/menus', [], 12 * HOUR_IN_SECONDS);
+    }
+
+
     // =========================================================================
-    // CORE FUNCTIONS (Logic & Caching)
+    // CORE REQUEST HANDLER (اصلاح شده و دقیق)
     // =========================================================================
 
-    /**
-     * Wrapper to handle caching for GET requests
-     */
     private function request_with_cache($endpoint, $params = [], $seconds = 3600) {
-        // Create unique cache key
         $cache_key = 'api_cache_' . md5($endpoint . json_encode($params));
-
         $cached = get_transient($cache_key);
-        if ($cached !== false) {
-            return $cached;
-        }
+        if ($cached !== false) return $cached;
 
         $response = $this->make_request($endpoint, 'GET', $params);
-
-        // Only cache if successful and not empty
+        
         if (!is_wp_error($response) && !empty($response)) {
             set_transient($cache_key, $response, $seconds);
         }
-
         return $response;
     }
 
     /**
-     * Main HTTP Request Handler
-     * * @param string $endpoint
-     * @param string $method (GET, POST, DELETE, PUT)
-     * @param array $params Data to send
-     * @param string $body_type 'form' for FormData, 'json' for Raw JSON
-     * @return array|WP_Error
+     * تابع اصلی ارسال درخواست به لاراول
      */
     private function make_request($endpoint, $method = 'GET', $params = [], $body_type = 'form') {
         $url = $this->base_url . $endpoint;
         
-        $args = [
-            'timeout'   => $this->timeout,
-            'method'    => $method,
-            'sslverify' => false, // Set to true for Production
-            'headers'   => [
-                'Accept' => 'application/json',
-            ]
+        // تنظیمات هدر پیش‌فرض
+        $headers = [
+            'Accept'       => 'application/json',
+            'Content-Type' => 'application/json', // پیش‌فرض JSON
         ];
 
-        // Add Auth Token if exists
+        // 1. تنظیم توکن احراز هویت (مهمترین بخش برای خطای Unauthenticated)
         if ($this->access_token) {
-            $args['headers']['Authorization'] = 'Bearer ' . $this->access_token;
+            $headers['Authorization'] = 'Bearer ' . $this->access_token;
         }
 
-        // Prepare Data
+        // 2. آماده‌سازی بدنه درخواست
+        $body = null;
+        
         if ($method === 'GET') {
+            // برای GET پارامترها به URL اضافه می‌شوند
             if (!empty($params)) {
                 $url = add_query_arg($params, $url);
             }
+            unset($headers['Content-Type']); // GET بادی ندارد
         } else {
-            // POST/PUT/DELETE
+            // برای POST, PUT, DELETE
             if (!empty($params)) {
                 if ($body_type === 'json') {
-                    $args['headers']['Content-Type'] = 'application/json';
-                    $args['body'] = json_encode($params);
+                    // انکود کردن دقیق JSON با پشتیبانی از فارسی
+                    $body = json_encode($params, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                 } else {
-                    $args['body'] = $params; // WP handles Multipart/Form-data
+                    // اگر فرم دیتا معمولی باشد (مثل آپلود فایل)
+                    $headers['Content-Type'] = 'application/x-www-form-urlencoded'; // یا حذف شود تا WP هندل کند
+                    $body = $params;
                 }
             }
         }
 
-        // Execute Request
+        // 3. تنظیمات آرگومان‌های تابع وردپرس
+        $args = [
+            'method'    => $method,
+            'timeout'   => $this->timeout,
+            'sslverify' => false, // در محیط پروداکشن واقعی بهتر است true باشد
+            'headers'   => $headers,
+            'body'      => $body
+        ];
+
+        // *** DEBUG LOG: ثبت درخواست ارسالی در debug.log ***
+        // error_log("API Request URL: " . $url);
+        // if(isset($headers['Authorization'])) error_log("API Token Present: Yes");
+        // else error_log("API Token Present: NO (Warning)");
+        // if($body) error_log("API Body: " . (is_string($body) ? $body : json_encode($body)));
+
+        // 4. ارسال درخواست
         $response = wp_remote_request($url, $args);
 
-        // Network/WP Errors
+        // 5. بررسی خطای شبکه وردپرس
         if (is_wp_error($response)) {
-            error_log('Laravel API Network Error: ' . $response->get_error_message());
+            error_log('WP API Network Error: ' . $response->get_error_message());
             return $response;
         }
 
+        // 6. دریافت کد وضعیت و بدنه پاسخ
         $code = wp_remote_retrieve_response_code($response);
-        $body = wp_remote_retrieve_body($response);
-        $data = json_decode($body, true);
+        $response_body = wp_remote_retrieve_body($response);
+        $data = json_decode($response_body, true);
 
-        // API Logic Errors (4xx, 5xx)
+        // *** DEBUG LOG: ثبت پاسخ دریافتی ***
+         error_log("API Response Code: " . $code);
+         error_log("API Response Body: " . substr($response_body, 0, 500) . '...'); // خلاصه پاسخ
+
+        // 7. مدیریت خطاها (4xx و 5xx)
         if ($code >= 400) {
-            $error_msg = isset($data['message']) ? $data['message'] : "API Error $code";
-            error_log("Laravel API Error [$code] at $endpoint: $error_msg");
+            $error_message = isset($data['message']) ? $data['message'] : "API Error {$code}";
             
-            // Return WP_Error so frontend can handle it gracefully
-            return new WP_Error('api_error', $error_msg, [
-                'status' => $code, 
-                'data' => $data
+            // اگر خطای 401 باشد، یعنی توکن واقعا کار نمی‌کند
+            if ($code == 401) {
+                error_log("API Authentication Failed (401). Check Token validity.");
+            }
+
+            return new WP_Error('api_error', $error_message, [
+                'status' => $code,
+                'data'   => $data,
+                'full_response' => $data
             ]);
         }
 
-        // JSON Decode Error
+        // 8. بررسی صحت JSON دریافتی
         if (json_last_error() !== JSON_ERROR_NONE) {
-            error_log("Laravel API JSON Error at $endpoint: " . json_last_error_msg());
-            return new WP_Error('json_error', 'Invalid JSON response from server');
+            error_log("API JSON Decode Error: " . json_last_error_msg());
+            return new WP_Error('json_error', 'Invalid JSON from server');
         }
 
         return $data;

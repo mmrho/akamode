@@ -570,3 +570,56 @@
       text-align: left;
     }
   }
+
+
+
+
+
+
+
+  /* استایل پاپ‌آپ سوییت الرت برای هماهنگی با قالب */
+.akamode-popup-container {
+  font-family: inherit !important;
+}
+.akamode-popup-title {
+  font-size: 18px !important;
+  font-weight: bold !important;
+  color: #333 !important;
+  padding-bottom: 15px !important;
+  border-bottom: 1px solid #eee !important;
+}
+.akamode-popup-content {
+  padding: 10px 0 !important;
+  text-align: right !important;
+}
+.akamode-popup-confirm {
+  background-color: #000 !important; /* رنگ مشکی قالب */
+  color: #fff !important;
+  border-radius: 0 !important;
+  padding: 10px 30px !important;
+  font-size: 14px !important;
+  box-shadow: none !important;
+}
+.akamode-popup-confirm:hover {
+  background-color: #333 !important;
+}
+.swal2-radio {
+  display: grid !important;
+  gap: 10px !important;
+  justify-content: start !important;
+  text-align: right !important;
+}
+.swal2-radio label {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  color: #555 !important;
+  width: 100%;
+}
+.swal2-radio input[type="radio"] {
+  accent-color: #000 !important;
+  width: 18px !important;
+  height: 18px !important;
+}
