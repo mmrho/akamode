@@ -89,9 +89,12 @@ add_action('wp_ajax_nopriv_akamode_send_otp', 'akamode_handle_send_otp');
 add_action('wp_ajax_akamode_send_otp', 'akamode_handle_send_otp');
 
 function akamode_handle_send_otp() {
-    check_ajax_referer('akamode_auth_nonce', 'security');
+    // بررسی Nonce برای امنیت (در صورت وجود در JS)
+    if(isset($_POST['security'])) {
+        check_ajax_referer('akamode_auth_nonce', 'security');
+    }
 
-    // خواندن از آرایه fields (طبق ساختار wbsAjax)
+    // خواندن از آرایه fields
     $fields = isset($_POST['fields']) ? $_POST['fields'] : [];
     $phone  = isset($fields['mobile']) ? akamode_sanitize_mobile($fields['mobile']) : '';
 
@@ -100,18 +103,21 @@ function akamode_handle_send_otp() {
         return;
     }
 
+    // اگر کلاس API موجود نیست خطا بده
+    if (!class_exists('Laravel_API_Client')) {
+        akamode_send_error('خطای سیستمی: کلاس API یافت نشد.');
+        return;
+    }
+
     $api = Laravel_API_Client::get_instance();
     $response = $api->send_otp($phone);
 
-    // خطای کلی ارتباط
     if (is_wp_error($response)) {
         akamode_send_error('خطا در ارتباط با سامانه پیامکی.');
         return;
     }
 
-    // بررسی موفقیت منطقی
     if (isset($response['success']) && $response['success'] == true) {
-        // نکته مهم: پیام موفقیت را دستی می‌نویسیم تا کد تایید (اگر در پاسخ API بود) لو نرود.
         akamode_send_success([
             'message' => 'کد تایید با موفقیت ارسال شد.',
             'mobile'  => $phone
@@ -127,35 +133,40 @@ add_action('wp_ajax_nopriv_akamode_verify_otp', 'akamode_handle_verify_otp');
 add_action('wp_ajax_akamode_verify_otp', 'akamode_handle_verify_otp');
 
 function akamode_handle_verify_otp() {
-    check_ajax_referer('akamode_auth_nonce', 'security');
+    if(isset($_POST['security'])) {
+        check_ajax_referer('akamode_auth_nonce', 'security');
+    }
 
     $fields = isset($_POST['fields']) ? $_POST['fields'] : [];
     $phone  = isset($fields['mobile']) ? akamode_sanitize_mobile($fields['mobile']) : '';
     $code   = isset($fields['otp']) ? akamode_sanitize_mobile($fields['otp']) : '';
+    
+    // --- [دریافت آدرس ریدایرکت] ---
+    $redirect_input = isset($fields['redirect_to']) ? esc_url_raw($fields['redirect_to']) : '';
 
     if (empty($phone) || empty($code)) {
         akamode_send_error('لطفا کد تایید را وارد کنید.');
         return;
     }
 
+    if (!class_exists('Laravel_API_Client')) {
+        akamode_send_error('خطای سیستمی: کلاس API یافت نشد.');
+        return;
+    }
+
     $api = Laravel_API_Client::get_instance();
     $response = $api->verify_otp($phone, $code);
 
-    // مدیریت خطای API (مثل کد اشتباه)
     if (is_wp_error($response)) {
-        // تلاش برای استخراج پیام خطای دقیق از API
         $error_msg = $response->get_error_message();
-        
-        // اگر API مسیج خاصی فرستاده بود، همان را نمایش بده
         if (empty($error_msg)) {
             $error_msg = 'کد تایید اشتباه است یا منقضی شده است.';
         }
-        
         akamode_send_error($error_msg);
         return;
     }
 
-    // بررسی موفقیت
+    // بررسی موفقیت لاگین در API
     if (isset($response['success']) && $response['success'] == true) {
         
         $token = isset($response['token']) ? $response['token'] : null;
@@ -166,7 +177,7 @@ function akamode_handle_verify_otp() {
             return;
         }
 
-        // عملیات ثبت/آپدیت در دیتابیس وردپرس
+        // ثبت یا آپدیت کاربر در وردپرس
         $userID = akamode_create_or_update_user($user_data, $token);
 
         if (is_wp_error($userID)) {
@@ -174,17 +185,25 @@ function akamode_handle_verify_otp() {
             return;
         }
 
-        // لاگین اجباری
+        // لاگین کردن کاربر در وردپرس
         wp_set_current_user($userID);
         wp_set_auth_cookie($userID);
 
+        // --- [منطق ریدایرکت هوشمند] ---
+        // اگر آدرس ریدایرکت (مثل چک‌اوت) وجود داشت، به آنجا برو
+        if (!empty($redirect_input)) {
+            $final_redirect = $redirect_input;
+        } else {
+            // در غیر این صورت به داشبورد برو
+            $final_redirect = home_url('/dashboard'); // آدرس پیش‌فرض داشبورد
+        }
+
         akamode_send_success([
             'message'      => 'ورود موفقیت‌آمیز بود.',
-            'redirect_url' => home_url('/dashboard') // لینک ریدایرکت را اینجا تنظیم کنید
+            'redirect_url' => $final_redirect
         ]);
 
     } else {
-        // حالتی که سرور 200 برگردانده اما success فالس است
         $msg = isset($response['message']) ? $response['message'] : 'کد تایید اشتباه است.';
         akamode_send_error($msg);
     }

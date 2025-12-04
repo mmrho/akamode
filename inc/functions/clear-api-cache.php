@@ -5,7 +5,7 @@ add_action('admin_bar_menu', function($wp_admin_bar) {
 
     $wp_admin_bar->add_node([
         'id'    => 'flush_laravel_api',
-        'title' => '🧹 پاکسازی کش API',
+        'title' => 'پاکسازی کش API',
         'href'  => add_query_arg('flush_laravel_api_cache', '1'), // لینک فعلی + پارامتر پاکسازی
         'meta'  => ['title' => 'پاک کردن تمام کش‌های دریافتی از لاراول']
     ]);

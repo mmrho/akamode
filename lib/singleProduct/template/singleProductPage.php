@@ -4,7 +4,7 @@
 // =========================================================================
 
 $api = Laravel_API_Client::get_instance();
-$base_api_url = defined('LARAVEL_API_URL') ? LARAVEL_API_URL : 'https://akamode.com';
+$base_api_url = defined('LARAVEL_API_URL') ? LARAVEL_API_URL : 'https://api.akamode.com';
 $site_url_clean = untrailingslashit($base_api_url);
 
 // Get the current slug (Assumes this file is used in a context where $post is available)
@@ -44,12 +44,36 @@ if (!empty($variants)) {
     $discount_price = $variants[0]['discount_price'] ?? 0;
 
     foreach ($variants as $v) {
+        // --- اصلاح بخش رنگ (Color) ---
         if (!empty($v['color'])) {
-            // Use color name as key to avoid duplicates
-            $unique_colors[$v['color']] = $v['color'];
+            // بررسی می‌کنیم دیتای رنگ آرایه است یا رشته
+            if (is_array($v['color'])) {
+                // اگر آرایه بود (مثل دیتای API شما)، نام انگلیسی (name) را برمی‌داریم
+                // مثال: "blue"
+                $color_key = $v['color']['name'] ?? '';
+            } else {
+                // اگر رشته بود
+                $color_key = $v['color'];
+            }
+
+            // مطمئن می‌شویم که مقدار خالی نیست و حتما رشته است
+            if (!empty($color_key)) {
+                $unique_colors[(string)$color_key] = (string)$color_key;
+            }
         }
+
+        // --- اصلاح بخش سایز (Size) ---
         if (!empty($v['size'])) {
-            $unique_sizes[$v['size']] = $v['size'];
+            // همین کار را برای سایز هم انجام می‌دهیم چون ممکن است آن هم آرایه باشد
+            if (is_array($v['size'])) {
+                $size_key = $v['size']['name'] ?? current($v['size']);
+            } else {
+                $size_key = $v['size'];
+            }
+
+            if (!empty($size_key)) {
+                $unique_sizes[(string)$size_key] = (string)$size_key;
+            }
         }
     }
 }
@@ -411,4 +435,10 @@ $fallback_img = get_template_directory_uri() . '/images/temp/akamode-19.jpg';
 
 <script>
     var productVariants = <?php echo json_encode($variants); ?>;
+    var productBaseData = {
+        id: <?php echo $p_id; ?>,
+        name: "<?php echo esc_js($p_name); ?>",
+        image: "<?php echo !empty($gallery) ? esc_url($site_url_clean . $gallery[0]['url']) : ''; ?>",
+        price: <?php echo $current_price; ?>
+    };
 </script>

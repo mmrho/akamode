@@ -1,20 +1,27 @@
+<?php 
+$redirect_to = isset($_GET['redirect_to']) ? esc_url($_GET['redirect_to']) : '';
+?>
+
 <div class="loginContainer">
     <div class="login-main-container">
         <div class="background-container">
             <img src="<?php echo get_template_directory_uri(); ?>/images/temp/akamode-login.jpg" alt="akamode-login-img">
         </div>
+        
         <div class="main-wrapper">
             <section class="form-panel">
                 <a href="<?php echo home_url(); ?>" class="back-link">
                     <i class="icon-up-left-arrow"></i>
                     <span> بازگشت به سایت</span>
                 </a>
+                
                 <div class="content-wrapper">
                     <div class="mobile-logo">
                         <div class="logo-icon">
                             <img src="<?php echo get_template_directory_uri(); ?>/images/SVG/akamode-logo.svg" alt="akamode-logo">
                         </div>
                     </div>
+                    
                     <div class="login-container">
                         <h2>ورود | ثبت نام</h2>
                         
@@ -22,6 +29,8 @@
                         
                         <form id="authForm" class="login-form" method="post" autocomplete="off">
                             
+                            <input type="hidden" id="redirect_to_field" name="redirect_to" value="<?php echo $redirect_to; ?>">
+
                             <div class="form-group" id="step-mobile">
                                 <input dir="ltr" class="input" type="text" inputmode="numeric" maxlength="11" id="mobile" name="mobile" placeholder=" " required />
                                 <label for="mobile" class="form-label">شماره موبایل</label>
@@ -42,6 +51,7 @@
 
                     </div>
                 </div>
+                
                 <a href="#" class="help-link">
                     <span>مشکل دارید؟</span>
                     <i class="icon-up-left-arrow"></i>

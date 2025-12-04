@@ -25,9 +25,9 @@
             <a href="<?php echo esc_url($account_href); ?>" class="account_icon mobile-btn header-element" type="button" id="accountIcon">
                 <i class="<?php echo $support_info['account_icon']; ?>"></i>
             </a>
-            <button class="shopping-bag-icon mobile-btn header-element" type="button" id="shoppingBagIcon">
+            <a href="<?php echo home_url('/cart'); ?>" class="shopping-bag-icon mobile-btn header-element" id="shoppingBagIcon-mobile">
                 <i class="<?php echo $support_info['shoping_bag_icon']; ?>"></i>
-            </button>
+            </a>
             <button class="close-icon mobile-btn header-element" type="button" id="closeIcon">
                 <i class="<?php echo $support_info['close_icon']; ?>"></i>
             </button>

@@ -37,7 +37,7 @@ class Laravel_API_Client {
     private function __construct() {
         // Use a constant if defined in wp-config.php, otherwise fallback to localhost
         // Defined example: define('LARAVEL_API_URL', 'https://api.mysite.com');
-        $this->base_url = defined('LARAVEL_API_URL') ? untrailingslashit(LARAVEL_API_URL) : 'https://akamode.com';
+        $this->base_url = defined('LARAVEL_API_URL') ? untrailingslashit(LARAVEL_API_URL) : 'https://api.akamode.com';
         $this->timeout  = 20;
     }
 

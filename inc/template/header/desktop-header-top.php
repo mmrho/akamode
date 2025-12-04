@@ -28,9 +28,9 @@
                     <a href="<?php echo esc_url($account_href); ?>" class="account_icon desktop-btn header-element" type="button" id="accountIcon">
                         <i class="<?php echo $support_info['account_icon']; ?>"></i>
                     </a>
-                    <button class="shopping-bag-icon desktop-btn header-element" type="button" id="shoppingBagIcon">
+                    <a href="<?php echo home_url('/cart'); ?>" class="shopping-bag-icon desktop-btn header-element" id="shoppingBagIcon-desktop">
                         <i class="<?php echo $support_info['shoping_bag_icon']; ?>"></i>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
