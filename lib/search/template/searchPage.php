@@ -7,7 +7,7 @@ $current_page = max(1, get_query_var('paged'));
 $products = [];
 $total_results = 0;
 $total_pages = 1;
-$api_base_url = 'https://akamode.com'; // دامنه اصلی برای تصاویر
+$api_base_url = 'https://api.akamode.com'; // دامنه اصلی برای تصاویر
 
 try {
     // اتصال به API

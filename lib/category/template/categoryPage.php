@@ -11,7 +11,7 @@
 
 $api = Laravel_API_Client::get_instance();
 
-$base_api_url = defined('LARAVEL_API_URL') ? LARAVEL_API_URL : 'https://akamode.com';
+$base_api_url = defined('LARAVEL_API_URL') ? LARAVEL_API_URL : 'https://api.akamode.com';
 
 $site_url_clean = untrailingslashit($base_api_url);
 
