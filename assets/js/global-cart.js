@@ -1,15 +1,10 @@
-/**
- * مسیر فایل: assets/js/global-cart.js
- * نسخه نهایی و اصلاح شده (حذف HTML اضافی تخفیف)
- */
-
 class CartManager {
     constructor() {
         this.cookieName = 'akamode_cart_v1';
         this.expiryDays = 7;
         this.cart = this.getCart();
         
-        // المان‌های کانتینر در صفحات داخلی
+      
         this.cartItemsWrapper = document.getElementById('cart-items-wrapper'); 
         this.checkoutItemsWrapper = document.getElementById('checkout-items-wrapper');
         
@@ -19,11 +14,11 @@ class CartManager {
     init() {
         this.updateHeaderBadge();
         
-        // رندر صفحات در صورت وجود
+        
         if (this.cartItemsWrapper) this.renderCartPage();
         if (this.checkoutItemsWrapper) this.renderCheckoutPage();
 
-        // هماهنگی بین تب‌های مرورگر
+       
         window.addEventListener('storage', () => {
             this.cart = this.getCart();
             this.updateHeaderBadge();
@@ -32,7 +27,7 @@ class CartManager {
         });
     }
 
-    // --- مدیریت داده‌ها ---
+   
     getCart() {
         const name = this.cookieName + "=";
         const decodedCookie = decodeURIComponent(document.cookie);
@@ -92,18 +87,22 @@ class CartManager {
     }
 
     getTotalPrice() {
-        return this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        return this.cart.reduce((total, item) => {
+            // Check if sale_price exists, otherwise use normal price
+            const itemPrice = parseInt(item.sale_price) || parseInt(item.price);
+            return total + (itemPrice * item.quantity);
+        }, 0);
     }
 
     clearCart() {
         this.saveCart([]);
     }
 
-    // --- مدیریت نمایش (UI) ---
+    
 
     updateHeaderBadge() {
         const count = this.cart.reduce((sum, item) => sum + item.quantity, 0);
-        // سلکتور جدید بر اساس کلاس مشترک
+       
         const badges = document.querySelectorAll('.shopping-bag-icon');
         
         badges.forEach(btn => {
@@ -136,15 +135,29 @@ class CartManager {
             return;
         }
 
+        let totalFinalPrice = 0; 
         let html = '';
+
         this.cart.forEach(item => {
+            // --- CHANGES START HERE ---
+            // Check if sale_price exists/is valid (truthy). If not, use regular price.
+            let effectivePrice = parseInt(item.sale_price);
+            if (!effectivePrice) {
+                effectivePrice = parseInt(item.price);
+            }
+            
+            // Add to total sum
+            totalFinalPrice += (effectivePrice * item.quantity);
+            // --- CHANGES END HERE ---
+
             html += `
             <div class="item cart-item-row" data-variant-id="${item.variant_id || item.id}" data-qty="${item.quantity}">
                 <div class="img"><img src="${item.image}" alt="${item.name}"></div>
                 <div class="item-details">
                     <p class="title">${item.name}</p>
                     <p class="color">${item.variant_title || ''}</p>
-                    <p class="price">${parseInt(item.price).toLocaleString()} تومان</p>
+                    
+                    <p class="price">${effectivePrice.toLocaleString()} تومان</p>
                 </div>
                 <div class="quantity">
                     <div class="counter">
@@ -159,10 +172,15 @@ class CartManager {
             </div>
             <div class="hr"></div>`;
         });
-        
-        // *** بخش مزاحم حذف شد: اینجا قبلا کد تخفیف دوم اضافه می‌شد ***
 
         this.cartItemsWrapper.innerHTML = html;
+
+        // Apply the calculated Total Final Price
+        let sale_pricee = document.querySelector('.total-cart-price');
+        if (sale_pricee) {
+            sale_pricee.innerText = totalFinalPrice.toLocaleString() + ' تومان';
+        }
+
         this.updateTotals(this.getTotalPrice());
     }
 
@@ -176,10 +194,14 @@ class CartManager {
 
         let html = '';
         this.cart.forEach(item => {
+             // Check if sale_price exists and is valid, otherwise use price
+             let effectivePrice = parseInt(item.sale_price) || parseInt(item.price);
+             let lineTotal = effectivePrice * item.quantity;
+
              html += `
              <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:12px;">
                 <span>${item.name} <span style="color:#888;">x${item.quantity}</span></span>
-                <span>${(item.price * item.quantity).toLocaleString()}</span>
+                <span>${lineTotal.toLocaleString()} تومان</span>
              </div>`;
         });
         this.checkoutItemsWrapper.innerHTML = html;
@@ -187,10 +209,9 @@ class CartManager {
     }
 
     updateTotals(total) {
-        const totalEls = document.querySelectorAll('.total-price-display, .total-cart-price');
+        // REMOVE .total-cart-price from this querySelector
+        const totalEls = document.querySelectorAll('.total-price-display'); 
         totalEls.forEach(el => el.innerText = total.toLocaleString() + ' تومان');
-        
-        // تریگر کردن ایونت برای اینکه صفحه چک‌اوت بفهمد قیمت عوض شده
         window.dispatchEvent(new Event('cartUpdated'));
     }
 
