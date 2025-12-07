@@ -1,7 +1,6 @@
 <?php 
 $redirect_to = isset($_GET['redirect_to']) ? esc_url($_GET['redirect_to']) : '';
 ?>
-
 <div class="loginContainer">
     <div class="login-main-container">
         <div class="background-container">
@@ -18,7 +17,7 @@ $redirect_to = isset($_GET['redirect_to']) ? esc_url($_GET['redirect_to']) : '';
                 <div class="content-wrapper">
                     <div class="mobile-logo">
                         <div class="logo-icon">
-                            <img src="<?php echo get_template_directory_uri(); ?>/images/SVG/akamode-logo.svg" alt="akamode-logo">
+                            <img src="<?php echo get_template_directory_uri(); ?>/images/svg/akamode-logo.svg" alt="akamode-logo">
                         </div>
                     </div>
                     
@@ -61,7 +60,7 @@ $redirect_to = isset($_GET['redirect_to']) ? esc_url($_GET['redirect_to']) : '';
             <section class="image-panel">
                 <div class="logo-box">
                     <div class="logo-icon">
-                        <img src="<?php echo get_template_directory_uri(); ?>/images/SVG/akamode-logo.svg" alt="akamode-logo">
+                        <img src="<?php echo get_template_directory_uri(); ?>/images/svg/akamode-logo.svg" alt="akamode-logo">
                     </div>
                 </div>
             </section>

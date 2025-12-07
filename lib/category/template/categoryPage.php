@@ -1,64 +1,52 @@
 <?php
-
-/**
- * Template Name: API Category Page
- * Description: Dynamic category page connected to Laravel
- */
-
-// =========================================================================
-// 1. View and receive information (Backend Logic)
-// =========================================================================
-
-$api = Laravel_API_Client::get_instance();
+$is_single_cat = get_query_var('wbs_is_single_cat');
+$current_cat   = get_query_var('wbs_current_cat');
+$products_list = get_query_var('wbs_products');
+$meta          = get_query_var('wbs_meta');
+$all_cats      = get_query_var('wbs_all_cats');
 
 $base_api_url = defined('LARAVEL_API_URL') ? LARAVEL_API_URL : 'https://api.akamode.com';
-
 $site_url_clean = untrailingslashit($base_api_url);
-
-
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-
-
-$categories_response = $api->get_categories();
-$categories_list = [];
-if (!is_wp_error($categories_response) && isset($categories_response['data'])) {
-    $categories_list = $categories_response['data'];
-}
-
-
-$products_response = $api->get_products($paged);
-$products_list = [];
-$meta = [];
-
-if (!is_wp_error($products_response)) {
-
-    $products_list = $products_response['data'] ?? [];
-    $meta = $products_response['meta'] ?? [];
-}
 ?>
 
 <div class="main-container">
     <div class="category-container">
+        
         <div class="page-title-container">
-
             <section class="page-title">
-                <div class="breadcrumbs">خانه > دسته بندی ها</div>
-                <h2 class="page-title">دسته بندی ها</h2>
-                <p class="page-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم با هدف بهبود ابزارهای کاربردی می باشد کتابهای زیادی در شصت و سه درصد گذشته حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد</p>
+                <div class="breadcrumbs">
+                    <a href="<?php echo home_url(); ?>">خانه</a> > 
+                    <a href="<?php echo home_url('category/categories'); ?>">دسته بندی ها</a>
+                    <?php if($is_single_cat && !empty($current_cat)): ?>
+                        > <span><?php echo esc_html($current_cat['name']); ?></span>
+                    <?php endif; ?>
+                </div>
+                
+                <h2 class="page-title">
+                    <?php echo ($is_single_cat && !empty($current_cat)) ? esc_html($current_cat['name']) : 'دسته بندی ها'; ?>
+                </h2>
+                
+                <?php if(!$is_single_cat): ?>
+                    <p class="page-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم با هدف بهبود ابزارهای کاربردی می باشد...</p>
+                <?php endif; ?>
             </section>
 
-            <?php if (!empty($categories_list)): ?>
+            <?php 
+            // --- شرط مهم: فقط اگر در صفحه اصلی دسته‌بندی هستیم، زیرمجموعه‌ها را نشان بده ---
+            if ( ! $is_single_cat && !empty($all_cats) ): 
+            ?>
                 <section class="sub-categories">
-                    <?php foreach ($categories_list as $cat): ?>
+                    <?php foreach ($all_cats as $cat): ?>
                         <?php
-
                         $c_name = $cat['name'] ?? 'بدون نام';
                         $c_slug = $cat['slug'] ?? '#';
+                        // لینک‌دهی استاندارد به صفحه دسته‌بندی وردپرس
                         $c_link = home_url('/category/' . $c_slug);
-
 
                         if (!empty($cat['image_path'])) {
                             $c_img = $site_url_clean . '/storage/' . ltrim($cat['image_path'], '/');
+                        } elseif(!empty($cat['image'])) {
+                             $c_img = $cat['image'];
                         } else {
                             $c_img = get_template_directory_uri() . '/images/temp/akamode-default-image.png';
                         }
@@ -97,7 +85,6 @@ if (!is_wp_error($products_response)) {
                 <?php if (!empty($products_list)): ?>
                     <?php foreach ($products_list as $product): ?>
                         <?php
-                        
                         $p_title = $product['name'] ?? 'محصول';
                         $p_slug = $product['slug'] ?? '#';
                         $p_link = home_url('/product/' . $p_slug); 
@@ -112,21 +99,24 @@ if (!is_wp_error($products_response)) {
 
                         $price_html = '<div class="product-price">ناموجود</div>';
 
+                        // منطق قیمت (اولویت با تخفیف)
                         if (!empty($product['variants']) && is_array($product['variants'])) {
-                            
                             $variant = $product['variants'][0];
                             $main_price = $variant['price'] ?? 0;
                             $sale_price = $variant['discount_price'] ?? 0;
 
-                           
                             if ($sale_price > 0 && $sale_price < $main_price) {
                                 $price_html = '<div class="product-price">
                                         <del>' . number_format($main_price) . '</del>
-                                        <span>' . number_format($sale_price) . ' تومان</span>
+                                        <span class="text-danger">' . number_format($sale_price) . ' تومان</span>
                                     </div>';
                             } elseif ($main_price > 0) {
                                 $price_html = '<div class="product-price">' . number_format($main_price) . ' تومان</div>';
                             }
+                        } elseif (isset($product['price'])) {
+                             // اگر واریانت نبود و قیمت مستقیم داشت
+                             $main_price = $product['price'];
+                             $price_html = '<div class="product-price">' . number_format($main_price) . ' تومان</div>';
                         }
                         ?>
 
@@ -143,9 +133,9 @@ if (!is_wp_error($products_response)) {
                     <div class="no-products" style="grid-column: 1/-1; text-align:center; padding: 60px 20px;">
                         <img src="<?php echo get_template_directory_uri(); ?>/images/temp/empty-box.png" alt="Empty-box" style="max-width:400px; opacity:0.9;">
                         <h3 style="margin-top:20px; color:#666;">محصولی یافت نشد</h3>
-                        <p style="color:#999;">در این صفحه محصولی برای نمایش وجود ندارد.</p>
-                        <?php if ($paged > 1): ?>
-                            <a href="?paged=1" style="display:inline-block; margin-top:15px; padding:10px 20px; background:#000; color:#fff; text-decoration:none; border-radius:4px;">بازگشت به صفحه اول</a>
+                        <p style="color:#999;">در این دسته‌بندی محصولی برای نمایش وجود ندارد.</p>
+                        <?php if ($is_single_cat): ?>
+                             <a href="<?php echo home_url('/category'); ?>" class="btn-back">بازگشت به همه دسته‌ها</a>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
@@ -157,34 +147,35 @@ if (!is_wp_error($products_response)) {
                 <?php
                 $curr = $meta['current_page'];
                 $last = $meta['last_page'];
-                function get_page_link_api($page)
-                {
+                function get_page_link_api_cat($page) {
                     return add_query_arg('paged', $page);
                 }
                 ?>
 
                 <?php if ($curr > 1): ?>
-                    <a href="<?php echo get_page_link_api($curr - 1); ?>" class="page-btn next-btn"><i class="icon-right-open"></i></a>
+                    <a href="<?php echo get_page_link_api_cat($curr - 1); ?>" class="page-btn next-btn"><i class="icon-right-open"></i></a>
                 <?php endif; ?>
 
                 <?php for ($i = 1; $i <= $last; $i++): ?>
                     <?php if ($i == $curr): ?>
                         <div class="page-btn active"><?php echo $i; ?></div>
                     <?php elseif ($i == 1 || $i == $last || ($i >= $curr - 2 && $i <= $curr + 2)): ?>
-                        <a href="<?php echo get_page_link_api($i); ?>" class="page-btn"><?php echo $i; ?></a>
+                        <a href="<?php echo get_page_link_api_cat($i); ?>" class="page-btn"><?php echo $i; ?></a>
                     <?php elseif ($i == $curr - 3 || $i == $curr + 3): ?>
                         <div class="page-dots">...</div>
                     <?php endif; ?>
                 <?php endfor; ?>
 
                 <?php if ($curr < $last): ?>
-                    <a href="<?php echo get_page_link_api($curr + 1); ?>" class="page-btn next-btn"><i class="icon-left-open"></i></a>
+                    <a href="<?php echo get_page_link_api_cat($curr + 1); ?>" class="page-btn next-btn"><i class="icon-left-open"></i></a>
                 <?php endif; ?>
             </div>
         <?php endif; ?>
 
     </div>
+    
     <div class="filter-overlay" id="overlay"></div>
+    
     <aside class="filter-sidebar" id="sidebar">
         <div class="filter-header">
             <span class="filter-title">فیلترها</span>
@@ -216,6 +207,7 @@ if (!is_wp_error($products_response)) {
                     </label>
                 </div>
             </div>
+            
             <div class="f-section">
                 <div class="f-head">
                     <span>رنگ</span>
@@ -242,6 +234,7 @@ if (!is_wp_error($products_response)) {
                     </div>
                 </div>
             </div>
+            
             <div class="f-section">
                 <div class="f-head">
                     <span>سایز</span>
@@ -262,6 +255,7 @@ if (!is_wp_error($products_response)) {
                     </div>
                 </div>
             </div>
+            
             <div class="f-section" style="border:none;">
                 <div class="f-head">
                     <span>محدوده قیمت</span>
@@ -282,5 +276,4 @@ if (!is_wp_error($products_response)) {
             </div>
         </div>
     </aside>
-</div>
 </div>

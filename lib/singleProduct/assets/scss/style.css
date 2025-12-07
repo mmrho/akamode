@@ -17,15 +17,16 @@
   }
 }
 
-#site-header .mobile-header .mobile-header-container {
-  position: sticky !important;
-}
-
 .main-content {
   width: 100%;
   padding: 0px;
   margin: 0px;
   overflow: visible !important;
+}
+@media (max-width: 849.98px) {
+  .main-content {
+    padding-top: 72px;
+  }
 }
 .main-content .container {
   width: 100%;

@@ -10,12 +10,13 @@
   }
 }
 
-#site-header .mobile-header .mobile-header-container {
-  position: sticky !important;
-}
-
 .main-content {
   width: 100%;
+}
+@media (max-width: 849.98px) {
+  .main-content {
+    padding-top: 72px;
+  }
 }
 .main-content .main-container {
   width: 100%;

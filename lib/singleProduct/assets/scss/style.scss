@@ -19,15 +19,14 @@ body {
     }
 }
 
-#site-header .mobile-header .mobile-header-container {
-    position: sticky !important;
-}
-
 .main-content {
     width: 100%;
     padding: 0px;
     margin: 0px;
     overflow: visible !important;
+    @include media-max(mobile-max) {
+        padding-top: 72px;
+    }
 
     .container {
         width: 100%;

@@ -12,15 +12,12 @@ body {
         }
     }
 }
-#site-header {
-    .mobile-header {
-        .mobile-header-container {
-            position: sticky !important;
-        }
-    }
-}
+
 .main-content {
     width: 100%;
+    @include media-max(mobile-max) {
+        padding-top: 72px;
+    }
     .main-container {
         width: 100%;
         margin: 0px;
