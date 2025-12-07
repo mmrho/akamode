@@ -1,5 +1,8 @@
 @import "../../../../assets/scss/variables";
 @import "../../../../assets/scss/mixin";
+/* ==========================================================================
+   loginstyle Styles
+   ========================================================================== */
 
 html,
 body {
@@ -324,7 +327,7 @@ body {
           .content-wrapper {
             .mobile-logo {
               display: block;
-              margin-top: 250px;
+              margin-top: 200px;
             }
 
             .login-container {

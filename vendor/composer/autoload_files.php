@@ -11,6 +11,7 @@ return array(
     '3e931f6749a57dac0e04ffa8e83cff81' => $baseDir . '/class/copy-link.php',
     '0ecbf039a56540546b87dfb836845c4b' => $baseDir . '/class/LaravelAPIClient.php',
     'dd64e540f99ce8d7014553c8d43ce992' => $baseDir . '/class/split-post-content.php',
+    '7c7b0b28a778bf2ce3477306a561fe37' => $baseDir . '/class/NumberConverter.php',
     '6d7b86cc73223a83aea75823dfda9c5a' => $baseDir . '/inc/functions/remove-email-required.php',
     '9f48162bcafc22cce4619c8bdca211d8' => $baseDir . '/inc/functions/SMS-ir.php',
     'edd2c0a6c24f95966b7374e64523f7b5' => $baseDir . '/inc/functions/start_session.php',

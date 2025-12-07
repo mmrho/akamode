@@ -99,7 +99,7 @@ if(is_wp_error($addresses)) $addresses = [];
             </div>
 
             <div class="buttons">
-                <button type="button" class="close" id="btn-cancel-edit">انصراف / پاک کردن</button>
+                <button type="button" class="close" id="btn-cancel-edit">انصراف</button>
                 <button type="submit" class="logout" id="btn-submit">ثبت آدرس</button>
             </div>
         </form>

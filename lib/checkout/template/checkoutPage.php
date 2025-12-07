@@ -23,8 +23,8 @@ if (class_exists('Laravel_API_Client')) {
         elseif (!is_wp_error($info_r)) $user_info = $info_r;
 
         $addr_r = $api->get_addresses();
-        if (!is_wp_error($addr_r) && isset($addr_r['data'])) $user_addresses = $addr_r['data']; // ساختار احتمالی 1
-        elseif (!is_wp_error($addr_r)) $user_addresses = $addr_r; // ساختار احتمالی 2 (طبق جیسون شما)
+        if (!is_wp_error($addr_r) && isset($addr_r['data'])) $user_addresses = $addr_r['data']; 
+        elseif (!is_wp_error($addr_r)) $user_addresses = $addr_r; 
     }
 }
 
@@ -98,8 +98,8 @@ $pre_phone = isset($user_info['mobile']) ? $user_info['mobile'] : '';
                             <div class="price">۳۵,۰۰۰ تومان</div>
                         </div>
                         <div class="method-row" style="display:flex; justify-content:space-between;">
-                            <label><input type="radio" name="ship-method" value="tipax" data-cost="0"> تیپاکس (پس‌کرایه)</label>
-                            <div class="price">پس‌کرایه</div>
+                            <label><input type="radio" name="ship-method" value="tipax" data-cost="0">تیپاکس</label>
+                            <div class="price">۶۰,۰۰۰ تومان</div>
                         </div>
                     </div>
                 </div>

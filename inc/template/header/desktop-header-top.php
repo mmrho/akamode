@@ -1,4 +1,8 @@
-<?php require_once THEME_TEMPLATE . 'header/shared-content.php'; ?>
+<?php
+require_once THEME_TEMPLATE . 'header/shared-content.php';
+
+use YourTheme\Utils\NumberConverter;
+?>
 
 <div class="desktop-header-container">
     <div class="row">
@@ -6,13 +10,14 @@
             <div class="site-header-top">
                 <!-- Support and Sales Info -->
                 <div class="site-header-top-support">
-                    <a href="#" class="site-header-top-support-online-a">
+                    <a href="tel:<?php echo tr_num_en($support_info['phone_number']); ?>" class="site-header-top-support-online-a">
                         <i class="<?php echo $support_info['support_icon']; ?>"></i><?php echo $support_info['support_text']; ?>
+
+                        <span class="site-header-top-support-number">
+                            <?php echo $support_info['phone_number']; ?>
+                            <?php echo $support_info['phone_label']; ?>
+                        </span>
                     </a>
-                    <span class="site-header-top-support-number">
-                        <?php echo $support_info['phone_number']; ?>
-                        <?php echo $support_info['phone_label']; ?>
-                    </span>
                 </div>
                 <!-- Brand Logo and Name -->
                 <a href="<?php echo $site_data['url']; ?>" class="site-header-top-brand">

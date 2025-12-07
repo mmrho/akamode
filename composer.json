@@ -18,6 +18,7 @@
       "class/copy-link.php",
       "class/LaravelAPIClient.php",
       "class/split-post-content.php",
+      "class/NumberConverter.php",
       "inc/functions/remove-email-required.php",
       "inc/functions/SMS-ir.php",
       "inc/functions/start_session.php",

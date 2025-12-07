@@ -6,7 +6,7 @@ $back_url = add_query_arg('tab', 'orders', $base_url);
 
 // آدرس پایه استوریج لاراول (باید مطابق با دامنه API شما باشد)
 // تصاویر معمولا در public/storage هستند
-define('API_STORAGE_BASE', 'https://akamode.com/storage/'); 
+define('API_STORAGE_BASE', 'https://api.akamode.com/storage/'); 
 
 $order = $api->get_order_single($order_id);
 
@@ -69,7 +69,22 @@ if (is_wp_error($order) || !$order) {
                     </tr>
                     <tr>
                         <td><p>وضعیت</p></td>
-                        <td><p><?php echo esc_html($order['status']); ?></p></td>
+                        <td><p>
+                            <?php
+                            if($order['status'] == 'pending') {
+                                echo 'در انتظار تایید';
+                            } elseif($order['status'] == 'completed') {
+                                echo 'تحویل شده';
+                            } elseif($order['status'] == 'cancelled') {
+                                echo 'لغو شده';
+                            } elseif($order['status'] == 'processing') {
+                                echo 'در حال پردازش';
+                            } elseif($order['status'] == 'shipped') {
+                                echo 'ارسال شده';
+                            } else {
+                                echo $order['status'];
+                            } ?>
+                        </p></td>
                     </tr>
                     <tr>
                         <td><p>روش ارسال</p></td>
@@ -77,11 +92,21 @@ if (is_wp_error($order) || !$order) {
                     </tr>
                     <tr>
                         <td><p>روش پرداخت</p></td>
-                        <td><p><?php echo esc_html($order['payment_method']); ?></p></td>
+                        <td><p><?php 
+                        if($order['payment_method'] == 'online') {
+                            echo 'پرداخت آنلاین';
+                        } elseif($order['payment_method'] == 'cod') {
+                            echo 'پرداخت در محل';
+                        }elseif($order['payment_method'] == 'card') {
+                            echo 'کارت به کارت';
+                        } else {
+                            echo esc_html($order['payment_method']); 
+                        }
+                        ?></p></td>
                     </tr>
                     <tr>
                         <td><p>تاریخ ثبت</p></td>
-                        <td style="direction:ltr"><p><?php echo date('Y-m-d H:i', strtotime($order['created_at'])); ?></p></td>
+                        <td style="direction:ltr"><p><?php echo get_persian_date($order['created_at']); ?></p></td>
                     </tr>
                 </tbody>
             </table>
@@ -94,7 +119,7 @@ if (is_wp_error($order) || !$order) {
             <table>
                 <tbody>
                     <tr>
-                        <td><p>مبلغ کل آیتم‌ها (Subtotal)</p></td>
+                        <td><p>مبلغ کل آیتم‌ها</p></td>
                         <td><p><?php echo number_format($order['subtotal']); ?> تومان</p></td>
                     </tr>
                     <tr>

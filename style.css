@@ -327,13 +327,6 @@ a:focus {
   flex-wrap: wrap;
   gap: 7px;
 }
-#site-header .desktop-header-container .site-header-top .site-header-top-support .site-header-top-support-number {
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 36px;
-  color: #111111;
-}
 #site-header .desktop-header-container .site-header-top .site-header-top-support .site-header-top-support-online-a {
   display: flex;
   flex-direction: row;
@@ -347,6 +340,13 @@ a:focus {
   font-weight: 300;
   line-height: 36px;
   padding: 0px;
+  color: #111111;
+}
+#site-header .desktop-header-container .site-header-top .site-header-top-support .site-header-top-support-online-a .site-header-top-support-number {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 300;
+  line-height: 36px;
   color: #111111;
 }
 #site-header .desktop-header-container .site-header-top .site-header-top-support .site-header-top-support-online-a i {

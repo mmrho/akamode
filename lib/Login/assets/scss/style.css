@@ -1,3 +1,6 @@
+/* ==========================================================================
+   loginstyle Styles
+   ========================================================================== */
 html,
 body {
   width: 100%;
@@ -303,7 +306,7 @@ body #site-main .container-fluid {
   }
   .loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .mobile-logo {
     display: block;
-    margin-top: 250px;
+    margin-top: 200px;
   }
   .loginContainer .login-main-container .main-wrapper .form-panel .content-wrapper .login-container {
     padding: 0 20px;
