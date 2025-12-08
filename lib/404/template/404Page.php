@@ -8,7 +8,7 @@
                 <p>صفحه مورد نظر یافت نشد.</p>
             </div>
             <div class="btn">
-                <a href="#">بازگشت</a>
+                <a href="<?php echo home_url(); ?>">بازگشت</a>
             </div>
         </div>
 

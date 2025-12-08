@@ -94,7 +94,7 @@ $support_info = [
     'search_icon'         => 'icon-search-aka',
     'close_icon'          => 'icon-Multiplication',
     'account_icon'        => 'icon-account',
-    'shoping_bag_icon'    => 'icon-shoping_bag',
+    'shoping_bag_icon'    => 'icon-shopping-cart-aka',
     'hamburger-menu_icon' => 'icon-hamburger-menu-aka',
 ];
 

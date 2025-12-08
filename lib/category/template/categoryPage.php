@@ -32,7 +32,7 @@ $site_url_clean = untrailingslashit($base_api_url);
             </section>
 
             <?php 
-            // --- شرط مهم: فقط اگر در صفحه اصلی دسته‌بندی هستیم، زیرمجموعه‌ها را نشان بده ---
+            
             if ( ! $is_single_cat && !empty($all_cats) ): 
             ?>
                 <section class="sub-categories">
@@ -40,7 +40,7 @@ $site_url_clean = untrailingslashit($base_api_url);
                         <?php
                         $c_name = $cat['name'] ?? 'بدون نام';
                         $c_slug = $cat['slug'] ?? '#';
-                        // لینک‌دهی استاندارد به صفحه دسته‌بندی وردپرس
+                       
                         $c_link = home_url('/category/' . $c_slug);
 
                         if (!empty($cat['image_path'])) {
