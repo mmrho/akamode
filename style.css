@@ -283,7 +283,7 @@ a:focus {
   max-width: 100%;
   width: 100%;
   padding-top: 16px;
-  padding-bottom: 16px;
+  padding-bottom: 0px;
   padding-left: 24px;
   padding-right: 24px;
   overflow-x: visible !important;
@@ -416,9 +416,9 @@ a:focus {
   position: static !important;
 }
 #site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-list .site-nav-item:hover {
-  border-bottom: 2px solid #64594A;
+  border-bottom: 2px solid #64594a;
 }
-#site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-list .site-nav-item .site-nav-link {
+#site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-list .site-nav-item .site-nav-link span {
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -426,22 +426,16 @@ a:focus {
   font-size: 12px;
   font-weight: 300;
   line-height: 36px;
-  padding: 10px 0;
+  padding-top: 10px;
+  padding-bottom: 26px;
+  margin: 0;
   cursor: pointer;
 }
-#site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-list .site-nav-item .site-nav-link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 40px;
-  background: transparent;
-  display: none;
-  z-index: 90;
+#site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-list .site-nav-item .site-nav-link span:hover {
+  color: #a5957b;
 }
-#site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-list .site-nav-item .site-nav-link:hover {
-  color: #A5957B;
+#site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-list .site-nav-item:hover {
+  color: #a5957b;
 }
 #site-header .desktop-header-container .site-header-bottom .site-nav .site-nav-list .site-nav-item:hover .mega-menu {
   opacity: 1 !important;
@@ -3319,6 +3313,14 @@ body.shopping-open {
   vertical-align: middle;
 }
 #site-footer .site-footer-container .footer-top .Special-features-icons ul li a span {
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 200;
+  line-height: normal;
+  vertical-align: middle;
+  color: #272727;
+}
+#site-footer .site-footer-container .footer-top .Special-features-icons ul li a .footer-tel span {
   font-size: 16px;
   font-style: normal;
   font-weight: 200;

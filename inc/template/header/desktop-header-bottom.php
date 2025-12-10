@@ -7,7 +7,7 @@
                 <?php foreach ($main_menu as $menu_item): ?>
                     <li class="site-nav-item <?php echo $menu_item['has_submenu'] ? 'has-submenu' : ''; ?>">
                         <a class="site-nav-link" href="<?php echo $menu_item['url']; ?>">
-                            <?php echo $menu_item['title']; ?>
+                           <span><?php echo $menu_item['title']; ?></span>
                             <?php if ($menu_item['has_submenu']): ?>
                                 <i class="icon-down"></i>
                             <?php endif; ?>

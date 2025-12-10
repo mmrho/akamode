@@ -39,7 +39,7 @@
         max-width: 100%;
         width: 100%;
         padding-top: 16px;
-        padding-bottom: 16px;
+        padding-bottom: 0px;
         padding-left: 24px;
         padding-right: 24px;
         overflow-x: visible !important;
@@ -80,7 +80,7 @@
                 align-content: center;
                 flex-wrap: wrap;
                 gap: 7px;
-                
+
                 .site-header-top-support-online-a {
                     display: flex;
                     flex-direction: row;
@@ -173,10 +173,11 @@
                     .site-nav-item {
                         position: static !important;
                         &:hover {
-                            border-bottom: 2px solid  #64594A;
+                            border-bottom: 2px solid #64594a;
                         }
 
                         .site-nav-link {
+                            span{
                             display: flex;
                             align-items: center;
                             text-decoration: none;
@@ -184,32 +185,24 @@
                             font-size: 12px;
                             font-weight: 300;
                             line-height: 36px;
-                            padding: 10px 0;
+                            padding-top: 10px;
+                            padding-bottom: 26px;
+                            margin: 0;
                             cursor: pointer;
 
-                            &::after {
-                                content: "";
-                                position: absolute;
-                                left: 0;
-                                right: 0;
-                                bottom: 0;
-                                height: 40px;
-                                background: transparent;
-                                display: none;
-                                z-index: 90;
-                            }
-
                             &:hover {
-                                color: #A5957B;
+                                color: #a5957b;
                             }
+                        }
                         }
 
                         &:hover {
+                            color: #a5957b;
                             .mega-menu {
                                 opacity: 1 !important;
-                            visibility: visible !important;
-                            transform: translateX(-50%) translateY(0); // حرکت به جای اصلی
-                            pointer-events: auto;
+                                visibility: visible !important;
+                                transform: translateX(-50%) translateY(0);
+                                pointer-events: auto;
                             }
 
                             .site-nav-link::after {
@@ -220,24 +213,22 @@
                         .mega-menu {
                             display: flex !important;
                             position: absolute !important;
-                            
-                            // تکنیک تمام صفحه
-                            width: 100vw !important; 
-                            left: 50% !important; 
-                            transform: translateX(-50%) translateY(10px); 
+                            width: 100vw !important;
+                            left: 50% !important;
+                            transform: translateX(-50%) translateY(10px);
                             right: auto !important;
-                            top: 100% !important; 
-                            
+                            top: 100% !important;
+
                             background-color: rgba(255, 251, 246, 0.98) !important;
                             z-index: 100;
                             opacity: 0;
                             visibility: hidden;
                             transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-                            
+
                             padding: 24px;
                             padding-top: 30px;
-                            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
-                            border-top: 1px solid rgba(0,0,0,0.05);
+                            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
+                            border-top: 1px solid rgba(0, 0, 0, 0.05);
                             // وقتی اکتیو میشه (توسط هاور والد)
                             .site-nav-item:hover & {
                                 opacity: 1;
@@ -251,7 +242,7 @@
                                 justify-content: space-between;
                                 align-items: flex-start;
                                 width: 100%;
-                                max-width: 1400px; 
+                                max-width: 1400px;
                                 margin: 0 auto;
                                 padding: 0 40px;
 

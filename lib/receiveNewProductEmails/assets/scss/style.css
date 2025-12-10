@@ -1,0 +1,168 @@
+/* ==========================================================================
+   receiveNewProductEmails Styles
+   ========================================================================== */
+@media (max-width: 849.98px) {
+  body {
+    padding-top: 0px !important;
+  }
+  body.scrolled {
+    padding-top: 0px !important;
+  }
+}
+
+.main-content {
+  width: 100%;
+}
+@media (max-width: 849.98px) {
+  .main-content {
+    padding-top: 72px;
+  }
+}
+.main-content .akamode-newsletter-wrapper {
+  background-color: #f5f0eb;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 65px 90px;
+  box-sizing: border-box;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .image-box {
+  flex: 1.3;
+  position: relative;
+  z-index: 1;
+  display: flex;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .image-box img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  display: block;
+  box-shadow: 10px 20px 40px rgba(0, 0, 0, 0.05);
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  z-index: 2;
+  margin-right: -120px;
+  min-height: 400px;
+  max-height: 484;
+  max-width: 741;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 3rem;
+  background-color: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box h2 {
+  font-size: 1.8rem;
+  color: #111;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box .subtitle {
+  text-align: center;
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 3rem;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  width: 100%;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box form .form-group {
+  width: 100%;
+  margin-bottom: 2rem;
+  position: relative;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box form .form-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: #333;
+  margin-bottom: 8px;
+  text-align: right;
+  font-weight: 600;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box form .form-group input {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  border-bottom: 1px solid #aaa;
+  font-family: inherit;
+  font-size: 1rem;
+  background: transparent;
+  transition: border-color 0.3s;
+  outline: none;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box form .form-group input:focus {
+  border-bottom-color: #000;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box form .submit-btn {
+  width: 40%;
+  padding: 14px;
+  background-color: #0c0c0c;
+  color: #fff;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-family: inherit;
+  margin-top: 10px;
+}
+.main-content .akamode-newsletter-wrapper .newsletter-container .form-box form .submit-btn:hover {
+  background-color: #333;
+}
+@media (max-width: 849.98px) {
+  .main-content .akamode-newsletter-wrapper {
+    padding: 0;
+    background-color: #fff;
+  }
+  .main-content .akamode-newsletter-wrapper .newsletter-container {
+    flex-direction: column-reverse;
+    max-width: 100%;
+  }
+  .main-content .akamode-newsletter-wrapper .newsletter-container .image-box {
+    flex: auto;
+    width: 100%;
+  }
+  .main-content .akamode-newsletter-wrapper .newsletter-container .image-box img {
+    min-height: 300px;
+    height: auto;
+    box-shadow: none;
+  }
+  .main-content .akamode-newsletter-wrapper .newsletter-container .form-box {
+    flex: auto;
+    width: 100%;
+    margin: 40px 20px;
+    background-color: #fff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    padding: 3rem 2rem;
+  }
+  .main-content .akamode-newsletter-wrapper .newsletter-container .form-box h2 {
+    font-size: 1.5rem;
+  }
+}/*# sourceMappingURL=style.css.map */

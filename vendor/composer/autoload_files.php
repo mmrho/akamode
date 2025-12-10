@@ -33,4 +33,5 @@ return array(
     '7256479c411a20e6e8a1eff468f7890a' => $baseDir . '/lib/category/wbsLoadCategory.php',
     '1c31d30b70dff70f84715cdd35db7a4a' => $baseDir . '/lib/contactUs/wbsLoadContactUs.php',
     'b4c59466756be98e2663653da86030d4' => $baseDir . '/lib/search/wbsLoadSearch.php',
+    '281374ed134a53e9dcf83b65db250a24' => $baseDir . '/lib/receiveNewProductEmails/wbsLoadReceiveNewProductEmails.php',
 );

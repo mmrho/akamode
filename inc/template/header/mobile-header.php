@@ -39,8 +39,9 @@
         <div class="mobile-nav-content">
             <ul class="mobile-nav-list">
                 <?php foreach ($main_menu as $menu_item): ?>
+
                     <li class="mobile-nav-item <?php echo $menu_item['has_submenu'] ? 'has-submenu' : ''; ?>">
-                        <a class="mobile-nav-link" href="<?php echo $menu_item['url']; ?>"
+                        <a class="mobile-nav-link" href="<?php echo $menu_item['has_submenu'] ? 'javascript:void(0);' : $menu_item['url']; ?>"
                             <?php echo $menu_item['has_submenu'] ? 'data-has-submenu="true"' : ''; ?>>
                             <?php echo $menu_item['title']; ?>
                             <?php if ($menu_item['has_submenu']): ?>
@@ -49,6 +50,12 @@
                         </a>
                         <?php if ($menu_item['has_submenu'] && isset($menu_item['submenu'])): ?>
                             <ul class="mobile-submenu">
+                                <li>
+                                    <a class="type-a" href="<?php echo $menu_item['url']; ?>">
+                                        مشاهده همه <?php echo $menu_item['title']; ?>
+                                        <i class="icon-up-left-arrow"></i>
+                                    </a>
+                                </li>
                                 <?php foreach ($menu_item['submenu'] as $sub_item): ?>
                                     <li><a href="<?php echo $sub_item['url']; ?>"><?php echo $sub_item['title']; ?><i class="icon-up-left-arrow"></i></a></li>
                                 <?php endforeach; ?>

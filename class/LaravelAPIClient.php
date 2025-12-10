@@ -224,6 +224,11 @@ class Laravel_API_Client {
         return $this->request_with_cache("/api/v1/blog/posts/{$slug}", [], 2 * HOUR_IN_SECONDS);
     }
 
+    public function get_reviews($product_id) {
+        
+        return $this->make_request("/api/v1/products/{$product_id}/reviews", 'GET');
+    }
+
 
     // =========================================================================
     // CORE FUNCTIONS
@@ -265,7 +270,6 @@ class Laravel_API_Client {
         } else {
             if (!empty($params)) {
                 if ($body_type === 'json') {
-                    // انکودینگ UTF8 برای پشتیبانی از فارسی
                     $body = json_encode($params, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
                 } else {
                     $headers['Content-Type'] = 'application/x-www-form-urlencoded';

@@ -1,15 +1,13 @@
 <?php
-// 1. دریافت اطلاعات از API
 $client = Laravel_API_Client::get_instance();
 $api_data = $client->get_menus();
 
 $footer_columns = [];
 
-// 2. بررسی صحت داده‌ها و تقسیم لینک‌ها به دو ستون
+
 if (!is_wp_error($api_data) && !empty($api_data['footer_links'])) {
     $links = $api_data['footer_links'];
     if (count($links) > 0) {
-        // تقسیم آرایه به دو قسمت برای نمایش در دو ستون (مشابه طرح اصلی شما)
         $chunk_size = ceil(count($links) / 2);
         $footer_columns = array_chunk($links, $chunk_size);
     }
@@ -28,19 +26,42 @@ if (!is_wp_error($api_data) && !empty($api_data['footer_links'])) {
                 </ul>
             </div>
             <div class="Special-features-email">
-                <a href=""><span>دریافت ایمیل‌های محصولات جدید</span><i class="icon-up-left-arrow"></i></a>
+                <a href="<?php echo esc_url( home_url( '/rnpe/' ) ); ?>"><span>دریافت ایمیل‌های محصولات جدید</span><i class="icon-up-left-arrow"></i></a>
             </div>
         </div>
         <div class="footer-middle">
             <div class="footer-column contact-column">
                 <ul>
-                    <li><a href="#"><i class="icon-support_icon"></i><span>+۹۸۴۱۳۳۳۱۲۳۱۲</span></a></li>
-                    <li><a href="#"><i class="icon-support_icon"></i><span>+۹۸۴۱۳۳۳۱۲۳۱۲</span></a></li>
-                    <li><a href="#"><i class="icon-gps-logo"></i><span>جاده الگولی - فلکه خیام - کوچه سوم - پلاک ۴۳</span></a></li>
-                    <li><a href="#"><i class="icon-envelope"></i><span>info@akamod.com</span></a></li>
+                    <li>
+                        <a href="tel:+984133312312">
+                            <i class="icon-support_icon"></i>
+                            <div class="footer-tel"><span>۹۸۴۱۳۳۳۱۲۳۱۲</span><span>+</span></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="tel:+984133312312">
+                            <i class="icon-support_icon"></i>
+                            <div class="footer-tel"><span>۹۸۴۱۳۳۳۱۲۳۱۲</span><span>+</span></div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="https://www.google.com/maps?q=38.066863,46.326880" target="_blank">
+                            <i class="icon-gps-logo"></i>
+                            <span>جاده الگولی - فلکه خیام - کوچه سوم - پلاک ۴۳</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="mailto:info@akamod.com">
+                            <i class="icon-envelope"></i>
+                            <span>info@akamod.com</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
-            
+
             <div class="footer-links-group">
                 <?php if (!empty($footer_columns)) : ?>
                     <?php foreach ($footer_columns as $column_links) : ?>
@@ -59,13 +80,13 @@ if (!is_wp_error($api_data) && !empty($api_data['footer_links'])) {
                 <?php else : ?>
                     <div class="footer-column links-column">
                         <ul>
-                             <li><a href="#"><span>تماس با ما</span></a></li>
-                             <li><a href="#"><span>ارسال کالا</span></a></li>
+                            <li><a href="#"><span>تماس با ما</span></a></li>
+                            <li><a href="#"><span>ارسال کالا</span></a></li>
                         </ul>
                     </div>
                     <div class="footer-column links-column">
                         <ul>
-                             <li><a href="#"><span>قوانین و مقررات</span></a></li>
+                            <li><a href="#"><span>قوانین و مقررات</span></a></li>
                         </ul>
                     </div>
                 <?php endif; ?>

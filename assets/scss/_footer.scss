@@ -56,7 +56,6 @@
                                 font-size: 24px;
                                 vertical-align: middle;
                             }
-
                             span {
                                 font-size: 16px;
                                 font-style: normal;
@@ -64,6 +63,16 @@
                                 line-height: normal;
                                 vertical-align: middle;
                                 color: #272727;
+                            }
+                            .footer-tel {
+                                span {
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 200;
+                                    line-height: normal;
+                                    vertical-align: middle;
+                                    color: #272727;
+                                }
                             }
                         }
                     }
@@ -114,7 +123,7 @@
             align-content: flex-start;
             padding: 0px 24px;
             width: 100%;
-           
+
             .contact-column {
                 flex-basis: 30%;
             }

@@ -1,7 +1,7 @@
 @import "../../../../assets/scss/variables";
 @import "../../../../assets/scss/mixin";
 /* ==========================================================================
-   Category Styles
+   contactUS Styles
    ========================================================================== */
 body {
     @include media-max(mobile-max) {
@@ -12,15 +12,12 @@ body {
         }
     }
 }
-#site-header {
-    .mobile-header {
-        .mobile-header-container {
-            position: sticky !important;
-        }
-    }
-}
+
 .main-content {
     width: 100%;
+    @include media-max(mobile-max) {
+        padding-top: 72px;
+    }
     .contactUs-container {
         display: flex;
         flex-direction: column;
@@ -70,23 +67,54 @@ body {
                     gap: 1.5rem;
                     width: 100%;
 
-                    .info-row {
-                        display: flex;
-                        align-items: center;
-                        gap: 1.2rem;
-                        font-size: 0.95rem;
-                        color: #555555;
-
-                        .ltr-text {
-                            direction: ltr;
-                            font-family: sans-serif;
-                            letter-spacing: 0.5px;
-                        }
-
-                        .icon {
-                            width: 18px;
-                            height: 18px;
-                            opacity: 0.4;
+                    ul {
+                        display: flex !important;
+                        flex-direction: row !important;
+                        flex-wrap: wrap;
+                        justify-content: flex-start;
+                        direction: rtl;
+                        list-style: none !important;
+                        margin: 0;
+                        padding: 0;
+                        gap: 64px;
+                        li {
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: center;
+                            align-items: center;
+                            align-content: center;
+    
+                            a {
+                                display: flex;
+                                flex-direction: row;
+                                justify-content: center;
+                                align-items: center;
+                                align-content: center;
+                                gap: 8px;
+                                i {
+                                    color: #272727;
+                                    font-size: 24px;
+                                    vertical-align: middle;
+                                }
+                                span {
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 200;
+                                    line-height: normal;
+                                    vertical-align: middle;
+                                    color: #272727;
+                                }
+                                .footer-tel {
+                                    span {
+                                        font-size: 16px;
+                                        font-style: normal;
+                                        font-weight: 200;
+                                        line-height: normal;
+                                        vertical-align: middle;
+                                        color: #272727;
+                                    }
+                                }
+                            }
                         }
                     }
                 }
