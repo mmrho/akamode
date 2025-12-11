@@ -10,7 +10,7 @@ if (!is_user_logged_in()) {
 }
 
 
-get_header();
+get_header('single');
 ?>
 <!-- Main -->
 <main class="main-content account-main">

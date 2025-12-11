@@ -39,7 +39,12 @@ $redirect_to = isset($_GET['redirect_to']) ? esc_url($_GET['redirect_to']) : '';
                                 <input dir="ltr" class="input otp-input" type="text" inputmode="numeric" maxlength="5" id="otp" name="otp" placeholder=" " />
                                 <div class="otp-actions">
                                     <button type="button" id="edit-mobile-btn">تغییر شماره</button>
-                                    <button type="button" id="resend-otp-btn">ارسال مجدد کد</button>
+                                    
+                                    <div class="resend-wrapper" style="display: inline-flex; align-items: center;">
+                                        <button type="button" id="resend-otp-btn" style="display: none;">ارسال مجدد کد</button>
+                                        <span id="otp-timer" style="font-weight: bold; color: #666; margin-right: 5px;">02:00</span>
+                                    </div>
+
                                 </div>
                             </div>
 
@@ -51,8 +56,8 @@ $redirect_to = isset($_GET['redirect_to']) ? esc_url($_GET['redirect_to']) : '';
                     </div>
                 </div>
                 
-                <a href="#" class="help-link">
-                    <span>مشکل دارید؟</span>
+                <a href="<?php echo esc_url( home_url( '/contact-us/' ) ); ?>" class="help-link">
+                    <span>کد را دریافت نکردید؟</span>
                     <i class="icon-up-left-arrow"></i>
                 </a>
             </section>

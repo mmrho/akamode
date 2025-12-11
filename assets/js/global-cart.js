@@ -166,7 +166,8 @@ class CartManager {
                         <div class="minus" onclick="window.cartManager.updateQuantity('${item.unique_id}', -1)" style="cursor:pointer;">-</div>
                     </div>
                     <div class="remove" onclick="window.cartManager.removeItem('${item.unique_id}')">
-                        <i class="icon-trash" style="font-style:normal; cursor:pointer; color:red;">حذف</i>
+                        <i class="icon-trash" style="cursor:pointer; color:red;"></i>
+                        <span style="cursor:pointer; color:red;">حذف</span>
                     </div>
                 </div>
             </div>

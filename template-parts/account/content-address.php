@@ -2,9 +2,12 @@
 /**
  * Template Part: Address List & Form
  * Features: 
- * - Lists user addresses
+ * - Lists user addresses with correct span structure
  * - Add/Edit/Delete functionality
- * - Dynamic Iran Province & City dropdowns
+ * - Dynamic Iran Province & City dropdowns with Trim fix
+ * - SweetAlert validation
+ * - Numeric only input restriction for Phone and Zip
+ * - Uses WbsUtility for display formatting if available
  */
 
 $api = get_query_var('api_client');
@@ -21,22 +24,26 @@ if(is_wp_error($addresses)) $addresses = [];
             <p class="text">آدرسی وجود ندارد. لطفا یک آدرس جدید ایجاد کنید.</p>
         <?php else: ?>
             <?php foreach($addresses as $addr): 
-                // داده‌ها را برای استفاده در جاوااسکریپت آماده می‌کنیم
                 $json_addr = json_encode($addr);
+
+                // نمایش اعداد با فرمت استاندارد
+                $phone_display = class_exists('WbsUtility') ? WbsUtility::convertFaNum2EN($addr['phone']) : $addr['phone'];
+                $zip_display   = class_exists('WbsUtility') ? WbsUtility::convertFaNum2EN($addr['zip_code']) : $addr['zip_code'];
             ?>
             <div class="address-item" style="border:1px solid #eee; padding:15px; border-radius:8px; position:relative;">
+                
                 <div class="row">
-                    <strong>گیرنده:</strong> <?php echo esc_html($addr['full_name']); ?> 
-                    | <strong>تلفن:</strong> <?php echo esc_html($addr['phone']); ?>
+                    <strong>گیرنده:</strong> <span><?php echo esc_html($addr['full_name']); ?></span> 
+                    | <strong>تلفن:</strong> <span><?php echo esc_html($phone_display); ?></span>
                 </div>
                 <div class="row">
-                    <strong>استان/شهر:</strong> <?php echo esc_html($addr['state'] . ' - ' . $addr['city']); ?>
+                    <strong>استان/شهر:</strong> <span><?php echo esc_html($addr['state'] . ' - ' . $addr['city']); ?></span>
                 </div>
                 <div class="row">
-                    <strong>آدرس:</strong> <?php echo esc_html($addr['address']); ?>
+                    <strong>آدرس:</strong> <span><?php echo esc_html($addr['address']); ?></span>
                 </div>
                 <div class="row">
-                    <strong>کدپستی:</strong> <?php echo esc_html($addr['zip_code']); ?>
+                    <strong>کدپستی:</strong> <span><?php echo esc_html($zip_display); ?></span>
                 </div>
                 
                 <div style="margin-top:10px; display:flex; gap:15px;">
@@ -64,38 +71,38 @@ if(is_wp_error($addresses)) $addresses = [];
     <div class="address" id="address-form-container">
         <p class="title" id="form-title">افزودن آدرس جدید</p>
         
-        <form method="post" class="address-form" id="main-address-form">
+        <form method="post" class="address-form" id="main-address-form" novalidate>
             <?php wp_nonce_field('wbs_address_action'); ?>
             
             <input type="hidden" name="wbs_action" id="form-action" value="add_address">
             <input type="hidden" name="address_id" id="form-address-id" value="">
 
             <div class="select input">
-                <input type="text" name="full_name" id="inp-fullname" placeholder="نام و نام خانوادگی تحویل گیرنده *" required>
+                <input type="text" name="full_name" id="inp-fullname" placeholder="نام و نام خانوادگی تحویل گیرنده *" class="wbs-required" data-name="نام و نام خانوادگی">
             </div>
 
             <div class="select input">
-                <input type="text" name="phone" id="inp-phone" placeholder="شماره تماس *" required>
+                <input type="text" name="phone" id="inp-phone" placeholder="شماره تماس *" class="wbs-required" data-name="شماره تماس" inputmode="numeric" maxlength="11">
             </div>
 
             <div class="select">
-                <select name="state" id="inp-state" required>
+                <select name="state" id="inp-state" class="wbs-required" data-name="استان">
                     <option value="">انتخاب استان *</option>
                 </select>
             </div>
             
             <div class="select">
-                <select name="city" id="inp-city" required>
+                <select name="city" id="inp-city" class="wbs-required" data-name="شهر">
                     <option value="">ابتدا استان را انتخاب کنید *</option>
                 </select>
             </div>
 
             <div class="select input">
-                <input type="text" name="address" id="inp-address" placeholder="آدرس دقیق پستی *" required>
+                <input type="text" name="address" id="inp-address" placeholder="آدرس دقیق پستی *" class="wbs-required" data-name="آدرس دقیق">
             </div>
             
             <div class="select input">
-                <input type="text" name="zip_code" id="inp-zip" placeholder="کد پستی *" required>
+                <input type="text" name="zip_code" id="inp-zip" placeholder="کد پستی *" class="wbs-required" data-name="کد پستی" inputmode="numeric" maxlength="10">
             </div>
 
             <div class="buttons">
@@ -107,7 +114,6 @@ if(is_wp_error($addresses)) $addresses = [];
 </div>
 
 <script>
-    // دیتابیس شهرهای ایران
     const iranCities = {
         "آذربایجان شرقی": ["تبریز", "مراغه", "مرند", "میانه", "اهر", "بناب", "سراب", "آذرشهر", "هادیشهر", "عجب‌شیر", "سردرود", "ملکان", "شبستر", "خسروشاه", "بستان‌آباد", "هشترود", "اسکو", "ایلخچی", "باسمنج", "ممقان", "گوگان", "هریس", "یامچی", "صوفیان", "کلیبر", "جلفا", "شندآباد", "کشکسرای", "تسوج", "کلوانق", "ترکمانچای", "لیلان", "سیس", "بخشایش", "قره‌آغاج", "مهربان", "تیمورلو", "ورزقان", "زرنق", "شربیان", "کوزه کنان", "وایقان", "هوراند", "مبارک شهر", "خامنه", "شرفخانه", "خداجو", "دوزدوزان", "خروسلو", "تیکمه داش", "آبش احمد", "ترک", "آچاچی", "سیه رود", "خمارلو", "خداآفرین", "لیلان"],
         "آذربایجان غربی": ["ارومیه", "خوی", "بوکان", "مهاباد", "میاندوآب", "سلماس", "پیرانشهر", "نقده", "تکاب", "ماکو", "سردشت", "شاهین‌دژ", "اشنویه", "قره‌ضیاءالدین", "شوط", "سیه‌چشمه", "ربط", "پلدشت", "بازرگان", "چهاربرج", "محمدیار", "فیرورق", "تازه شهر", "نوشین شهر", "دیزج دیز", "محمودآباد", "میرآباد", "کوتول", "باروق", "گردکشانه", "آواجیق", "سیلوانه", "حاجی لار", "کشاورز", "ایواوغلی", "نالوس", "قوشچی", "یولاگلدی", "خلیفان", "سرو", "مرگنلر"],
@@ -143,14 +149,12 @@ if(is_wp_error($addresses)) $addresses = [];
     };
 
     document.addEventListener('DOMContentLoaded', function() {
-        // متغیرها
         const stateSelect = document.getElementById('inp-state');
         const citySelect = document.getElementById('inp-city');
         const editBtns = document.querySelectorAll('.edit-address-btn');
         const btnCancel = document.getElementById('btn-cancel-edit');
         const formContainer = document.getElementById('address-form-container');
         
-        // فرم و فیلدها
         const mainForm = document.getElementById('main-address-form');
         const formAction = document.getElementById('form-action');
         const formId = document.getElementById('form-address-id');
@@ -161,7 +165,42 @@ if(is_wp_error($addresses)) $addresses = [];
         const inpAddress = document.getElementById('inp-address');
         const inpZip = document.getElementById('inp-zip');
 
-        // 1. پر کردن لیست استان‌ها در شروع کار
+        // [اصلاح جدید]: توابع کمکی برای تبدیل اعداد و محدودیت ورودی
+        function convertToEnglishDigits(str) {
+            if (!str) return str;
+            const digitMappings = {
+                "٠": "0", "١": "1", "٢": "2", "٣": "3", "٤": "4", "٥": "5", "٦": "6", "٧": "7", "٨": "8", "٩": "9",
+                "۰": "0", "۱": "1", "۲": "2", "۳": "3", "۴": "4", "۵": "5", "۶": "6", "۷": "7", "۸": "8", "۹": "9"
+            };
+            return str.replace(/[٠-٩۰-۹]/g, function(w) {
+                return digitMappings[w];
+            });
+        }
+
+        function setupNumericInput(elementId) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            
+            el.addEventListener('input', function(e) {
+                let val = this.value;
+                // ۱. تبدیل فارسی به انگلیسی
+                val = convertToEnglishDigits(val);
+                // ۲. حذف هر چیزی غیر از عدد
+                val = val.replace(/[^0-9]/g, '');
+                
+                // ۳. آپدیت مقدار اگر تغییر کرده
+                if (this.value !== val) {
+                    this.value = val;
+                }
+            });
+        }
+
+        // فعال‌سازی محدودیت عددی برای تلفن و کد پستی
+        setupNumericInput('inp-phone');
+        setupNumericInput('inp-zip');
+
+
+        // 1. پر کردن لیست استان‌ها
         for (let province in iranCities) {
             let option = document.createElement('option');
             option.value = province;
@@ -169,18 +208,17 @@ if(is_wp_error($addresses)) $addresses = [];
             stateSelect.appendChild(option);
         }
 
-        // 2. تابع بروزرسانی شهرها بر اساس استان
+        // 2. تابع بروزرسانی شهرها (با اصلاح trim)
         function updateCities(selectedProvince, selectedCity = null) {
-            // پاک کردن شهرهای قبلی
             citySelect.innerHTML = '<option value="">انتخاب شهر *</option>';
+            let safeProvince = selectedProvince ? selectedProvince.trim() : "";
             
-            if (selectedProvince && iranCities[selectedProvince]) {
-                iranCities[selectedProvince].forEach(city => {
+            if (safeProvince && iranCities[safeProvince]) {
+                iranCities[safeProvince].forEach(city => {
                     let option = document.createElement('option');
                     option.value = city;
                     option.text = city;
-                    // اگر شهری برای انتخاب مد نظر است (حالت ویرایش)
-                    if (selectedCity && city === selectedCity) {
+                    if (selectedCity && city.trim() === selectedCity.trim()) {
                         option.selected = true;
                     }
                     citySelect.appendChild(option);
@@ -190,50 +228,77 @@ if(is_wp_error($addresses)) $addresses = [];
             }
         }
 
-        // 3. رویداد تغییر استان
         stateSelect.addEventListener('change', function() {
             updateCities(this.value);
         });
 
-        // 4. مدیریت دکمه ویرایش
+        // 3. دکمه ویرایش (با اصلاح trim)
         editBtns.forEach(btn => {
             btn.addEventListener('click', function() {
                 const data = JSON.parse(this.getAttribute('data-address'));
                 
-                // پر کردن فیلدهای متنی
                 inpName.value = data.full_name;
                 inpPhone.value = data.phone;
                 inpAddress.value = data.address;
                 inpZip.value = data.zip_code;
                 formId.value = data.id;
 
-                // تنظیم استان
-                stateSelect.value = data.state;
-                
-                // بروزرسانی لیست شهرها و انتخاب شهر درست
-                updateCities(data.state, data.city);
+                let savedState = data.state ? data.state.trim() : "";
+                let savedCity = data.city ? data.city.trim() : "";
 
-                // تغییر وضعیت فرم
+                stateSelect.value = savedState;
+                updateCities(savedState, savedCity);
+
                 formAction.value = 'update_address';
                 formTitle.innerText = 'ویرایش آدرس';
                 btnSubmit.innerText = 'بروزرسانی آدرس';
 
-                // اسکرول به فرم
                 formContainer.scrollIntoView({behavior: 'smooth'});
             });
         });
 
-        // 5. مدیریت دکمه انصراف
         btnCancel.addEventListener('click', function() {
             mainForm.reset();
-            
-            // ریست کردن لیست شهرها
             citySelect.innerHTML = '<option value="">ابتدا استان را انتخاب کنید *</option>';
-            
             formAction.value = 'add_address';
             formId.value = '';
             formTitle.innerText = 'افزودن آدرس جدید';
             btnSubmit.innerText = 'ثبت آدرس';
+        });
+
+        // 4. اعتبارسنجی با SweetAlert
+        mainForm.addEventListener('submit', function(e) {
+            let hasError = false;
+            let firstErrorField = null;
+            let errorMsg = "";
+
+            const requiredFields = mainForm.querySelectorAll('.wbs-required');
+
+            requiredFields.forEach(function(field) {
+                if (field.value.trim() === "") {
+                    if (!hasError) {
+                        hasError = true;
+                        firstErrorField = field;
+                        errorMsg = "لطفا فیلد " + field.getAttribute('data-name') + " را تکمیل کنید.";
+                    }
+                    field.style.borderColor = "red";
+                } else {
+                    field.style.borderColor = "#ddd";
+                }
+            });
+
+            if (hasError) {
+                e.preventDefault();
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'خطا',
+                    text: errorMsg,
+                    confirmButtonText: 'باشه',
+                    target: 'body',
+                    customClass: { container: 'wbs-popup-panel' }
+                });
+                if(firstErrorField) firstErrorField.focus();
+            }
         });
     });
 </script>

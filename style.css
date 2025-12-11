@@ -1131,6 +1131,7 @@ a:focus {
 #site-header .mobile-header-container .mobile-header-content .mobile-header-action .mobile-menu-toggle i {
   font-size: 24px;
   transition: opacity 0.3s ease;
+  color: #000;
 }
 #site-header .mobile-header-container .mobile-header-content .mobile-header-action .mobile-menu-toggle .menu-label {
   display: none;

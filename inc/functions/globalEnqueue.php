@@ -10,13 +10,13 @@ wp_register_script('jquery', THEME_JS . 'jquery-3.6.0.min.js', false, NULL, true
 wp_enqueue_script('jquery');
 
 
-wp_enqueue_script('swiper', THEME_JS . 'swiper-bundle.min.js', array('jquery'), THEME_VERSION, true);
+//wp_enqueue_script('swiper', THEME_JS . 'swiper-bundle.min.js', array('jquery'), THEME_VERSION, true);
 wp_enqueue_script('sweetalert', THEME_ASSETS . 'plugins/sweetalert2/dist/sweetalert2.all.min.js', array('jquery'), THEME_VERSION, true);
 wp_enqueue_script('script', THEME_JS . 'script.js', array('jquery'), THEME_VERSION, true);
 wp_enqueue_script('loading', THEME_ASSETS . 'js/Modules/loading.js', array('script'), THEME_VERSION, true);
 wp_enqueue_script('wbsChangeUrl', THEME_ASSETS . 'js/Modules/wbsChangeUrl.js', array('script'), THEME_VERSION, true);
 wp_enqueue_script('wbsAjax', THEME_ASSETS . 'js/Modules/wbsAjax.js', array('script'), THEME_VERSION, true);
-//wp_enqueue_script('header', THEME_ASSETS . 'js/header.js', array('script'), THEME_VERSION, true);
+
 // Check if we are NOT on the login page (wp-login.php) AND NOT on a page with slug 'login'
 if ( $GLOBALS['pagenow'] !== 'wp-login.php' && ! is_page('login') ) {
     

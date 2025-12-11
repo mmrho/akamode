@@ -21,22 +21,6 @@ function akamode_send_success($data) {
 }
 
 /**
- * تبدیل اعداد فارسی/عربی به انگلیسی و تمیزکاری
- */
-function akamode_sanitize_mobile($number) {
-    $number = sanitize_text_field($number);
-    $persian = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-    $arabic  = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
-    $english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-
-    $number = str_replace($persian, $english, $number);
-    $number = str_replace($arabic, $english, $number);
-    
-    // فقط اعداد باقی بمانند
-    return preg_replace('/[^0-9]/', '', $number);
-}
-
-/**
  * ایجاد یا بروزرسانی کاربر در وردپرس پس از لاگین موفق
  */
 function akamode_create_or_update_user($api_user_data, $token) {
@@ -89,21 +73,53 @@ add_action('wp_ajax_nopriv_akamode_send_otp', 'akamode_handle_send_otp');
 add_action('wp_ajax_akamode_send_otp', 'akamode_handle_send_otp');
 
 function akamode_handle_send_otp() {
-    // بررسی Nonce برای امنیت (در صورت وجود در JS)
+    // بررسی Nonce برای امنیت
     if(isset($_POST['security'])) {
         check_ajax_referer('akamode_auth_nonce', 'security');
     }
 
-    // خواندن از آرایه fields
     $fields = isset($_POST['fields']) ? $_POST['fields'] : [];
-    $phone  = isset($fields['mobile']) ? akamode_sanitize_mobile($fields['mobile']) : '';
+    
+    // استفاده از کلاس WbsUtility برای تمیزکاری و تبدیل اعداد
+    if (isset($fields['mobile'])) {
+        $raw_mobile = WbsUtility::convertFaNum2EN($fields['mobile']); 
+        $phone = WbsUtility::inputClean($raw_mobile); 
+    } else {
+        $phone = '';
+    }
 
-    if (empty($phone) || strlen($phone) < 10) {
+    // ولیدیشن فرمت موبایل با استفاده از کلاس WbsUtility
+    if (!class_exists('WbsUtility') || !WbsUtility::wbsCheckPhone($phone)) {
         akamode_send_error('شماره موبایل وارد شده صحیح نمی‌باشد!');
         return;
     }
 
-    // اگر کلاس API موجود نیست خطا بده
+    // --- سیستم محدودیت ارسال (Rate Limiting) ---
+    $hashed_phone = md5($phone); 
+    $block_key = 'otp_blocked_' . $hashed_phone;
+    $count_key = 'otp_count_' . $hashed_phone;
+
+    // ۱. بررسی اینکه آیا کاربر بلاک شده است؟
+    if (get_transient($block_key)) {
+        akamode_send_error('تعداد درخواست‌های شما بیش از حد مجاز است. لطفا ۱۰ دقیقه دیگر تلاش کنید.');
+        return;
+    }
+
+    // ۲. بررسی تعداد تلاش‌ها
+    $attempts = (int) get_transient($count_key);
+    
+    if ($attempts >= 5) {
+        // اگر به ۵ تلاش رسید، بلاک کن برای ۱۰ دقیقه
+        set_transient($block_key, true, 10 * 60); 
+        delete_transient($count_key); 
+        akamode_send_error('شما ۵ بار درخواست کد داده‌اید. دسترسی شما به مدت ۱۰ دقیقه محدود شد.');
+        return;
+    } else {
+        // افزایش شمارنده (اعتبار شمارنده ۱۵ دقیقه)
+        set_transient($count_key, $attempts + 1, 15 * 60);
+    }
+    // ---------------------------------------------
+
     if (!class_exists('Laravel_API_Client')) {
         akamode_send_error('خطای سیستمی: کلاس API یافت نشد.');
         return;
@@ -138,10 +154,11 @@ function akamode_handle_verify_otp() {
     }
 
     $fields = isset($_POST['fields']) ? $_POST['fields'] : [];
-    $phone  = isset($fields['mobile']) ? akamode_sanitize_mobile($fields['mobile']) : '';
-    $code   = isset($fields['otp']) ? akamode_sanitize_mobile($fields['otp']) : '';
     
-    // --- [دریافت آدرس ریدایرکت] ---
+    // استفاده از WbsUtility برای ورودی‌ها
+    $phone = isset($fields['mobile']) ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($fields['mobile'])) : '';
+    $code  = isset($fields['otp']) ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($fields['otp'])) : '';
+    
     $redirect_input = isset($fields['redirect_to']) ? esc_url_raw($fields['redirect_to']) : '';
 
     if (empty($phone) || empty($code)) {
@@ -189,13 +206,14 @@ function akamode_handle_verify_otp() {
         wp_set_current_user($userID);
         wp_set_auth_cookie($userID);
 
-        // --- [منطق ریدایرکت هوشمند] ---
-        // اگر آدرس ریدایرکت (مثل چک‌اوت) وجود داشت، به آنجا برو
+        // حذف شمارنده تلاش‌های ناموفق پس از لاگین موفق (اختیاری)
+        // delete_transient('otp_count_' . md5($phone));
+
+        // ریدایرکت
         if (!empty($redirect_input)) {
             $final_redirect = $redirect_input;
         } else {
-            // در غیر این صورت به داشبورد برو
-            $final_redirect = home_url('/dashboard'); // آدرس پیش‌فرض داشبورد
+            $final_redirect = home_url('/dashboard');
         }
 
         akamode_send_success([

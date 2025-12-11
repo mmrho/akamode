@@ -1,20 +1,19 @@
 <?php
+
 /**
  * Template Name: User Dashboard
  * File: accountPage.php
  * Description: Main controller for user dashboard, handles API logic and view routing.
  */
 
-// 1. بررسی امنیت و لاگین بودن کاربر
+// 1. Check security and user login
 if (!is_user_logged_in()) {
-    // اگر کاربر لاگین نیست، به صفحه ورود هدایت شود
-    wp_redirect(home_url('/user-login')); 
+    wp_redirect(home_url('/user-login'));
     exit;
 }
 
-// 2. دریافت توکن و تنظیمات API
+// 2. Get API token and settings
 $current_user_id = get_current_user_id();
-// توکن را از متای کاربر که در مرحله لاگین ذخیره شده می‌خوانیم
 $token = get_user_meta($current_user_id, '_laravel_api_token', true);
 
 $api = Laravel_API_Client::get_instance();
@@ -22,28 +21,35 @@ if ($token) {
     $api->set_token($token);
 }
 
-// متغیرهای نمایش پیام به کاربر
+// Variables for displaying the message to the user
 $success_msg = '';
 $error_msg   = '';
 
-// 3. پردازش فرم‌ها (وقتی دکمه‌ای زده می‌شود)
+// 3. Processing forms (when a button is clicked)
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    // --- الف) آپدیت پروفایل (نام و ایمیل) ---
+
+    // --- A) Update profile (name and email) ---
     if (isset($_POST['wbs_action']) && $_POST['wbs_action'] === 'update_profile') {
         if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'wbs_profile_update')) {
             $error_msg = 'نشست امنیتی منقضی شده است. لطفا صفحه را رفرش کنید.';
         } else {
-            $name  = sanitize_text_field($_POST['account_name']);
-            $email = sanitize_email($_POST['account_email']);
-            
-            // ارسال به API
+            // [اصلاح]: استفاده از WbsUtility برای تمیزکاری نام و ایمیل
+            $name_raw = isset($_POST['account_name']) ? $_POST['account_name'] : '';
+            $name = class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($name_raw)) : sanitize_text_field($name_raw);
+
+            $current_user_data = get_userdata($current_user_id);
+            $email = $current_user_data->user_email;
+
+            if (! empty($_POST['account_email'])) {
+                $email_raw = $_POST['account_email'];
+                $email = class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($email_raw)) : sanitize_email($email_raw);
+            }
+
             $result = $api->update_profile($name, $email);
-            
+
             if (is_wp_error($result)) {
                 $error_msg = $result->get_error_message();
             } else {
-                // موفقیت: همزمان در وردپرس هم آپدیت می‌کنیم
                 wp_update_user([
                     'ID' => $current_user_id,
                     'display_name' => $name,
@@ -55,18 +61,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // --- ب) افزودن آدرس جدید ---
+    // --- B) adding new address ---
     if (isset($_POST['wbs_action']) && $_POST['wbs_action'] === 'add_address') {
         if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'wbs_address_action')) {
             $error_msg = 'خطای امنیتی.';
         } else {
+            // [اصلاح]: استفاده از WbsUtility برای تمام فیلدهای آدرس
             $address_data = [
-                'full_name' => sanitize_text_field($_POST['full_name']),
-                'phone'     => sanitize_text_field($_POST['phone']),
-                'state'     => sanitize_text_field($_POST['state']), // کلید صحیح طبق API لاراول
-                'city'      => sanitize_text_field($_POST['city']),
-                'address'   => sanitize_textarea_field($_POST['address']),
-                'zip_code'  => sanitize_text_field($_POST['zip_code']),
+                'full_name' => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['full_name'] ?? '')) : sanitize_text_field($_POST['full_name']),
+                'phone'     => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['phone'] ?? '')) : sanitize_text_field($_POST['phone']),
+                'state'     => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['state'] ?? '')) : sanitize_text_field($_POST['state']),
+                'city'      => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['city'] ?? '')) : sanitize_text_field($_POST['city']),
+                'address'   => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['address'] ?? '')) : sanitize_textarea_field($_POST['address']),
+                'zip_code'  => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['zip_code'] ?? '')) : sanitize_text_field($_POST['zip_code']),
             ];
 
             $result = $api->add_address($address_data);
@@ -79,22 +86,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // --- ج) ویرایش آدرس موجود (جدید) ---
+    // --- C) Edit existing address ---
     if (isset($_POST['wbs_action']) && $_POST['wbs_action'] === 'update_address') {
         if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'wbs_address_action')) {
             $error_msg = 'خطای امنیتی.';
         } else {
             $addr_id = intval($_POST['address_id']);
+
+            // [اصلاح]: استفاده از WbsUtility برای تمام فیلدهای آدرس در ویرایش
             $address_data = [
-                'full_name' => sanitize_text_field($_POST['full_name']),
-                'phone'     => sanitize_text_field($_POST['phone']),
-                'state'     => sanitize_text_field($_POST['state']),
-                'city'      => sanitize_text_field($_POST['city']),
-                'address'   => sanitize_textarea_field($_POST['address']),
-                'zip_code'  => sanitize_text_field($_POST['zip_code']),
+                'full_name' => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['full_name'] ?? '')) : sanitize_text_field($_POST['full_name']),
+                'phone'     => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['phone'] ?? '')) : sanitize_text_field($_POST['phone']),
+                'state'     => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['state'] ?? '')) : sanitize_text_field($_POST['state']),
+                'city'      => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['city'] ?? '')) : sanitize_text_field($_POST['city']),
+                'address'   => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['address'] ?? '')) : sanitize_textarea_field($_POST['address']),
+                'zip_code'  => class_exists('WbsUtility') ? WbsUtility::inputClean(WbsUtility::convertFaNum2EN($_POST['zip_code'] ?? '')) : sanitize_text_field($_POST['zip_code']),
             ];
 
-            // کلاینت API خودش متد PUT را هندل می‌کند
             $result = $api->update_address($addr_id, $address_data);
 
             if (is_wp_error($result)) {
@@ -105,14 +113,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    // --- د) حذف آدرس ---
+    // --- D) Delete address ---
     if (isset($_POST['wbs_action']) && $_POST['wbs_action'] === 'delete_address') {
         if (!isset($_POST['_wpnonce']) || !wp_verify_nonce($_POST['_wpnonce'], 'wbs_delete_address')) {
             $error_msg = 'خطای امنیتی.';
         } else {
             $addr_id = intval($_POST['address_id']);
             $result = $api->delete_address($addr_id);
-            
+
             if (is_wp_error($result)) {
                 $error_msg = $result->get_error_message();
             } else {
@@ -122,10 +130,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// 4. دریافت اطلاعات کاربر (برای نمایش در هدر)
+// 4. Get user information
 $user_info = $api->get_user_info();
 if (is_wp_error($user_info)) {
-    // اگر API قطع بود، از دیتای وردپرس استفاده کن تا صفحه سفید نشود
     $current_wp_user = wp_get_current_user();
     $user = [
         'name' => $current_wp_user->display_name,
@@ -133,14 +140,13 @@ if (is_wp_error($user_info)) {
         'mobile' => $current_wp_user->user_login
     ];
 } else {
-    $user = $user_info; 
+    $user = $user_info;
 }
 
-// 5. مدیریت تب‌ها و URL
+// 5. Tabs and URL Management
 $active_tab = isset($_GET['tab']) ? sanitize_key($_GET['tab']) : 'dashboard';
-$base_url   = get_permalink(); 
-$logout_url = wp_logout_url(home_url()); // لینک خروج استاندارد وردپرس
-
+$base_url   = get_permalink();
+$logout_url = wp_logout_url(home_url());
 ?>
 
 <div class="modal-container">
@@ -157,7 +163,7 @@ $logout_url = wp_logout_url(home_url()); // لینک خروج استاندارد
             <a href="<?php echo esc_url($logout_url); ?>" class="logout" style="text-decoration:none;">خروج</a>
         </div>
     </div>
- </div>
+</div>
 
 <div class="container">
     <div class="main">
@@ -165,30 +171,26 @@ $logout_url = wp_logout_url(home_url()); // لینک خروج استاندارد
         <div class="top">
             <h1>حساب کاربری</h1>
             <p><?php echo isset($user['name']) ? 'سلام ' . esc_html($user['name']) : 'خوش آمدید'; ?></p>
-            
-            <?php if($success_msg): ?>
+
+            <?php if ($success_msg): ?>
                 <div style="background:#d4edda;color:#155724;padding:10px;border-radius:5px;width:100%;text-align:center; margin-bottom: 20px;">
                     <?php echo esc_html($success_msg); ?>
                 </div>
             <?php endif; ?>
 
-            <?php if($error_msg): ?>
+            <?php if ($error_msg): ?>
                 <div style="background:#f8d7da;color:#721c24;padding:10px;border-radius:5px;width:100%;text-align:center; margin-bottom: 20px;">
                     <?php echo esc_html($error_msg); ?>
                 </div>
             <?php endif; ?>
         </div>
-        
-        <?php 
-        // سناریوی 1: نمایش جزئیات یک سفارش خاص (بدون تب‌ها)
-        if ($active_tab == 'view-order') : 
-            set_query_var('api_client', $api); 
-            get_template_part('template-parts/account/content-view-order'); 
 
-        // سناریوی 2: نمایش تب‌های استاندارد
-        else : 
+        <?php
+        if ($active_tab == 'view-order') :
+            set_query_var('api_client', $api);
+            get_template_part('template-parts/account/content-view-order');
+        else :
         ?>
-
             <div class="tabs-container">
                 <div class="tabs">
                     <a href="<?php echo esc_url($base_url); ?>" class="tab <?php echo ($active_tab == 'dashboard') ? 'active' : ''; ?>">داشبورد</a>
@@ -199,26 +201,22 @@ $logout_url = wp_logout_url(home_url()); // لینک خروج استاندارد
                 </div>
 
                 <div class="body">
-                <?php
-                    // ارسال متغیرها به فایل‌های تمپلت (بسیار مهم)
+                    <?php
                     set_query_var('user_data', $user);
                     set_query_var('api_client', $api);
 
                     if ($active_tab == 'orders') {
                         get_template_part('template-parts/account/content-orders');
                     } elseif ($active_tab == 'address') {
-                        // فایل آدرس‌ها که اصلاح کردیم
                         get_template_part('template-parts/account/content-address');
                     } elseif ($active_tab == 'details') {
                         get_template_part('template-parts/account/content-details');
                     } else {
                         get_template_part('template-parts/account/content-dashboard');
                     }
-                ?>
+                    ?>
                 </div>
             </div>
-
         <?php endif; ?>
-        
     </div>
 </div>
