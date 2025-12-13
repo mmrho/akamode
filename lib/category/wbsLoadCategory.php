@@ -29,18 +29,31 @@ function wbsLoadCategory()
 
         // درخواست به API برای گرفتن محصولات این دسته خاص
         if ($cat_slug) {
-            // نکته: طبق مستندات، ممکن است API شما محصولات را داخل همین اندپوینت برگرداند
-            // یا نیاز باشد از اندپوینت search یا products با فیلتر استفاده کنید.
-            // فرض بر اساس فایل جیسون شما: /api/v1/categories/{slug}
-            $response = $api->get_category_single($cat_slug); // باید متدی باشد که محصولات را هم برگرداند یا جداگانه کال کنید
+            // دریافت اطلاعات دسته و محصولات طبق API جدید
+            $response = $api->get_category_single($cat_slug);
             
             if (!is_wp_error($response) && isset($response['category'])) {
                 $is_single_category = true;
                 $current_category = $response['category'];
                 
-                // اگر API محصولات را داخل کلید products برمی‌گرداند
-                $products = isset($response['products']['data']) ? $response['products']['data'] : (isset($response['products']) ? $response['products'] : []);
-                $meta = isset($response['products']['meta']) ? $response['products']['meta'] : [];
+                // --- اصلاح برای API جدید ---
+                // در جیسون جدید، products یک آرایه مستقیم است، نه داخل data
+                $products = isset($response['products']) ? $response['products'] : [];
+                
+                // --- اصلاح برای API جدید ---
+                // متادیتای صفحه‌بندی در کلید pagination قرار دارد
+                if (isset($response['pagination'])) {
+                    $pag = $response['pagination'];
+                    $meta = [
+                        'current_page' => $pag['current_page'] ?? 1,
+                        // نگاشت total_pages به last_page برای هماهنگی با ویو
+                        'last_page'    => $pag['total_pages'] ?? 1,
+                        'total'        => $pag['total'] ?? 0
+                    ];
+                } elseif (isset($response['products']['meta'])) {
+                    // پشتیبانی از حالت قدیمی (محض احتیاط)
+                    $meta = $response['products']['meta'];
+                }
             }
         }
     } 
@@ -64,7 +77,7 @@ function wbsLoadCategory()
     set_query_var('wbs_is_single_cat', $is_single_category);
     set_query_var('wbs_current_cat', $current_category);
     set_query_var('wbs_products', $products);
-    set_query_var('wbs_meta', $meta); // متادیتای صفحه‌بندی
+    set_query_var('wbs_meta', $meta); 
     set_query_var('wbs_all_cats', isset($page_data['categories']) ? $page_data['categories'] : []);
 
     require_once "template/categoryPage.php";

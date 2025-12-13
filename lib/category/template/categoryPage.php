@@ -7,52 +7,77 @@ $all_cats      = get_query_var('wbs_all_cats');
 
 $base_api_url = defined('LARAVEL_API_URL') ? LARAVEL_API_URL : 'https://api.akamode.com';
 $site_url_clean = untrailingslashit($base_api_url);
+
+// 
+$categories_to_show = [];
+
+if (!$is_single_cat && !empty($all_cats)) {
+   
+    $categories_to_show = $all_cats;
+} elseif ($is_single_cat && !empty($current_cat['children'])) {
+   
+    $categories_to_show = $current_cat['children'];
+}
 ?>
 
 <div class="main-container">
     <div class="category-container">
-        
+
         <div class="page-title-container">
             <section class="page-title">
                 <div class="breadcrumbs">
-                    <a href="<?php echo home_url(); ?>">خانه</a> > 
+                    <a href="<?php echo home_url(); ?>">خانه</a> >
                     <a href="<?php echo home_url('category/categories'); ?>">دسته بندی ها</a>
-                    <?php if($is_single_cat && !empty($current_cat)): ?>
+                    <?php if ($is_single_cat && !empty($current_cat)): ?>
                         > <span><?php echo esc_html($current_cat['name']); ?></span>
                     <?php endif; ?>
                 </div>
-                
+
                 <h2 class="page-title">
                     <?php echo ($is_single_cat && !empty($current_cat)) ? esc_html($current_cat['name']) : 'دسته بندی ها'; ?>
                 </h2>
-                
-                <?php if(!$is_single_cat): ?>
+
+                <?php if (!$is_single_cat): ?>
                     <p class="page-description">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم با هدف بهبود ابزارهای کاربردی می باشد...</p>
                 <?php endif; ?>
             </section>
 
-            <?php 
-            // --- شرط مهم: فقط اگر در صفحه اصلی دسته‌بندی هستیم، زیرمجموعه‌ها را نشان بده ---
-            if ( ! $is_single_cat && !empty($all_cats) ): 
+            <?php
+            
+            if (!empty($categories_to_show)):
             ?>
                 <section class="sub-categories">
-                    <?php foreach ($all_cats as $cat): ?>
+                    <?php foreach ($categories_to_show as $cat): ?>
                         <?php
                         $c_name = $cat['name'] ?? 'بدون نام';
                         $c_slug = $cat['slug'] ?? '#';
-                        // لینک‌دهی استاندارد به صفحه دسته‌بندی وردپرس
                         $c_link = home_url('/category/' . $c_slug);
 
+                        
+                        $c_img = get_template_directory_uri() . '/images/temp/akamode-default-image.png';
+
                         if (!empty($cat['image_path'])) {
-                            $c_img = $site_url_clean . '/storage/' . ltrim($cat['image_path'], '/');
-                        } elseif(!empty($cat['image'])) {
-                             $c_img = $cat['image'];
-                        } else {
-                            $c_img = get_template_directory_uri() . '/images/temp/akamode-default-image.png';
+                            
+                            $path = ltrim($cat['image_path'], '/');
+
+                           
+                            if (strpos($path, 'storage') === 0) {
+                                $c_img = $site_url_clean . '/' . $path;
+                            } else {
+                              
+                                $c_img = $site_url_clean . '/storage/' . $path;
+                            }
+                        } elseif (!empty($cat['image'])) {
+                          
+                            $c_img = $cat['image'];
+                            if (strpos($c_img, 'http') === false) {
+                                $c_img = $site_url_clean . '/' . ltrim($c_img, '/');
+                            }
                         }
                         ?>
                         <a href="<?php echo esc_url($c_link); ?>" class="sub-cat-item">
                             <img src="<?php echo esc_url($c_img); ?>" alt="<?php echo esc_attr($c_name); ?>">
+                            <span><?php echo esc_html($c_name); ?></span>
                         </a>
                     <?php endforeach; ?>
                 </section>
@@ -87,10 +112,15 @@ $site_url_clean = untrailingslashit($base_api_url);
                         <?php
                         $p_title = $product['name'] ?? 'محصول';
                         $p_slug = $product['slug'] ?? '#';
-                        $p_link = home_url('/product/' . $p_slug); 
+                        $p_link = home_url('/product/' . $p_slug);
                         $p_img = get_template_directory_uri() . '/images/temp/akamode-default-image.png';
 
-                        if (!empty($product['images']) && is_array($product['images'])) {
+                       
+                        if (isset($product['image']) && !empty($product['image'])) {
+                           
+                            $p_img = $site_url_clean . $product['image'];
+                        } elseif (!empty($product['images']) && is_array($product['images'])) {
+                           
                             $first_img_url = $product['images'][0]['url'] ?? null;
                             if ($first_img_url) {
                                 $p_img = $site_url_clean . $first_img_url;
@@ -98,25 +128,29 @@ $site_url_clean = untrailingslashit($base_api_url);
                         }
 
                         $price_html = '<div class="product-price">ناموجود</div>';
+                        $main_price = 0;
+                        $sale_price = 0;
 
-                        // منطق قیمت (اولویت با تخفیف)
-                        if (!empty($product['variants']) && is_array($product['variants'])) {
+                       
+                        if (array_key_exists('price', $product) && !isset($product['variants'])) {
+                            $main_price = $product['price'];
+                            $sale_price = $product['discount_price'];
+                        }
+                      
+                        elseif (!empty($product['variants']) && is_array($product['variants'])) {
                             $variant = $product['variants'][0];
                             $main_price = $variant['price'] ?? 0;
                             $sale_price = $variant['discount_price'] ?? 0;
+                        }
 
-                            if ($sale_price > 0 && $sale_price < $main_price) {
-                                $price_html = '<div class="product-price">
-                                        <del>' . number_format($main_price) . '</del>
-                                        <span class="text-danger">' . number_format($sale_price) . ' تومان</span>
-                                    </div>';
-                            } elseif ($main_price > 0) {
-                                $price_html = '<div class="product-price">' . number_format($main_price) . ' تومان</div>';
-                            }
-                        } elseif (isset($product['price'])) {
-                             // اگر واریانت نبود و قیمت مستقیم داشت
-                             $main_price = $product['price'];
-                             $price_html = '<div class="product-price">' . number_format($main_price) . ' تومان</div>';
+                       
+                        if ($sale_price > 0 && $sale_price < $main_price) {
+                            $price_html = '<div class="product-price">
+                                    <del>' . number_format($main_price) . '</del>
+                                    <span class="text-danger">' . number_format($sale_price) . ' تومان</span>
+                                </div>';
+                        } elseif ($main_price > 0) {
+                            $price_html = '<div class="product-price">' . number_format($main_price) . ' تومان</div>';
                         }
                         ?>
 
@@ -135,7 +169,7 @@ $site_url_clean = untrailingslashit($base_api_url);
                         <h3 style="margin-top:20px; color:#666;">محصولی یافت نشد</h3>
                         <p style="color:#999;">در این دسته‌بندی محصولی برای نمایش وجود ندارد.</p>
                         <?php if ($is_single_cat): ?>
-                             <a href="<?php echo home_url('/category'); ?>" class="btn-back">بازگشت به همه دسته‌ها</a>
+                            <a href="<?php echo home_url('/category'); ?>" class="btn-back">بازگشت به همه دسته‌ها</a>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>
@@ -147,7 +181,8 @@ $site_url_clean = untrailingslashit($base_api_url);
                 <?php
                 $curr = $meta['current_page'];
                 $last = $meta['last_page'];
-                function get_page_link_api_cat($page) {
+                function get_page_link_api_cat($page)
+                {
                     return add_query_arg('paged', $page);
                 }
                 ?>
@@ -173,9 +208,9 @@ $site_url_clean = untrailingslashit($base_api_url);
         <?php endif; ?>
 
     </div>
-    
+
     <div class="filter-overlay" id="cat_overlay"></div>
-    
+
     <aside class="filter-sidebar" id="cat_sidebar">
         <div class="filter-header">
             <span class="filter-title">فیلترها</span>
@@ -207,7 +242,7 @@ $site_url_clean = untrailingslashit($base_api_url);
                     </label>
                 </div>
             </div>
-            
+
             <div class="f-section">
                 <div class="f-head">
                     <span>رنگ</span>
@@ -234,7 +269,7 @@ $site_url_clean = untrailingslashit($base_api_url);
                     </div>
                 </div>
             </div>
-            
+
             <div class="f-section">
                 <div class="f-head">
                     <span>سایز</span>
@@ -255,7 +290,7 @@ $site_url_clean = untrailingslashit($base_api_url);
                     </div>
                 </div>
             </div>
-            
+
             <div class="f-section" style="border:none;">
                 <div class="f-head">
                     <span>محدوده قیمت</span>
